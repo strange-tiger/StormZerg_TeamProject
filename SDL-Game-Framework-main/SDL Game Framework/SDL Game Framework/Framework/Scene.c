@@ -6,7 +6,7 @@
 Scene g_Scene;
 
 static ESceneType s_nextScene = SCENE_NULL;
-
+ 
 #pragma region TitleScene
 
 #define SOLID 0
@@ -154,19 +154,31 @@ void release_title(void)
 }
 #pragma endregion
 
-#pragma region MainScene
+//Main
+#pragma region MainScene 1
+
+int32 SelectButtonQuantity = 1;									//선택지 버튼 수
+int32 SelectNextScene;											//다음 선택 씬
+
 const wchar_t* str2[] = {
-	L"여기서는 사운드와 이미지 블렌딩에 대해서 알아봅시다.",
-	L"화살표키로 이미지를 이동시킬 수 있습니다.",
-	L"E키를 누르면 이펙트를 재생시킬 수 있습니다. 이펙트 소리가 작으니 볼륨을 낮춘 후 진행하세요.",
-	L"M키로 음악을 끄거나 켤 수 있습니다.",
-	L"P키로 음악을 멈추거나 재개할 수 있습니다.",
-	L"1번과 2번으로 볼륨을 조절할 수 있습니다.",
-	L"WASD로 이미지의 스케일을 조정할 수 있습니다.",
-	L"KL키로 이미지의 투명도를 조절할 수 있습니다."
+	L"2060년, 환경오염과 기후위기로 ",
+	L"최악의 상황에 몰린 지구는",
+	L"하루 하루 다르게 메말라 간다.",
+	L"",
+	L"소수의 특권층들은",
+	L"안전한 삶을 영위하고 있지만,",
+	L"과학의 발전으로 인해",
+	L"대부분의 노동자들은",
+	L"안드로이드에게 일자리를 뺏기고",
+	L"힘들게 살아 가고 있다.",
+	L"",
+	L"",
+	L"",
+	L"",
+	L"",
 };
 
-#define GUIDELINE_COUNT 8
+#define GUIDELINE_COUNT 15
 
 typedef struct MainSceneData
 {
@@ -174,10 +186,20 @@ typedef struct MainSceneData
 	Music		BGM;
 	float		Volume;
 	SoundEffect Effect;
-	Image		BackGround;
 	float		Speed;
-	int32		X;
-	int32		Y;
+
+	Image		BackGround;
+	int32		Back_X;
+	int32		Back_Y;
+
+	Image		SelectButton;
+	int32		Select_X;
+	int32		Select_Y;
+
+	Image		PointerButton;
+	int32		Pointer_X;
+	int32		Pointer_Y;
+
 	int32		Alpha;
 } MainSceneData;
 
@@ -200,10 +222,12 @@ void init_main(void)
 
 	for (int32 i = 0; i < GUIDELINE_COUNT; ++i)
 	{
-		Text_CreateText(&data->GuideLine[i], "d2coding.ttf", 16, str2[i], wcslen(str2[i]));
+		Text_CreateText(&data->GuideLine[i], "d2coding.ttf", 30, str2[i], wcslen(str2[i]));
 	}
 	
-	Image_LoadImage(&data->BackGround, "background.jfif");
+	Image_LoadImage(&data->BackGround, "1_Image.png");
+	Image_LoadImage(&data->SelectButton, "1_Select.png");
+	Image_LoadImage(&data->PointerButton, "Pointer.png");
 
 	Audio_LoadMusic(&data->BGM, "powerful.mp3");
 	Audio_HookMusicFinished(logOnFinished);
@@ -214,8 +238,26 @@ void init_main(void)
 	data->Volume = 1.0f;
 
 	data->Speed = 400.0f;
-	data->X = 400;
-	data->Y = 400;
+	data->Back_X = 0;
+	data->Back_Y = 0;
+	data->Select_X = 0;
+	data->Select_Y = 0;
+	switch (SelectButtonQuantity)
+	{
+		case 1:
+			data->Pointer_X = 0;
+			data->Pointer_Y = 0;
+			break;
+		case 2:
+			data->Pointer_X = 0;
+			data->Pointer_Y = -80;
+			break;
+		case 3:
+			data->Pointer_X = 0;
+			data->Pointer_Y = -160;
+			break;
+	}
+
 	data->Alpha = 255;
 }
 
@@ -263,25 +305,32 @@ void update_main(void)
 		data->Volume += 0.01f;
 		Audio_SetVolume(data->Volume);
 	}
-
-	if (Input_GetKey(VK_DOWN))
+	if (Input_GetKeyDown(VK_DOWN) && -160 <= data->Pointer_Y && data->Pointer_Y < 0)
 	{
-		data->Y += data->Speed * Timer_GetDeltaTime();
+		data->Pointer_Y += 80;
 	}
-
-	if (Input_GetKey(VK_UP))
+	if (Input_GetKeyDown(VK_UP) && data->Pointer_Y > -80 && SelectButtonQuantity == 2)
 	{
-		data->Y -= data->Speed * Timer_GetDeltaTime();
+		data->Pointer_Y -= 80;
 	}
-
-	if (Input_GetKey(VK_LEFT))
+	if (Input_GetKeyDown(VK_UP) && data->Pointer_Y > -160 && SelectButtonQuantity == 3)
 	{
-		data->X -= data->Speed * Timer_GetDeltaTime();
+		data->Pointer_Y -= 80;
 	}
-
-	if (Input_GetKey(VK_RIGHT))
+	if (Input_GetKeyDown(VK_SPACE))
 	{
-		data->X += data->Speed * Timer_GetDeltaTime();
+		if (data->Pointer_Y == -160)
+		{
+			SelectNextScene = 1;
+		}
+		if (data->Pointer_Y == -80)
+		{
+			SelectNextScene = 2;
+		}
+		if (data->Pointer_Y == 0)
+		{
+			SelectNextScene = 3;
+		}
 	}
 
 	if (Input_GetKey('W'))
@@ -294,26 +343,16 @@ void update_main(void)
 		data->BackGround.ScaleY += 0.05f;
 	}
 
-	if (Input_GetKey('A'))
-	{
-		data->BackGround.ScaleX -= 0.05f;
-	}
-
-	if (Input_GetKey('D'))
-	{
-		data->BackGround.ScaleX += 0.05f;
-	}
-
 	if (Input_GetKey('K'))
 	{
-		data->Alpha = Clamp(0, data->Alpha - 1, 255);
-		Image_SetAlphaValue(&data->BackGround, data->Alpha);
+		//data->Alpha = Clamp(0, data->Alpha - 1, 255);						//이거 존나중요함 페이드 인아웃.
+		//Image_SetAlphaValue(&data->BackGround, data->Alpha);
 	}
 
 	if (Input_GetKey('L'))
 	{
-		data->Alpha = Clamp(0, data->Alpha + 1, 255);
-		Image_SetAlphaValue(&data->BackGround, data->Alpha);
+		//data->Alpha = Clamp(0, data->Alpha + 1, 255);
+		//Image_SetAlphaValue(&data->BackGround, data->Alpha);
 	}
 }
 
@@ -321,13 +360,15 @@ void render_main(void)
 {
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
-	for (int32 i = 0; i < GUIDELINE_COUNT; ++i)
-	{
-		SDL_Color color = { .a = 255 };
-		Renderer_DrawTextSolid(&data->GuideLine[i], 10, 20 * i, color);
-	}
+	Renderer_DrawImage(&data->BackGround, data->Back_X, data->Back_Y);
+	Renderer_DrawImage(&data->SelectButton, data->Select_X, data->Select_Y);
+	Renderer_DrawImage(&data->PointerButton, data->Pointer_X, data->Pointer_Y);
 
-	Renderer_DrawImage(&data->BackGround, data->X, data->Y);
+	for (int32 i = 0; i < GUIDELINE_COUNT; i++)
+	{
+		SDL_Color color = { .a = 255, .r =255 , .g = 255 , .b = 255 };
+		Renderer_DrawTextSolid(&data->GuideLine[i], 50, 100 + (i * 40), color);
+	}
 }
 
 void release_main(void)
