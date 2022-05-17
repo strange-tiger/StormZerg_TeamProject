@@ -9,6 +9,7 @@
 #define IMAGE_DIRECTORY	"Asset/Image"
 #define SOUND_DIRECTORY	"Asset/Sound"
 #define FONT_DIRECTORY "Asset/Font"
+#define TEXT_DIRECTORY "Asset/Text"
 
 // FPS
 #define FPS				60
