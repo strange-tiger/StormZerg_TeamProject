@@ -17,6 +17,7 @@
 #include <stdarg.h>
 #include <time.h>
 #include <wchar.h>
+#include <locale.h>
 
 #include <Windows.h>
 

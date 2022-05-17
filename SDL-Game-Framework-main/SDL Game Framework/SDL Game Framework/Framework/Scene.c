@@ -2,6 +2,9 @@
 #include "Scene.h"
 
 #include "Framework.h"
+#include "csv.h"
+#include <crtdbg.h>
+// #include "ReadCSV.h"
 
 Scene g_Scene;
 
@@ -103,6 +106,11 @@ void update_title(void)
 	if (Input_GetKeyDown(VK_SPACE))
 	{
 		Scene_SetNextScene(SCENE_MAIN);
+	}
+
+	if (Input_GetKeyDown(VK_TAB))
+	{
+		Scene_SetNextScene(SCENE_TEST);
 	}
 }
 
@@ -207,7 +215,7 @@ void init_main(void)
 
 	Audio_LoadMusic(&data->BGM, "powerful.mp3");
 	Audio_HookMusicFinished(logOnFinished);
-	Audio_LoadSoundEffect(&data->Effect, "effect2.wav");
+	Audio_LoadSoundEffect(&data->Effect, "test.mp3");
 	Audio_HookSoundEffectFinished(log2OnFinished);
 	Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
 
@@ -334,7 +342,7 @@ void release_main(void)
 {
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
-	for (int32 i = 0; i < 10; ++i)
+	for (int32 i = 0; i < GUIDELINE_COUNT; ++i)
 	{
 		Text_FreeText(&data->GuideLine[i]);
 	}
@@ -344,6 +352,156 @@ void release_main(void)
 	SafeFree(g_Scene.Data);
 }
 #pragma endregion
+
+#pragma region TestScene
+
+#define GUIDELINE_COUNT 8
+
+typedef struct TestSceneData
+{
+	CsvFile		csvFile;
+	Text		TextLine;
+	Music		BGM;
+	float		Volume;
+	SoundEffect Effect;
+	Image		BackGround;
+	float		Speed;
+	int32		X;
+	int32		Y;
+	int32		Alpha;
+} TestSceneData;
+
+//void logOnFinished(void)
+//{
+//	LogInfo("You can show this log on stopped the music");
+//}
+//
+//void log2OnFinished(int32 channel)
+//{
+//	LogInfo("You can show this log on stopped the effect");
+//}
+
+static char* s_Buffer;
+static char* s_BufferPointer;
+
+void init_test(void)
+{
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+	g_Scene.Data = malloc(sizeof(TestSceneData));
+	memset(g_Scene.Data, 0, sizeof(TestSceneData));
+	
+	TestSceneData* data = (TestSceneData*)g_Scene.Data;
+	memset(&data->csvFile, 0, sizeof(CsvFile));
+
+	CreateCsvFile(&data->csvFile, "DB_project.csv");
+
+	wchar_t* str_text = ParseToUnicode(data->csvFile.Items[1][9]);
+	Text_CreateText(&data->TextLine, "d2coding.ttf", 16, str_text, wcslen(str_text));
+	
+	char* str_img = ParseToAscii(data->csvFile.Items[1][1]);
+	Image_LoadImage(&data->BackGround, str_img);
+
+	char* str_bgm = ParseToAscii(data->csvFile.Items[1][4]);
+	Audio_LoadMusic(&data->BGM, str_bgm);
+	Audio_HookMusicFinished(logOnFinished);
+	char* str_se = ParseToAscii(data->csvFile.Items[1][6]);
+	Audio_LoadSoundEffect(&data->Effect, str_se);
+	Audio_HookSoundEffectFinished(log2OnFinished);
+	Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
+
+	data->Volume = 1.0f;
+
+	data->Speed = 400.0f;
+	data->X = 400;
+	data->Y = 400;
+	data->Alpha = 255;
+}
+
+void update_test(void)
+{
+	TestSceneData* data = (TestSceneData*)g_Scene.Data;
+
+	if (Input_GetKeyDown('E'))
+	{
+		Audio_PlaySoundEffect(&data->Effect, 1);
+	}
+
+	if (Input_GetKeyDown('M'))
+	{
+		if (Audio_IsMusicPlaying())
+		{
+			Audio_Stop();
+		}
+		else
+		{
+			Audio_Play(&data->BGM, INFINITY_LOOP);
+		}
+	}
+
+	if (Input_GetKeyDown('P'))
+	{
+		if (Audio_IsMusicPaused())
+		{
+			Audio_Resume();
+		}
+		else
+		{
+			Audio_Pause();
+		}
+	}
+
+	if (Input_GetKey('1'))
+	{
+		data->Volume -= 0.01f;
+		Audio_SetVolume(data->Volume);
+	}
+
+	if (Input_GetKey('2'))
+	{
+		data->Volume += 0.01f;
+		Audio_SetVolume(data->Volume);
+	}
+
+	if (Input_GetKey('K'))
+	{
+		data->Alpha = Clamp(0, data->Alpha - 1, 255);
+		Image_SetAlphaValue(&data->BackGround, data->Alpha);
+	}
+
+	if (Input_GetKey('L'))
+	{
+		data->Alpha = Clamp(0, data->Alpha + 1, 255);
+		Image_SetAlphaValue(&data->BackGround, data->Alpha);
+	}
+}
+
+void render_test(void)
+{
+	TestSceneData* data = (TestSceneData*)g_Scene.Data;
+
+	
+		SDL_Color color = { .a = 255 };
+		Renderer_DrawTextSolid(&data->TextLine, 10, 20, color);
+	
+
+	Renderer_DrawImage(&data->BackGround, data->X, data->Y);
+}
+
+void release_test(void)
+{
+	TestSceneData* data = (TestSceneData*)g_Scene.Data;
+
+	
+	Text_FreeText(&data->TextLine);
+	FreeCsvFile(&data->csvFile);
+	Audio_FreeMusic(&data->BGM);
+	Audio_FreeSoundEffect(&data->Effect);
+
+	SafeFree(g_Scene.Data);
+}
+#pragma endregion
+
 
 bool Scene_IsSetNextScene(void)
 {
@@ -357,7 +515,7 @@ bool Scene_IsSetNextScene(void)
 	}
 }
 
-void Scene_SetNextScene(ESceneType scene)
+void Scene_SetNextScene(ESceneType scene)			// 다음 Scene 지정 함수 : Scene의 이동, if문을 사용한 전환 가능
 {
 	assert(s_nextScene == SCENE_NULL);
 	assert(SCENE_NULL < scene&& scene < SCENE_MAX);
@@ -365,7 +523,7 @@ void Scene_SetNextScene(ESceneType scene)
 	s_nextScene = scene;
 }
 
-void Scene_Change(void)
+void Scene_Change(void)								// Scene 변경 함수 - Scene 추가시 switch에 Scene의 함수들 등록 필요.
 {
 	assert(s_nextScene != SCENE_NULL);
 
@@ -387,6 +545,12 @@ void Scene_Change(void)
 		g_Scene.Update = update_main;
 		g_Scene.Render = render_main;
 		g_Scene.Release = release_main;
+		break;
+	case SCENE_TEST:
+		g_Scene.Init = init_test;
+		g_Scene.Update = update_test;
+		g_Scene.Render = render_test;
+		g_Scene.Release = release_test;
 		break;
 	}
 
