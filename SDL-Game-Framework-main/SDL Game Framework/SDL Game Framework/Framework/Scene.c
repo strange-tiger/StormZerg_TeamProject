@@ -184,6 +184,9 @@ const wchar_t* str2[] = {
 };
 
 #define GUIDELINE_COUNT 15
+#define CHOOSE_POSITION_1 -160
+#define CHOOSE_POSITION_2 -80
+#define CHOOSE_POSITION_3 0
 
 typedef struct MainSceneData
 {
@@ -221,11 +224,11 @@ void log2OnFinished(int32 channel)
 }
 
 int32 SelectButtonQuantity = 1;									//선택지 버튼 수	// Null 값의 선택지 수를 세는 것으로 구현
-int32 SelectNextScene;											//다음 선택 씬
+int32 SelectNextPage;											//다음 선택 씬
 
 static char* s_Buffer;
 static char* s_BufferPointer;
-static int32 s_CurrentScene = 1;
+static int32 s_CurrentPage = 1;
 void init_main(void)
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -237,19 +240,19 @@ void init_main(void)
 
 	CreateCsvFile(&data->CsvFile, "DB_projectver1.csv");
 
-	wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_CurrentScene][9]);
+	wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_CurrentPage][9]);
 	Text_CreateText(&data->TextLine, "d2coding.ttf", 16, str_text, wcslen(str_text));
 
-	char* str_background = ParseToAscii(data->CsvFile.Items[s_CurrentScene][1]);
+	char* str_background = ParseToAscii(data->CsvFile.Items[s_CurrentPage][1]);
 	Image_LoadImage(&data->BackGround, str_background);
-	char* str_choose = ParseToAscii(data->CsvFile.Items[s_CurrentScene][2]);
+	char* str_choose = ParseToAscii(data->CsvFile.Items[s_CurrentPage][2]);
 	Image_LoadImage(&data->SelectButton, str_choose);
 	Image_LoadImage(&data->PointerButton, "Pointer.png");
 
-	char* str_bgm = ParseToAscii(data->CsvFile.Items[s_CurrentScene][4]);
+	char* str_bgm = ParseToAscii(data->CsvFile.Items[s_CurrentPage][4]);
 	Audio_LoadMusic(&data->BGM, str_bgm);
 	Audio_HookMusicFinished(logOnFinished);
-	char* str_se = ParseToAscii(data->CsvFile.Items[s_CurrentScene][6]);
+	char* str_se = ParseToAscii(data->CsvFile.Items[s_CurrentPage][6]);
 	Audio_LoadSoundEffect(&data->Effect, str_se);
 	Audio_HookSoundEffectFinished(log2OnFinished);
 	Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
@@ -265,15 +268,15 @@ void init_main(void)
 	{
 	case 1:
 		data->Pointer_X = 0;
-		data->Pointer_Y = 0;
+		data->Pointer_Y = CHOOSE_POSITION_3;
 		break;
 	case 2:
 		data->Pointer_X = 0;
-		data->Pointer_Y = -80;
+		data->Pointer_Y = CHOOSE_POSITION_2;
 		break;
 	case 3:
 		data->Pointer_X = 0;
-		data->Pointer_Y = -160;
+		data->Pointer_Y = CHOOSE_POSITION_1;
 		break;
 	}
 
@@ -325,31 +328,33 @@ void update_main(void)
 		Audio_SetVolume(data->Volume);
 	}
 	// 설명 필요
-	if (Input_GetKeyDown(VK_DOWN) && -160 <= data->Pointer_Y && data->Pointer_Y < 0)
+	if (Input_GetKeyDown(VK_DOWN) && CHOOSE_POSITION_1 <= data->Pointer_Y && data->Pointer_Y < CHOOSE_POSITION_3)
 	{
 		data->Pointer_Y += 80;
 	}
-	if (Input_GetKeyDown(VK_UP) && data->Pointer_Y > -80 && SelectButtonQuantity == 2)
+	if (Input_GetKeyDown(VK_UP) && CHOOSE_POSITION_2 < data->Pointer_Y && SelectButtonQuantity == 2)
 	{
 		data->Pointer_Y -= 80;
 	}
-	if (Input_GetKeyDown(VK_UP) && data->Pointer_Y > -160 && SelectButtonQuantity == 3)
+	if (Input_GetKeyDown(VK_UP) && CHOOSE_POSITION_1 < data->Pointer_Y && SelectButtonQuantity == 3)
 	{
 		data->Pointer_Y -= 80;
 	}
+
+	// 선택지 선택
 	if (Input_GetKeyDown(VK_SPACE))
 	{
-		if (data->Pointer_Y == -160)
+		if (data->Pointer_Y == CHOOSE_POSITION_1)
 		{
-			SelectNextScene = atoi(&data->CsvFile.Items[s_CurrentScene][13]);	 // 선택지 1 연결 Scene
+			SelectNextPage = atoi(&data->CsvFile.Items[s_CurrentPage][13]);	 // 선택지 1 연결 Scene
 		}
-		else if (data->Pointer_Y == -80)
+		else if (data->Pointer_Y == CHOOSE_POSITION_2)
 		{
-			SelectNextScene = atoi(&data->CsvFile.Items[s_CurrentScene][14]);	 // 선택지 2 연결 Scene
+			SelectNextPage = atoi(&data->CsvFile.Items[s_CurrentPage][14]);	 // 선택지 2 연결 Scene
 		}
-		else if (data->Pointer_Y == 0)
+		else if (data->Pointer_Y == CHOOSE_POSITION_3)
 		{
-			SelectNextScene = atoi(&data->CsvFile.Items[s_CurrentScene][15]);	 // 선택지 3 연결 Scene
+			SelectNextPage = atoi(&data->CsvFile.Items[s_CurrentPage][15]);	 // 선택지 3 연결 Scene
 		}
 	}
 
