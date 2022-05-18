@@ -181,9 +181,9 @@ const wchar_t* str2[] = {
 };
 
 #define GUIDELINE_COUNT 11
-#define CHOOSE_POSITION_1 -160
-#define CHOOSE_POSITION_2 -80
-#define CHOOSE_POSITION_3 0
+#define CHOOSE_POSITION_TOP -160
+#define CHOOSE_POSITION_MIDDLE -80
+#define CHOOSE_POSITION_BOTTOM 0
 
 typedef struct MainSceneData
 {
@@ -239,33 +239,33 @@ void init_main(void)
 
 	CreateCsvFile(&data->CsvFile, "222.csv");
 
-	wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_CurrentPage][10]);
+	wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_CurrentPage][FULL_TEXT]);
 	if (NULL != *str_text)
 	{
 		Text_CreateText(&data->TextLine, "d2coding.ttf", 16, str_text, wcslen(str_text));
 	}
 
-	char* str_background = ParseToAscii(data->CsvFile.Items[s_CurrentPage][1]);
+	char* str_background = ParseToAscii(data->CsvFile.Items[s_CurrentPage][BACK_IMG_NAME]);
 	if (NULL != *str_background)
 	{
 		Image_LoadImage(&data->BackGround, str_background);
 	}
 
-	char* str_choose = ParseToAscii(data->CsvFile.Items[s_CurrentPage][2]);
+	char* str_choose = ParseToAscii(data->CsvFile.Items[s_CurrentPage][CHOOSE_IMG_NAME]);
 	if (NULL != *str_choose)
 	{
 		Image_LoadImage(&data->SelectButton, str_choose);
 	}
 	Image_LoadImage(&data->PointerButton, "Pointer.png");
 
-	char* str_bgm = ParseToAscii(data->CsvFile.Items[s_CurrentPage][4]);
+	char* str_bgm = ParseToAscii(data->CsvFile.Items[s_CurrentPage][SOUND_MUSIC_NAME]);
 	if (NULL != *str_bgm)
 	{
 		Audio_LoadMusic(&data->BGM, str_bgm);
 		Audio_HookMusicFinished(logOnFinished);
 	}
 
-	char* str_se = ParseToAscii(data->CsvFile.Items[s_CurrentPage][6]);
+	char* str_se = ParseToAscii(data->CsvFile.Items[s_CurrentPage][SOUND_EFFECT_NAME]);
 	if (NULL != *str_se)
 	{
 		Audio_LoadSoundEffect(&data->Effect, str_se);
@@ -281,21 +281,21 @@ void init_main(void)
 	data->Select_X = 0;
 	data->Select_Y = 0;
 
-	char* num_choose_quantity = ParseToAscii(data->CsvFile.Items[s_CurrentPage][21]);
+	char* num_choose_quantity = ParseToAscii(data->CsvFile.Items[s_CurrentPage][CHOOSE_QUANTITY]);
 	SelectButtonQuantity = atoi(num_choose_quantity);
 	switch (SelectButtonQuantity)
 	{
 	case 1:
 		data->Pointer_X = 0;
-		data->Pointer_Y = CHOOSE_POSITION_3;
+		data->Pointer_Y = CHOOSE_POSITION_BOTTOM;
 		break;
 	case 2:
 		data->Pointer_X = 0;
-		data->Pointer_Y = CHOOSE_POSITION_2;
+		data->Pointer_Y = CHOOSE_POSITION_MIDDLE;
 		break;
 	case 3:
 		data->Pointer_X = 0;
-		data->Pointer_Y = CHOOSE_POSITION_1;
+		data->Pointer_Y = CHOOSE_POSITION_TOP;
 		break;
 	}
 
@@ -348,16 +348,16 @@ void update_main(void)
 	}
 
 	// ���� �ʿ�
-	if (Input_GetKeyDown(VK_DOWN) && CHOOSE_POSITION_1 <= data->Pointer_Y && data->Pointer_Y < CHOOSE_POSITION_3)
+	if (Input_GetKeyDown(VK_DOWN) && CHOOSE_POSITION_TOP <= data->Pointer_Y && data->Pointer_Y < CHOOSE_POSITION_BOTTOM)
 
 	{
 		data->Pointer_Y += 80;
 	}
-	if (Input_GetKeyDown(VK_UP) && CHOOSE_POSITION_2 < data->Pointer_Y && SelectButtonQuantity == 2)
+	if (Input_GetKeyDown(VK_UP) && CHOOSE_POSITION_MIDDLE < data->Pointer_Y && SelectButtonQuantity == 2)
 	{
 		data->Pointer_Y -= 80;
 	}
-	if (Input_GetKeyDown(VK_UP) && CHOOSE_POSITION_1 < data->Pointer_Y && SelectButtonQuantity == 3)
+	if (Input_GetKeyDown(VK_UP) && CHOOSE_POSITION_TOP < data->Pointer_Y && SelectButtonQuantity == 3)
 	{
 		data->Pointer_Y -= 80;
 	}
@@ -365,42 +365,42 @@ void update_main(void)
 	// ������ ����
 	if (Input_GetKeyDown(VK_SPACE))
 	{
-		if (data->Pointer_Y == CHOOSE_POSITION_1)		//
+		if (data->Pointer_Y == CHOOSE_POSITION_TOP)		//
 		{
-			char* num_choose_1 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][15]);
+			char* num_choose_1 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_1]);
 			s_SelectNextPage = atoi(num_choose_1);
 		}
-		else if (data->Pointer_Y == CHOOSE_POSITION_2)	// ������ 2 ���� Scene
+		else if (data->Pointer_Y == CHOOSE_POSITION_MIDDLE)	// ������ 2 ���� Scene
 		{
 			char* num_choose_2;
 			if (SelectButtonQuantity == 2)
 			{
-				num_choose_2 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][15]);
+				num_choose_2 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_1]);
 				s_SelectNextPage = atoi(num_choose_2);
 			}
 			else if (SelectButtonQuantity == 3)
 			{
-				num_choose_2 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][16]);
+				num_choose_2 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_2]);
 				s_SelectNextPage = atoi(num_choose_2);
 			}
 
 		}
-		else if (data->Pointer_Y == CHOOSE_POSITION_3)	// ������ 3 ���� Scene
+		else if (data->Pointer_Y == CHOOSE_POSITION_BOTTOM)	// ������ 3 ���� Scene
 		{
 			char* num_choose_3;
 			if (SelectButtonQuantity == 1)
 			{
-				num_choose_3 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][15]);
+				num_choose_3 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_1]);
 				s_SelectNextPage = atoi(num_choose_3);
 			}
 			else if (SelectButtonQuantity == 2)
 			{
-				num_choose_3 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][16]);
+				num_choose_3 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_2]);
 				s_SelectNextPage = atoi(num_choose_3);
 			}
 			else if (SelectButtonQuantity == 3)
 			{
-				num_choose_3 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][17]);
+				num_choose_3 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_3]);
 				s_SelectNextPage = atoi(num_choose_3);
 			}
 		}
