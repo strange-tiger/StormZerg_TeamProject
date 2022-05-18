@@ -224,15 +224,14 @@ void log2OnFinished(int32 channel)
 static char* s_Buffer;
 static char* s_BufferPointer;
 
-int32 SelectButtonQuantity = 3;									//������ ��ư ��	// Null ���� ������ �� ���� ����� ����
+static int32 SelectButtonQuantity = 3;									//������ ��ư ��	// Null ���� ������ �� ���� ����� ����
 static int32 s_CurrentPage = 1;
 static int32 s_SelectNextPage = 1;								//��� ���� ��
 void init_main(void)
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	// SelectButtonQuantity = atoi(&data->CsvFile.Items[s_CurrentPage][13]);
-	
+
 	g_Scene.Data = malloc(sizeof(MainSceneData));
 	memset(g_Scene.Data, 0, sizeof(MainSceneData));
 
@@ -241,22 +240,38 @@ void init_main(void)
 	CreateCsvFile(&data->CsvFile, "222.csv");
 
 	wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_CurrentPage][10]);
-	Text_CreateText(&data->TextLine, "d2coding.ttf", 16, str_text, wcslen(str_text));
+	if (NULL != *str_text)
+	{
+		Text_CreateText(&data->TextLine, "d2coding.ttf", 16, str_text, wcslen(str_text));
+	}
 
 	char* str_background = ParseToAscii(data->CsvFile.Items[s_CurrentPage][1]);
-	Image_LoadImage(&data->BackGround, str_background);
+	if (NULL != *str_background)
+	{
+		Image_LoadImage(&data->BackGround, str_background);
+	}
+
 	char* str_choose = ParseToAscii(data->CsvFile.Items[s_CurrentPage][2]);
-	Image_LoadImage(&data->SelectButton, str_choose);
+	if (NULL != *str_choose)
+	{
+		Image_LoadImage(&data->SelectButton, str_choose);
+	}
 	Image_LoadImage(&data->PointerButton, "Pointer.png");
 
 	char* str_bgm = ParseToAscii(data->CsvFile.Items[s_CurrentPage][4]);
-	Audio_LoadMusic(&data->BGM, str_bgm);
+	if (NULL != *str_bgm)
+	{
+		Audio_LoadMusic(&data->BGM, str_bgm);
+		Audio_HookMusicFinished(logOnFinished);
+	}
 
-	// Audio_HookMusicFinished(logOnFinished);
-	// char* str_se = ParseToAscii(data->CsvFile.Items[s_CurrentPage][6]);
-	// Audio_LoadSoundEffect(&data->Effect, str_se);
-	// Audio_HookSoundEffectFinished(log2OnFinished);
-	// Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
+	char* str_se = ParseToAscii(data->CsvFile.Items[s_CurrentPage][6]);
+	if (NULL != *str_se)
+	{
+		Audio_LoadSoundEffect(&data->Effect, str_se);
+		Audio_HookSoundEffectFinished(log2OnFinished);
+		Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
+	}
 
 	data->Volume = 1.0f;
 
@@ -265,6 +280,9 @@ void init_main(void)
 	data->Back_Y = 0;
 	data->Select_X = 0;
 	data->Select_Y = 0;
+
+	char* num_choose_quantity = ParseToAscii(data->CsvFile.Items[s_CurrentPage][21]);
+	SelectButtonQuantity = atoi(num_choose_quantity);
 	switch (SelectButtonQuantity)
 	{
 	case 1:
@@ -287,28 +305,6 @@ void init_main(void)
 void update_main(void)
 {
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
-  
-	if (s_CurrentPage != s_SelectNextPage)
-	{
-		wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_SelectNextPage][9]);
-		Text_CreateText(&data->TextLine, "d2coding.ttf", 16, str_text, wcslen(str_text));
-
-		char* str_background = ParseToAscii(data->CsvFile.Items[s_SelectNextPage][1]);
-		Image_LoadImage(&data->BackGround, str_background);
-		char* str_choose = ParseToAscii(data->CsvFile.Items[s_SelectNextPage][2]);
-		Image_LoadImage(&data->SelectButton, str_choose);
-		Image_LoadImage(&data->PointerButton, "Pointer.png");
-
-		char* str_bgm = ParseToAscii(data->CsvFile.Items[s_SelectNextPage][4]);
-		Audio_LoadMusic(&data->BGM, str_bgm);
-		Audio_HookMusicFinished(logOnFinished);
-		char* str_se = ParseToAscii(data->CsvFile.Items[s_SelectNextPage][6]);
-		Audio_LoadSoundEffect(&data->Effect, str_se);
-		Audio_HookSoundEffectFinished(log2OnFinished);
-		Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
-
-		s_CurrentPage = s_SelectNextPage;
-	}
 
 	if (Input_GetKeyDown('E'))
 	{
@@ -371,42 +367,44 @@ void update_main(void)
 	{
 		if (data->Pointer_Y == CHOOSE_POSITION_1)		// ������ 1 ���� Scene
 		{
-			char* num_choose_1 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][13]);
-			s_SelectNextPage = atoi(num_choose_1);	
+			char* num_choose_1 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][15]);
+			s_SelectNextPage = atoi(num_choose_1);
 		}
 		else if (data->Pointer_Y == CHOOSE_POSITION_2)	// ������ 2 ���� Scene
 		{
 			char* num_choose_2;
 			if (SelectButtonQuantity == 2)
 			{
-				num_choose_2 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][13]);
+				num_choose_2 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][15]);
 				s_SelectNextPage = atoi(num_choose_2);
 			}
-			else if (SelectButtonQuantity == 1) 
+			else if (SelectButtonQuantity == 1)
 			{
-				num_choose_2 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][14]);
-				s_SelectNextPage = atoi(num_choose_2);	
+				num_choose_2 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][16]);
+				s_SelectNextPage = atoi(num_choose_2);
 			}
 		}
 		else if (data->Pointer_Y == CHOOSE_POSITION_3)	// ������ 3 ���� Scene
 		{
 			char* num_choose_3;
-			if (SelectButtonQuantity == 3)
+			if (SelectButtonQuantity == 1)
 			{
-				num_choose_3 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][13]);
+				num_choose_3 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][15]);
 				s_SelectNextPage = atoi(num_choose_3);
 			}
 			else if (SelectButtonQuantity == 2)
 			{
-				num_choose_3 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][14]);
+				num_choose_3 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][16]);
 				s_SelectNextPage = atoi(num_choose_3);
 			}
-			else if (SelectButtonQuantity == 1)
+			else if (SelectButtonQuantity == 3)
 			{
-				num_choose_3 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][15]);
-				s_SelectNextPage = atoi(num_choose_3);	 
+				num_choose_3 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][17]);
+				s_SelectNextPage = atoi(num_choose_3);
 			}
 		}
+		s_CurrentPage = s_SelectNextPage;
+		Scene_SetNextScene(SCENE_MAIN);
 	}
 
 	if (Input_GetKey('W'))
@@ -440,10 +438,10 @@ void render_main(void)
 	Renderer_DrawImage(&data->SelectButton, data->Select_X, data->Select_Y);
 	Renderer_DrawImage(&data->PointerButton, data->Pointer_X, data->Pointer_Y);
 
-	
+
 	SDL_Color color = { .a = 255, .r = 255 , .g = 255 , .b = 255 };
 	Renderer_DrawTextSolid(&data->TextLine, 50, 140, color);
-	
+
 }
 
 void release_main(void)
