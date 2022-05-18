@@ -17,16 +17,16 @@ static ESceneType s_nextScene = SCENE_NULL;
 #define BLENDED 2
 
 const wchar_t* str[] = {
-	L"¿©±â´Â Å¸ÀÌÆ²¾ÀÀÔ´Ï´Ù. ÅØ½ºÆ®¿Í °ü·ÃµÈ ¿©·¯°¡Áö¸¦ Å×½ºÆ®ÇØº¾½Ã´Ù.",
-	L"BÅ°¸¦ ´©¸£¸é ÆùÆ®°¡ ±½°Ô º¯ÇÕ´Ï´Ù.",
-	L"IÅ°¸¦ ´©¸£¸é ÆùÆ®°¡ ÀÌÅÅ¸¯Ã¼·Î º¯ÇÕ´Ï´Ù.",
-	L"UÅ°¸¦ ´©¸£¸é ÅØ½ºÆ®¿¡ ¹ØÁÙÀÌ »ı±é´Ï´Ù.",
-	L"SÅ°¸¦ ´©¸£¸é ÅØ½ºÆ®¿¡ Ãë¼Ò¼±ÀÌ »ı±é´Ï´Ù.",
-	L"NÅ°¸¦ ´©¸£¸é ´Ù½Ã ¿ø·¡´ë·Î µ¹¾Æ¿É´Ï´Ù.",
-	L"CÅ°¸¦ ´©¸£¸é ·»´õ ¸ğµå°¡ ¹Ù²ò´Ï´Ù. (Solid -> Shaded -> Blended)",
-	L"1Å°¸¦ ´©¸£¸é ÅØ½ºÆ®°¡ ÀÛ¾ÆÁı´Ï´Ù.",
-	L"2Å°¸¦ ´©¸£¸é ÅØ½ºÆ®°¡ Ä¿Áı´Ï´Ù.",
-	L"½ºÆäÀÌ½º Å°¸¦ ´©¸£¸é ´ÙÀ½ ¾ÀÀ¸·Î ³Ñ¾î°©´Ï´Ù."
+	L"ì—¬ê¸°ëŠ” íƒ€ì´í‹€ì”¬ì…ë‹ˆë‹¤. í…ìŠ¤íŠ¸ì™€ ê´€ë ¨ëœ ì—¬ëŸ¬ê°€ì§€ë¥¼ í…ŒìŠ¤íŠ¸í•´ë´…ì‹œë‹¤.",
+	L"Bí‚¤ë¥¼ ëˆ„ë¥´ë©´ í°íŠ¸ê°€ êµµê²Œ ë³€í•©ë‹ˆë‹¤.",
+	L"Ií‚¤ë¥¼ ëˆ„ë¥´ë©´ í°íŠ¸ê°€ ì´íƒ¤ë¦­ì²´ë¡œ ë³€í•©ë‹ˆë‹¤.",
+	L"Uí‚¤ë¥¼ ëˆ„ë¥´ë©´ í…ìŠ¤íŠ¸ì— ë°‘ì¤„ì´ ìƒê¹ë‹ˆë‹¤.",
+	L"Sí‚¤ë¥¼ ëˆ„ë¥´ë©´ í…ìŠ¤íŠ¸ì— ì·¨ì†Œì„ ì´ ìƒê¹ë‹ˆë‹¤.",
+	L"Ní‚¤ë¥¼ ëˆ„ë¥´ë©´ ë‹¤ì‹œ ì›ë˜ëŒ€ë¡œ ëŒì•„ì˜µë‹ˆë‹¤.",
+	L"Cí‚¤ë¥¼ ëˆ„ë¥´ë©´ ë Œë” ëª¨ë“œê°€ ë°”ë€ë‹ˆë‹¤. (Solid -> Shaded -> Blended)",
+	L"1í‚¤ë¥¼ ëˆ„ë¥´ë©´ í…ìŠ¤íŠ¸ê°€ ì‘ì•„ì§‘ë‹ˆë‹¤.",
+	L"2í‚¤ë¥¼ ëˆ„ë¥´ë©´ í…ìŠ¤íŠ¸ê°€ ì»¤ì§‘ë‹ˆë‹¤.",
+	L"ìŠ¤í˜ì´ìŠ¤ í‚¤ë¥¼ ëˆ„ë¥´ë©´ ë‹¤ìŒ ì”¬ìœ¼ë¡œ ë„˜ì–´ê°‘ë‹ˆë‹¤."
 };
 
 typedef struct TitleSceneData
@@ -50,7 +50,7 @@ void init_title(void)
 	}
 
 	data->FontSize = 24;
-	Text_CreateText(&data->TestText, "d2coding.ttf", data->FontSize, L"ÀÌ ÅØ½ºÆ®°¡ º¯ÇÕ´Ï´Ù.", 13);
+	Text_CreateText(&data->TestText, "d2coding.ttf", data->FontSize, L"ì´ í…ìŠ¤íŠ¸ê°€ ë³€í•©ë‹ˆë‹¤.", 13);
 
 	data->RenderMode = SOLID;
 
@@ -166,24 +166,21 @@ void release_title(void)
 #pragma region MainScene 1
 
 const wchar_t* str2[] = {
-	L"2060³â, È¯°æ¿À¿°°ú ±âÈÄÀ§±â·Î ",
-	L"ÃÖ¾ÇÀÇ »óÈ²¿¡ ¸ô¸° Áö±¸´Â",
-	L"ÇÏ·ç ÇÏ·ç ´Ù¸£°Ô ¸Ş¸»¶ó °£´Ù.",
+	L"2060ë…„, í™˜ê²½ì˜¤ì—¼ê³¼ ê¸°í›„ìœ„ê¸°ë¡œ ",
+	L"ìµœì•…ì˜ ìƒí™©ì— ëª°ë¦° ì§€êµ¬ëŠ”",
+	L"í•˜ë£¨ í•˜ë£¨ ë‹¤ë¥´ê²Œ ë©”ë§ë¼ ê°„ë‹¤.",
 	L"",
-	L"¼Ò¼öÀÇ Æ¯±ÇÃşµéÀº",
-	L"¾ÈÀüÇÑ »îÀ» ¿µÀ§ÇÏ°í ÀÖÁö¸¸,",
-	L"°úÇĞÀÇ ¹ßÀüÀ¸·Î ÀÎÇØ",
-	L"´ëºÎºĞÀÇ ³ëµ¿ÀÚµéÀº",
-	L"¾Èµå·ÎÀÌµå¿¡°Ô ÀÏÀÚ¸®¸¦ »¯±â°í",
-	L"Èûµé°Ô »ì¾Æ °¡°í ÀÖ´Ù.",
+	L"ì†Œìˆ˜ì˜ íŠ¹ê¶Œì¸µë“¤ì€",
+	L"ì•ˆì „í•œ ì‚¶ì„ ì˜ìœ„í•˜ê³  ìˆì§€ë§Œ,",
+	L"ê³¼í•™ì˜ ë°œì „ìœ¼ë¡œ ì¸í•´",
+	L"ëŒ€ë¶€ë¶„ì˜ ë…¸ë™ìë“¤ì€",
+	L"ì•ˆë“œë¡œì´ë“œì—ê²Œ ì¼ìë¦¬ë¥¼ ëºê¸°ê³ ",
+	L"í˜ë“¤ê²Œ ì‚´ì•„ ê°€ê³  ìˆë‹¤.",
 	L"",
-	L"",
-	L"",
-	L"",
-	L"",
+
 };
 
-#define GUIDELINE_COUNT 15
+#define GUIDELINE_COUNT 11
 #define CHOOSE_POSITION_1 -160
 #define CHOOSE_POSITION_2 -80
 #define CHOOSE_POSITION_3 0
@@ -227,9 +224,9 @@ void log2OnFinished(int32 channel)
 static char* s_Buffer;
 static char* s_BufferPointer;
 
-int32 SelectButtonQuantity = 3;									//¼±ÅÃÁö ¹öÆ° ¼ö	// Null °ªÀÇ ¼±ÅÃÁö ¼ö¸¦ ¼¼´Â °ÍÀ¸·Î ±¸Çö
+int32 SelectButtonQuantity = 3;									//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½	// Null ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 static int32 s_CurrentPage = 1;
-static int32 s_SelectNextPage = 1;								//´ÙÀ½ ¼±ÅÃ ¾À
+static int32 s_SelectNextPage = 1;								//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 void init_main(void)
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -254,6 +251,7 @@ void init_main(void)
 
 	char* str_bgm = ParseToAscii(data->CsvFile.Items[s_CurrentPage][4]);
 	Audio_LoadMusic(&data->BGM, str_bgm);
+
 	Audio_HookMusicFinished(logOnFinished);
 	char* str_se = ParseToAscii(data->CsvFile.Items[s_CurrentPage][6]);
 	Audio_LoadSoundEffect(&data->Effect, str_se);
@@ -289,7 +287,7 @@ void init_main(void)
 void update_main(void)
 {
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
-
+  
 	if (s_CurrentPage != s_SelectNextPage)
 	{
 		wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_SelectNextPage][9]);
@@ -352,8 +350,10 @@ void update_main(void)
 		data->Volume += 0.01f;
 		Audio_SetVolume(data->Volume);
 	}
-	// ¼³¸í ÇÊ¿ä
+
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½
 	if (Input_GetKeyDown(VK_DOWN) && CHOOSE_POSITION_1 <= data->Pointer_Y && data->Pointer_Y < CHOOSE_POSITION_3)
+
 	{
 		data->Pointer_Y += 80;
 	}
@@ -366,15 +366,15 @@ void update_main(void)
 		data->Pointer_Y -= 80;
 	}
 
-	// ¼±ÅÃÁö ¼±ÅÃ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (Input_GetKeyDown(VK_SPACE))
 	{
-		if (data->Pointer_Y == CHOOSE_POSITION_1)		// ¼±ÅÃÁö 1 ¿¬°á Scene
+		if (data->Pointer_Y == CHOOSE_POSITION_1)		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ï¿½ï¿½ï¿½ Scene
 		{
 			char* num_choose_1 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][13]);
 			s_SelectNextPage = atoi(num_choose_1);	
 		}
-		else if (data->Pointer_Y == CHOOSE_POSITION_2)	// ¼±ÅÃÁö 2 ¿¬°á Scene
+		else if (data->Pointer_Y == CHOOSE_POSITION_2)	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2 ï¿½ï¿½ï¿½ï¿½ Scene
 		{
 			char* num_choose_2;
 			if (SelectButtonQuantity == 2)
@@ -388,7 +388,7 @@ void update_main(void)
 				s_SelectNextPage = atoi(num_choose_2);	
 			}
 		}
-		else if (data->Pointer_Y == CHOOSE_POSITION_3)	// ¼±ÅÃÁö 3 ¿¬°á Scene
+		else if (data->Pointer_Y == CHOOSE_POSITION_3)	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 3 ï¿½ï¿½ï¿½ï¿½ Scene
 		{
 			char* num_choose_3;
 			if (SelectButtonQuantity == 3)
@@ -421,7 +421,7 @@ void update_main(void)
 
 	if (Input_GetKey('K'))
 	{
-		//data->Alpha = Clamp(0, data->Alpha - 1, 255);						//ÀÌ°Å Á¸³ªÁß¿äÇÔ ÆäÀÌµå ÀÎ¾Æ¿ô.
+		//data->Alpha = Clamp(0, data->Alpha - 1, 255);						//ì´ê±° ì¡´ë‚˜ì¤‘ìš”í•¨ í˜ì´ë“œ ì¸ì•„ì›ƒ.
 		//Image_SetAlphaValue(&data->BackGround, data->Alpha);
 	}
 
@@ -462,156 +462,6 @@ void release_main(void)
 }
 #pragma endregion
 
-//#pragma region TestScene
-//
-//#define GUIDELINE_COUNT 8
-//
-//typedef struct TestSceneData
-//{
-//	CsvFile		csvFile;
-//	Text		TextLine;
-//	Music		BGM;
-//	float		Volume;
-//	SoundEffect Effect;
-//	Image		BackGround;
-//	float		Speed;
-//	int32		X;
-//	int32		Y;
-//	int32		Alpha;
-//} TestSceneData;
-//
-////void logOnFinished(void)
-////{
-////	LogInfo("You can show this log on stopped the music");
-////}
-////
-////void log2OnFinished(int32 channel)
-////{
-////	LogInfo("You can show this log on stopped the effect");
-////}
-////
-////static char* s_Buffer;
-////static char* s_BufferPointer;
-//
-//void init_test(void)
-//{
-//	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-//
-//	g_Scene.Data = malloc(sizeof(TestSceneData));
-//	memset(g_Scene.Data, 0, sizeof(TestSceneData));
-//	
-//	TestSceneData* data = (TestSceneData*)g_Scene.Data;
-//	memset(&data->csvFile, 0, sizeof(CsvFile));
-//
-//	CreateCsvFile(&data->csvFile, "DB_project.csv");
-//
-//	wchar_t* str_text = ParseToUnicode(data->csvFile.Items[1][9]);
-//	Text_CreateText(&data->TextLine, "d2coding.ttf", 16, str_text, wcslen(str_text));
-//	
-//	char* str_img = ParseToAscii(data->csvFile.Items[1][1]);
-//	Image_LoadImage(&data->BackGround, str_img);
-//
-//	char* str_bgm = ParseToAscii(data->csvFile.Items[1][4]);
-//	Audio_LoadMusic(&data->BGM, str_bgm);
-//	Audio_HookMusicFinished(logOnFinished);
-//	char* str_se = ParseToAscii(data->csvFile.Items[1][6]);
-//	Audio_LoadSoundEffect(&data->Effect, str_se);
-//	Audio_HookSoundEffectFinished(log2OnFinished);
-//	Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
-//
-//	data->Volume = 1.0f;
-//
-//	data->Speed = 400.0f;
-//	data->X = 400;
-//	data->Y = 400;
-//	data->Alpha = 255;
-//}
-//
-//void update_test(void)
-//{
-//	TestSceneData* data = (TestSceneData*)g_Scene.Data;
-//
-//	if (Input_GetKeyDown('E'))
-//	{
-//		Audio_PlaySoundEffect(&data->Effect, 1);
-//	}
-//
-//	if (Input_GetKeyDown('M'))
-//	{
-//		if (Audio_IsMusicPlaying())
-//		{
-//			Audio_Stop();
-//		}
-//		else
-//		{
-//			Audio_Play(&data->BGM, INFINITY_LOOP);
-//		}
-//	}
-//
-//	if (Input_GetKeyDown('P'))
-//	{
-//		if (Audio_IsMusicPaused())
-//		{
-//			Audio_Resume();
-//		}
-//		else
-//		{
-//			Audio_Pause();
-//		}
-//	}
-//
-//	if (Input_GetKey('1'))
-//	{
-//		data->Volume -= 0.01f;
-//		Audio_SetVolume(data->Volume);
-//	}
-//
-//	if (Input_GetKey('2'))
-//	{
-//		data->Volume += 0.01f;
-//		Audio_SetVolume(data->Volume);
-//	}
-//
-//	if (Input_GetKey('K'))
-//	{
-//		data->Alpha = Clamp(0, data->Alpha - 1, 255);
-//		Image_SetAlphaValue(&data->BackGround, data->Alpha);
-//	}
-//
-//	if (Input_GetKey('L'))
-//	{
-//		data->Alpha = Clamp(0, data->Alpha + 1, 255);
-//		Image_SetAlphaValue(&data->BackGround, data->Alpha);
-//	}
-//}
-//
-//void render_test(void)
-//{
-//	TestSceneData* data = (TestSceneData*)g_Scene.Data;
-//
-//	
-//		SDL_Color color = { .a = 255 };
-//		Renderer_DrawTextSolid(&data->TextLine, 10, 20, color);
-//	
-//
-//	Renderer_DrawImage(&data->BackGround, data->X, data->Y);
-//}
-//
-//void release_test(void)
-//{
-//	TestSceneData* data = (TestSceneData*)g_Scene.Data;
-//
-//	
-//	Text_FreeText(&data->TextLine);
-//	FreeCsvFile(&data->csvFile);
-//	Audio_FreeMusic(&data->BGM);
-//	Audio_FreeSoundEffect(&data->Effect);
-//
-//	SafeFree(g_Scene.Data);
-//}
-//#pragma endregion
-
-
 bool Scene_IsSetNextScene(void)
 {
 	if (SCENE_NULL == s_nextScene)
@@ -624,7 +474,7 @@ bool Scene_IsSetNextScene(void)
 	}
 }
 
-void Scene_SetNextScene(ESceneType scene)			// ´ÙÀ½ Scene ÁöÁ¤ ÇÔ¼ö : SceneÀÇ ÀÌµ¿, if¹®À» »ç¿ëÇÑ ÀüÈ¯ °¡´É
+void Scene_SetNextScene(ESceneType scene)			// ë‹¤ìŒ Scene ì§€ì • í•¨ìˆ˜ : Sceneì˜ ì´ë™, ifë¬¸ì„ ì‚¬ìš©í•œ ì „í™˜ ê°€ëŠ¥
 {
 	assert(s_nextScene == SCENE_NULL);
 	assert(SCENE_NULL < scene&& scene < SCENE_MAX);
@@ -632,7 +482,7 @@ void Scene_SetNextScene(ESceneType scene)			// ´ÙÀ½ Scene ÁöÁ¤ ÇÔ¼ö : SceneÀÇ ÀÌ
 	s_nextScene = scene;
 }
 
-void Scene_Change(void)								// Scene º¯°æ ÇÔ¼ö - Scene Ãß°¡½Ã switch¿¡ SceneÀÇ ÇÔ¼öµé µî·Ï ÇÊ¿ä.
+void Scene_Change(void)								// Scene ë³€ê²½ í•¨ìˆ˜ - Scene ì¶”ê°€ì‹œ switchì— Sceneì˜ í•¨ìˆ˜ë“¤ ë“±ë¡ í•„ìš”.
 {
 	assert(s_nextScene != SCENE_NULL);
 
