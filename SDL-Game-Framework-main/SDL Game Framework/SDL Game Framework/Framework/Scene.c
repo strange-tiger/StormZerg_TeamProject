@@ -4,6 +4,8 @@
 #include "Framework.h"
 
 Scene g_Scene;
+bool BackGroundColor = 0;
+bool BackGroundFadeoutCount = 0;
 
 static ESceneType s_nextScene = SCENE_NULL;
  
@@ -175,6 +177,15 @@ const wchar_t* str2[] = {
 	L"",
 	L"",
 	L"",
+<<<<<<< Updated upstream
+=======
+	L"소수의 특권층들은",
+	L"안전한 삶을 영위하고 있지만,",
+	L"과학의 발전으로 인해",
+	L"대부분의 노동자들은",
+	L"안드로이드에게 일자리를 뺏기고 ",
+	L"힘들게 살아 가고 있다.",
+>>>>>>> Stashed changes
 	L"",
 };
 
@@ -187,6 +198,10 @@ typedef struct MainSceneData
 	float		Volume;
 	SoundEffect Effect;
 	float		Speed;
+
+	Image		BlackBackGround;
+	int32		BlackBack_X;
+	int32		BlackBack_Y;
 
 	Image		BackGround;
 	int32		Back_X;
@@ -220,6 +235,7 @@ void init_main(void)
 
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
+<<<<<<< Updated upstream
 	for (int32 i = 0; i < GUIDELINE_COUNT; ++i)
 	{
 		Text_CreateText(&data->GuideLine[i], "d2coding.ttf", 30, str2[i], wcslen(str2[i]));
@@ -227,6 +243,19 @@ void init_main(void)
 	
 	Image_LoadImage(&data->BackGround, "1_Image.png");
 	Image_LoadImage(&data->SelectButton, "1_Select.png");
+=======
+	CreateCsvFile(&data->CsvFile, "DB_projectver1.csv");
+
+	wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_CurrentPage][9]);
+	Text_CreateText(&data->TextLine, "d2coding.ttf", 16, str_text, wcslen(str_text));
+	Image_LoadImage(&data->BlackBackGround, "BlackBackGround.png");
+	//data->Alpha = Clamp(0, data->Alpha + 20, 255);
+	//Image_SetAlphaValue(&data->BlackBackGround, data->Alpha);
+	char* str_background = ParseToAscii(data->CsvFile.Items[s_CurrentPage][1]);
+	Image_LoadImage(&data->BackGround, str_background);
+	char* str_choose = ParseToAscii(data->CsvFile.Items[s_CurrentPage][2]);
+	Image_LoadImage(&data->SelectButton, str_choose);
+>>>>>>> Stashed changes
 	Image_LoadImage(&data->PointerButton, "Pointer.png");
 
 	Audio_LoadMusic(&data->BGM, "powerful.mp3");
@@ -238,6 +267,8 @@ void init_main(void)
 	data->Volume = 1.0f;
 
 	data->Speed = 400.0f;
+	data->BlackBack_X = 0;
+	data->BlackBack_Y = 0;
 	data->Back_X = 0;
 	data->Back_Y = 0;
 	data->Select_X = 0;
@@ -331,6 +362,7 @@ void update_main(void)
 		{
 			SelectNextScene = 3;
 		}
+		BackGroundFadeoutCount = 1;
 	}
 
 	if (Input_GetKey('W'))
@@ -359,7 +391,10 @@ void update_main(void)
 void render_main(void)
 {
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
+	//data->Alpha = Clamp(0, data->Alpha - 20, 255);
+	//Image_SetAlphaValue(&data->BackGround, data->Alpha);
 
+	Renderer_DrawImage(&data->BlackBackGround, data->Back_X, data->Back_Y);
 	Renderer_DrawImage(&data->BackGround, data->Back_X, data->Back_Y);
 	Renderer_DrawImage(&data->SelectButton, data->Select_X, data->Select_Y);
 	Renderer_DrawImage(&data->PointerButton, data->Pointer_X, data->Pointer_Y);
