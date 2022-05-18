@@ -1,6 +1,6 @@
 SENCE_NUMBER,BACK_IMG,IMG,IMG_OUTPUT_STYLE,SOUND_MUSIC,SOUND_MUSIC_STYLE,SOUND_EFFECT,SOUND_EFFECT_PLAY_TIME,SOUND_EFFECT_STYLE,TEXT,CHOOSE_TEXT_1,CHOOSE_TEXT_2,CHOOSE_TEXT_3,NEXT_SCENE_1,NEXT_SCENE_2,NEXT_SCENE_3,PARENT_SCENE,PASSWORD_1,PASSWORD_2,MASTER_KEY
 1,scene#1(img).png,scene#1(choose).png,FADE_IN,powerful.mp3,0,effect.wav,NULL,NULL,"scene#1.txt",우주선으로 들어간다.,NULL,NULL,2,,,,FALSE,FALSE,FALSE
-2,scene#2(img).png,scene#2(choose).png,NORMAL,MainTheme.mp3,0,NULL,NULL,NULL,scene#2.txt,숀은 지금 어디에 있지?,NULL,NULL,3,,,,FALSE,FALSE,FALSE
+2,scene#2(img).png,scene#2(choose).png,NORMAL,powerful.mp3,0,effect.wav,NULL,NULL,scene#2.txt,숀은 지금 어디에 있지?,NULL,NULL,3,,,,FALSE,FALSE,FALSE
 3,scene#3(img).png,scene#3(choose).png,NORMAL,MainTheme.mp3,0,NULL,NULL,NULL,scene#3.txt,얼마나 시간이 흘렀을까…,NULL,NULL,,,,FALSE,FALSE,FALSE,
 4,scene#4(img).png,scene#4(choose).png,SHAKE,MainTheme.mp3,0,siren.mp3,0:05,NORMAL,scene#4.txt,밖으로 나가 상황을 살펴본다.,NULL,NULL,5,,,,FALSE,FALSE,FALSE
 5,scene#5(img).png,scene#5(choose).png,NORMAL,MainTheme.mp3,0,flamethrower.mp3,0:05,NORMAL,scene#5.txt,왼쪽으로 간다,오른쪽으로 간다.,상황을 지켜본다.,6,8,7,,FALSE,FALSE,FALSE
