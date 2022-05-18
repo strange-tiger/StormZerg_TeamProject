@@ -234,7 +234,6 @@ void init_main(void)
 	memset(g_Scene.Data, 0, sizeof(MainSceneData));
 
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
-	memset(&data->CsvFile, 0, sizeof(CsvFile));
 
 	CreateCsvFile(&data->CsvFile, "DB_projectver1.csv");
 
