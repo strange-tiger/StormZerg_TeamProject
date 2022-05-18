@@ -1,0 +1,72 @@
+SENCE_NUMBER,BACK_IMG,IMG,IMG_OUTPUT_STYLE,SOUND_MUSIC,SOUND_MUSIC_STYLE,SOUND_EFFECT,SOUND_EFFECT_PLAY_TIME,SOUND_EFFECT_STYLE,TEXT,CHOOSE_TEXT_1,CHOOSE_TEXT_2,CHOOSE_TEXT_3,NEXT_SCENE_1,NEXT_SCENE_2,NEXT_SCENE_3,PARENT_SCENE,PASSWORD_1,PASSWORD_2,MASTER_KEY
+1,scene#1(img).png,scene#1(choose).png,FADE_IN,powerful.mp3,0,effect.wav,NULL,NULL,"scene#1.txt",우주선으로 들어간다.,NULL,NULL,2,,,,FALSE,FALSE,FALSE
+2,scene#2(img).png,scene#2(choose).png,NORMAL,powerful.mp3,0,effect.wav,NULL,NULL,scene#2.txt,숀은 지금 어디에 있지?,NULL,NULL,3,,,,FALSE,FALSE,FALSE
+3,scene#3(img).png,scene#3(choose).png,NORMAL,MainTheme.mp3,0,NULL,NULL,NULL,scene#3.txt,얼마나 시간이 흘렀을까…,NULL,NULL,,,,FALSE,FALSE,FALSE,
+4,scene#4(img).png,scene#4(choose).png,SHAKE,MainTheme.mp3,0,siren.mp3,0:05,NORMAL,scene#4.txt,밖으로 나가 상황을 살펴본다.,NULL,NULL,5,,,,FALSE,FALSE,FALSE
+5,scene#5(img).png,scene#5(choose).png,NORMAL,MainTheme.mp3,0,flamethrower.mp3,0:05,NORMAL,scene#5.txt,왼쪽으로 간다,오른쪽으로 간다.,상황을 지켜본다.,6,8,7,,FALSE,FALSE,FALSE
+6,scene#6(img).png,scene#6(choose).png,NORMAL,horror2.mp3,0,horror.mp3,0:04,NORMAL,scene#6.txt,사망.. 다시 뒤로 돌아가기,NULL,NULL,,,4,FALSE,FALSE,FALSE,
+7,scene#7(img).png,scene#7(choose).png,NORMAL,horror2.mp3,0,horror.mp3,0:04,NORMAL,scene#7.txt,사망.. 다시 뒤로 돌아가기,NULL,NULL,,,4,FALSE,FALSE,FALSE,
+8,scene#8(img).png,scene#8(choose).png,NORMAL,MainTheme.mp3,0,walking.mp3,0:09,NORMAL,scene#8.txt,조심스럽게 엔진룸으로 이동한다.,NULL,NULL,9,,,,FALSE,FALSE,FALSE
+9,scene#9(img).png,scene#9(choose).png,NORMAL,MainTheme.mp3,0,NULL,NULL,NORMAL,scene#9.txt,선뜻 워킹조를 도와준다.,워킹조를 경계하며 지나친다.,NULL,10,12,,,FALSE,FALSE,FALSE
+10,scene#10(img).png,scene#10(choose).png,NORMAL,horror2.mp3,0,horror.mp3,0:04,NORMAL,scene#10.txt,사망.. 마지막 분기로 돌아가기,NULL,NULL,,,5,FALSE,FALSE,FALSE,
+11,scene#11(img).png,scene#11(choose).png,NORMAL,horror2.mp3,0,horror.mp3,0:04,NORMAL,scene#11.txt,사망.. 마지막 분기로 돌아가기,NULL,NULL,,,5,FALSE,FALSE,FALSE,
+12,scene#12(img).png,scene#12(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#12.txt,자세히 살펴보러 다가간다.,지나온 중앙 통로로 도망친다.,NULL,11,13,,,FALSE,FALSE,FALSE
+13,scene#13(img).png,scene#13(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#13.txt,계속 도망친다.,맞서 싸운다.,NULL,14,15,,,FALSE,FALSE,FALSE
+14,scene#14(img).png,scene#14(choose).png,NORMAL,horror2.mp3,0,.mp3,NULL,NORMAL,scene#14.txt,사망.. 마지막 분기로 돌아가기,NULL,NULL,,,9,FALSE,FALSE,FALSE,
+15,scene#15(img).png,scene#15(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#15.txt,엔진룸으로 향한다.,NULL,NULL,16,,,,FALSE,FALSE,FALSE
+16,scene#16(img).png,scene#16(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#16.txt,엔진룸을 떠나 탈출 포트로 향한다.,NULL,NULL,17,,,,FALSE,FALSE,FALSE
+17,scene#17(img).png,scene#17(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#17.txt,환풍구를 통해 지나간다.,발 밑을 조심하며 복도로 이동한다.,NULL,18,19,,,FALSE,FALSE,FALSE
+18,scene#18(img).png,scene#18(choose).png,NORMAL,horror2.mp3,0,.mp3,NULL,NORMAL,scene#18.txt,사망.. 마지막 분기로 돌아가기,NULL,NULL,,,13,FALSE,FALSE,FALSE,
+19,scene#19(img).png,scene#19(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#19.txt,침착하게 발을 떼내려 한다.,신발을 버리고 재빨리 뛴다.,NULL,20,21,,,FALSE,FALSE,FALSE
+20,scene#20(img).png,scene#20(choose).png,NORMAL,horror2.mp3,0,.mp3,NULL,NORMAL,scene#20.txt,사망.. 마지막 분기로 돌아가기,NULL,NULL,,,17,FALSE,FALSE,FALSE,
+21,scene#21(img).png,scene#21(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#21.txt,계속 진행 한다.,NULL,NULL,22,,,,FALSE,FALSE,FALSE
+22,scene#22(img).png,scene#22(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#22.txt,통제실을 떠나 복도로 나간다,환풍구로 간다,NULL,23,,,FALSE,FALSE,FALSE,
+23,scene#23(img).png,scene#23(choose).png,NORMAL,horror2.mp3,0,.mp3,NULL,NORMAL,scene#23.txt,사망.. 마지막 분기로 돌아가기,NULL,NULL,,,19,FALSE,FALSE,FALSE,
+24,scene#24(img).png,scene#24(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#24.txt,통제실로 다시 들어간다,NULL,NULL,25,,,,FALSE,FALSE,FALSE
+25,scene#25(img).png,scene#25(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#25.txt,정체 모를 이'를 통제실로 들인다,문을 열어선 안될 것 같다,NULL,26,,,FALSE,FALSE,FALSE,
+26,scene#26(img).png,scene#26(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#26.txt,책상 밑으로 숨는다,의자 등 물건으로 문을 막아본다,NULL,27,,,FALSE,FALSE,FALSE,
+261,scene#261(img).png,scene#261(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#261.txt,복도로..,NULL,NULL,31,,,,FALSE,FALSE,FALSE
+27,scene#27(img).png,scene#27(choose).png,NORMAL,horror2.mp3,0,.mp3,NULL,NORMAL,scene#27.txt,사망.. 마지막 분기로 돌아가기,NULL,NULL,,,25,FALSE,FALSE,FALSE,
+28,scene#28(img).png,scene#28(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#28.txt,싸운다,도망간다,NULL,29,,,,,,
+29,scene#29(img).png,scene#29(choose).png,NORMAL,horror2.mp3,0,.mp3,NULL,NORMAL,scene#29.txt,사망.. 마지막 분기로 돌아가기,NULL,NULL,,,25,,,,
+30,scene#30(img).png,scene#30(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#30.txt,죽은 존을 뒤로하고 서둘러 함교로 발길을 옮겼다.,NULL,NULL,31,,,,,,
+31,scene#31(img).png,scene#31(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#31.txt,함장으로 보이는 시체를 조사한다.,컴퓨터를 조사한다.,NULL,,,,,,,
+32,scene#32(img).png,scene#32(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#32.txt,무기고로 향한다,,NULL,,,,,,,
+33,scene#33(img).png,scene#33(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#33.txt,20600714,20600605,NULL,34,35,,,,,
+34,scene#34(img).png,scene#34(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#34.txt,근처 무기고로 간다.,NULL,NULL,36,,,,,,
+35,scene#35(img).png,scene#35(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#35.txt,무기고로 이동한다,NULL,NULL,36,,,,,,
+36,scene#36(img).png,scene#36(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#36.txt,화염 방사기를 선택한다,가우스 라이플를 선택한다,플레어를 선택한다,37,41,43,,,,
+37,scene#37(img).png,scene#37(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#37.txt,정체 모를 무언가와 전투를 준비한다,도망친다,NULL,39,,,,,,
+38,scene#38(img).png,scene#38(choose).png,NORMAL,horror2.mp3,0,.mp3,NULL,NORMAL,scene#38.txt,사망.. 마지막 분기로 돌아가기,NULL,NULL,,,36,,,,
+39,scene#39(img).png,scene#39(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#39.txt,불을 뿜어 위협한다,가까이 올때까지 기다렸다가 발사한다,NULL,40,391,,,,,
+40,scene#40(img).png,scene#40(choose).png,NORMAL,horror2.mp3,0,.mp3,NULL,NORMAL,scene#40.txt,사망.. 마지막 분기로 돌아가기,NULL,NULL,,,37,,,,
+41,scene#41(img).png,scene#41(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#41.txt,싸운다,도망친다,NULL,42,,,,,,
+42,scene#42(img).png,scene#42(choose).png,NORMAL,horror2.mp3,0,.mp3,NULL,NORMAL,scene#42.txt,사망.. 마지막 분기로 돌아가기,NULL,NULL,,,36,,,,
+43,scene#43(img).png,scene#43(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#43.txt,싸운다,도망친다,NULL,45,,,,,,
+44,scene#44(img).png,scene#44(choose).png,NORMAL,horror2.mp3,0,.mp3,NULL,NORMAL,scene#44.txt,사망.. 마지막 분기로 돌아가기,NULL,NULL,,,36,,,,
+45,scene#45(img).png,scene#45(choose).png,NORMAL,.mp3,0,.mp3,NULL,NORMAL,scene#45.txt,환풍구로 도망친다,계속 도망친다,싸운다,47,46,,,,,
+46,scene#46(img).png,scene#46(choose).png,NORMAL,horror2.mp3,0,.mp3,NULL,NORMAL,scene#46.txt,사망.. 마지막 분기로 돌아가기,NULL,NULL,,,43,,,,
+47,scene#47(img).png,scene#47(choose).png,NORMAL,horror2.mp3,0,.mp3,NULL,NORMAL,scene#47.txt,사망.. 마지막 분기로 돌아가기,NULL,NULL,,,43,,,,
+391,scene#391(img).png,scene#391(choose).png,NORMAL,,,,,,scene#391.txt,가까이 올때 까지 기다렸다가 쏜다,NULL,NULL,48,,,,,,
+411,scene#411(img).png,scene#411(choose).png,NORMAL,,,,,,scene#411.txt,싸운다,NULL,NULL,,,,,,,
+451,scene#451(img).png,scene#451(img).png,NORMAL,,,,,,scene#451.txt,환풍구로 숨는다,NULL,NULL,,,,,,,
+48,scene#48(img).png,scene#48(choose).png,NORMAL,.mp3,NORMAL,.mp3,NULL,NORMAL,scene#48.txt,,,NULL,,,,,,,
+49,scene#49(img).png,scene#49(choose).png,NORMAL,.mp3,NORMAL,.mp3,NULL,NORMAL,scene#49.txt,,,NULL,,,,,,,
+50,scene#50(img).png,scene#50(choose).png,NORMAL,horror2.mp3,NORMAL,.mp3,NULL,NORMAL,scene#50.txt,사망.. 마지막 분기로 돌아가기,NULL,NULL,,,,,,,
+51,scene#51(img).png,scene#51(choose).png,NORMAL,.mp3,NORMAL,.mp3,NULL,NORMAL,scene#51.txt,,,NULL,,,,,,,
+52,scene#52(img).png,scene#52(choose).png,NORMAL,horror2.mp3,NORMAL,.mp3,NULL,NORMAL,scene#52.txt,사망.. 마지막 분기로 돌아가기,NULL,NULL,,,,,,,
+53,scene#53(img).png,scene#53(choose).png,NORMAL,.mp3,NORMAL,.mp3,NULL,NORMAL,scene#53.txt,,,NULL,,,,,,,
+54,scene#54(img).png,scene#54(choose).png,NORMAL,horror2.mp3,NORMAL,.mp3,NULL,NORMAL,scene#54.txt,사망.. 마지막 분기로 돌아가기,NULL,NULL,,,,,,,
+55,scene#55(img).png,scene#55(choose).png,NORMAL,.mp3,NORMAL,.mp3,NULL,NORMAL,scene#55.txt,,,NULL,,,,,,,
+56,scene#56(img).png,scene#56(choose).png,NORMAL,.mp3,NORMAL,.mp3,NULL,NORMAL,scene#56.txt,사망.. 마지막 분기로 돌아가기,NULL,NULL,,,,,,,
+57,scene#57(img).png,scene#57(choose).png,NORMAL,.mp3,NORMAL,.mp3,NULL,NORMAL,scene#57.txt,,,NULL,,,,,,,
+58,scene#58(img).png,scene#58(choose).png,NORMAL,.mp3,NORMAL,.mp3,NULL,NORMAL,scene#58.txt,,,NULL,,,,,,,
+59,scene#59(img).png,scene#59(choose).png,NORMAL,.mp3,NORMAL,.mp3,NULL,NORMAL,scene#59.txt,,,NULL,,,,,,,
+60,scene#60(img).png,scene#60(choose).png,NORMAL,.mp3,NORMAL,.mp3,NULL,NORMAL,scene#60.txt,,,NULL,,,,,,,
+61,scene#61(img).png,scene#61(choose).png,NORMAL,.mp3,NORMAL,.mp3,NULL,NORMAL,scene#61.txt,,,NULL,,,,,,,
+62,scene#62(img).png,scene#62(choose).png,NORMAL,.mp3,NORMAL,.mp3,NULL,NORMAL,scene#62.txt,,,NULL,,,,,,,
+63,scene#63(img).png,scene#63(choose).png,NORMAL,.mp3,NORMAL,.mp3,NULL,NORMAL,scene#63.txt,,,NULL,,,,,,,
+64,scene#64(img).png,scene#64(choose).png,NORMAL,.mp3,NORMAL,.mp3,NULL,NORMAL,scene#64.txt,사망(베드 엔딩),,NULL,,,,,,,
+65,scene#65(img).png,scene#65(choose).png,NORMAL,.mp3,NORMAL,.mp3,NULL,NORMAL,scene#65.txt,,,NULL,,,,,,,
+66,scene#66(img).png,scene#66(choose).png,NORMAL,.mp3,NORMAL,.mp3,NULL,NORMAL,scene#66.txt,사망(베드 엔딩),,NULL,,,,,,,
+67,scene#67(img).png,scene#67(choose).png,NORMAL,.mp3,NORMAL,.mp3,NULL,NORMAL,scene#67.txt,생존(해피 엔딩),,NULL,,,,,,,
