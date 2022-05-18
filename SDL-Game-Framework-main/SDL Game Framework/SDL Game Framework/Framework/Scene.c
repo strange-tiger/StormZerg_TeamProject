@@ -407,8 +407,6 @@ void update_main(void)
 				s_SelectNextPage = atoi(num_choose_3);	 
 			}
 		}
-
-		// s_CurrentPage = s_SelectNextPage;
 	}
 
 	if (Input_GetKey('W'))
