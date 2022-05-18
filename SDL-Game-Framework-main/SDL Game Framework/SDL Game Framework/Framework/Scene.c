@@ -17,16 +17,16 @@ static ESceneType s_nextScene = SCENE_NULL;
 #define BLENDED 2
 
 const wchar_t* str[] = {
-	L"¿©±â´Â Å¸ÀÌÆ²¾ÀÀÔ´Ï´Ù. ÅØ½ºÆ®¿Í °ü·ÃµÈ ¿©·¯°¡Áö¸¦ Å×½ºÆ®ÇØº¾½Ã´Ù.",
-	L"BÅ°¸¦ ´©¸£¸é ÆùÆ®°¡ ±½°Ô º¯ÇÕ´Ï´Ù.",
-	L"IÅ°¸¦ ´©¸£¸é ÆùÆ®°¡ ÀÌÅÅ¸¯Ã¼·Î º¯ÇÕ´Ï´Ù.",
-	L"UÅ°¸¦ ´©¸£¸é ÅØ½ºÆ®¿¡ ¹ØÁÙÀÌ »ı±é´Ï´Ù.",
-	L"SÅ°¸¦ ´©¸£¸é ÅØ½ºÆ®¿¡ Ãë¼Ò¼±ÀÌ »ı±é´Ï´Ù.",
-	L"NÅ°¸¦ ´©¸£¸é ´Ù½Ã ¿ø·¡´ë·Î µ¹¾Æ¿É´Ï´Ù.",
-	L"CÅ°¸¦ ´©¸£¸é ·»´õ ¸ğµå°¡ ¹Ù²ò´Ï´Ù. (Solid -> Shaded -> Blended)",
-	L"1Å°¸¦ ´©¸£¸é ÅØ½ºÆ®°¡ ÀÛ¾ÆÁı´Ï´Ù.",
-	L"2Å°¸¦ ´©¸£¸é ÅØ½ºÆ®°¡ Ä¿Áı´Ï´Ù.",
-	L"½ºÆäÀÌ½º Å°¸¦ ´©¸£¸é ´ÙÀ½ ¾ÀÀ¸·Î ³Ñ¾î°©´Ï´Ù."
+	L"ì—¬ê¸°ëŠ” íƒ€ì´í‹€ì”¬ì…ë‹ˆë‹¤. í…ìŠ¤íŠ¸ì™€ ê´€ë ¨ëœ ì—¬ëŸ¬ê°€ì§€ë¥¼ í…ŒìŠ¤íŠ¸í•´ë´…ì‹œë‹¤.",
+	L"Bí‚¤ë¥¼ ëˆ„ë¥´ë©´ í°íŠ¸ê°€ êµµê²Œ ë³€í•©ë‹ˆë‹¤.",
+	L"Ií‚¤ë¥¼ ëˆ„ë¥´ë©´ í°íŠ¸ê°€ ì´íƒ¤ë¦­ì²´ë¡œ ë³€í•©ë‹ˆë‹¤.",
+	L"Uí‚¤ë¥¼ ëˆ„ë¥´ë©´ í…ìŠ¤íŠ¸ì— ë°‘ì¤„ì´ ìƒê¹ë‹ˆë‹¤.",
+	L"Sí‚¤ë¥¼ ëˆ„ë¥´ë©´ í…ìŠ¤íŠ¸ì— ì·¨ì†Œì„ ì´ ìƒê¹ë‹ˆë‹¤.",
+	L"Ní‚¤ë¥¼ ëˆ„ë¥´ë©´ ë‹¤ì‹œ ì›ë˜ëŒ€ë¡œ ëŒì•„ì˜µë‹ˆë‹¤.",
+	L"Cí‚¤ë¥¼ ëˆ„ë¥´ë©´ ë Œë” ëª¨ë“œê°€ ë°”ë€ë‹ˆë‹¤. (Solid -> Shaded -> Blended)",
+	L"1í‚¤ë¥¼ ëˆ„ë¥´ë©´ í…ìŠ¤íŠ¸ê°€ ì‘ì•„ì§‘ë‹ˆë‹¤.",
+	L"2í‚¤ë¥¼ ëˆ„ë¥´ë©´ í…ìŠ¤íŠ¸ê°€ ì»¤ì§‘ë‹ˆë‹¤.",
+	L"ìŠ¤í˜ì´ìŠ¤ í‚¤ë¥¼ ëˆ„ë¥´ë©´ ë‹¤ìŒ ì”¬ìœ¼ë¡œ ë„˜ì–´ê°‘ë‹ˆë‹¤."
 };
 
 typedef struct TitleSceneData
@@ -50,7 +50,7 @@ void init_title(void)
 	}
 
 	data->FontSize = 24;
-	Text_CreateText(&data->TestText, "d2coding.ttf", data->FontSize, L"ÀÌ ÅØ½ºÆ®°¡ º¯ÇÕ´Ï´Ù.", 13);
+	Text_CreateText(&data->TestText, "d2coding.ttf", data->FontSize, L"ì´ í…ìŠ¤íŠ¸ê°€ ë³€í•©ë‹ˆë‹¤.", 13);
 
 	data->RenderMode = SOLID;
 
@@ -165,28 +165,25 @@ void release_title(void)
 //Main
 #pragma region MainScene 1
 
-int32 SelectButtonQuantity = 1;									//¼±ÅÃÁö ¹öÆ° ¼ö
-int32 SelectNextScene;											//´ÙÀ½ ¼±ÅÃ ¾À
+int32 SelectButtonQuantity = 1;									//ì„ íƒì§€ ë²„íŠ¼ ìˆ˜
+int32 SelectNextScene;											//ë‹¤ìŒ ì„ íƒ ì”¬
 
 const wchar_t* str2[] = {
-	L"2060³â, È¯°æ¿À¿°°ú ±âÈÄÀ§±â·Î ",
-	L"ÃÖ¾ÇÀÇ »óÈ²¿¡ ¸ô¸° Áö±¸´Â",
-	L"ÇÏ·ç ÇÏ·ç ´Ù¸£°Ô ¸Ş¸»¶ó °£´Ù.",
+	L"2060ë…„, í™˜ê²½ì˜¤ì—¼ê³¼ ê¸°í›„ìœ„ê¸°ë¡œ ",
+	L"ìµœì•…ì˜ ìƒí™©ì— ëª°ë¦° ì§€êµ¬ëŠ”",
+	L"í•˜ë£¨ í•˜ë£¨ ë‹¤ë¥´ê²Œ ë©”ë§ë¼ ê°„ë‹¤.",
 	L"",
-	L"¼Ò¼öÀÇ Æ¯±ÇÃşµéÀº",
-	L"¾ÈÀüÇÑ »îÀ» ¿µÀ§ÇÏ°í ÀÖÁö¸¸,",
-	L"°úÇĞÀÇ ¹ßÀüÀ¸·Î ÀÎÇØ",
-	L"´ëºÎºĞÀÇ ³ëµ¿ÀÚµéÀº",
-	L"¾Èµå·ÎÀÌµå¿¡°Ô ÀÏÀÚ¸®¸¦ »¯±â°í",
-	L"Èûµé°Ô »ì¾Æ °¡°í ÀÖ´Ù.",
+	L"ì†Œìˆ˜ì˜ íŠ¹ê¶Œì¸µë“¤ì€",
+	L"ì•ˆì „í•œ ì‚¶ì„ ì˜ìœ„í•˜ê³  ìˆì§€ë§Œ,",
+	L"ê³¼í•™ì˜ ë°œì „ìœ¼ë¡œ ì¸í•´",
+	L"ëŒ€ë¶€ë¶„ì˜ ë…¸ë™ìë“¤ì€",
+	L"ì•ˆë“œë¡œì´ë“œì—ê²Œ ì¼ìë¦¬ë¥¼ ëºê¸°ê³ ",
+	L"í˜ë“¤ê²Œ ì‚´ì•„ ê°€ê³  ìˆë‹¤.",
 	L"",
-	L"",
-	L"",
-	L"",
-	L"",
+
 };
 
-#define GUIDELINE_COUNT 15
+#define GUIDELINE_COUNT 11
 
 typedef struct MainSceneData
 {
@@ -228,16 +225,16 @@ void init_main(void)
 
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
-	for (int32 i = 0; i < GUIDELINE_COUNT; ++i)
+	/*for (int32 i = 0; i < GUIDELINE_COUNT; ++i)
 	{
 		Text_CreateText(&data->GuideLine[i], "d2coding.ttf", 30, str2[i], wcslen(str2[i]));
-	}
+	}*/
 	
 	Image_LoadImage(&data->BackGround, "1_Image.png");
 	Image_LoadImage(&data->SelectButton, "1_Select.png");
 	Image_LoadImage(&data->PointerButton, "Pointer.png");
 
-	Audio_LoadMusic(&data->BGM, "powerful.mp3");
+	Audio_LoadMusic(&data->BGM, "MainTheme.mp3");
 	Audio_HookMusicFinished(logOnFinished);
 	Audio_LoadSoundEffect(&data->Effect, "test.mp3");
 	Audio_HookSoundEffectFinished(log2OnFinished);
@@ -272,6 +269,271 @@ void init_main(void)
 void update_main(void)
 {
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
+
+	//if (Input_GetKeyDown('E'))
+	//{
+	//	Audio_PlaySoundEffect(&data->Effect, 1);
+	//}
+	//
+	//if (Input_GetKeyDown('M'))
+	//{
+	//	if (Audio_IsMusicPlaying())
+	//	{
+	//		Audio_Stop();
+	//	}
+	//	else
+	//	{
+	//		Audio_Play(&data->BGM, INFINITY_LOOP);
+	//	}
+	//}
+	//
+	//if (Input_GetKeyDown('P'))
+	//{
+	//	if (Audio_IsMusicPaused())
+	//	{
+	//		Audio_Resume();
+	//	}
+	//	else
+	//	{
+	//		Audio_Pause();
+	//	}
+	//}
+	//
+	//if (Input_GetKey('1'))
+	//{
+	//	data->Volume -= 0.01f;
+	//	Audio_SetVolume(data->Volume);
+	//}
+	//
+	//if (Input_GetKey('2'))
+	//{
+	//	data->Volume += 0.01f;
+	//	Audio_SetVolume(data->Volume);
+	//}
+	//if (Input_GetKeyDown(VK_DOWN) && -160 <= data->Pointer_Y && data->Pointer_Y < 0)
+	//{
+	//	data->Pointer_Y += 80;
+	//}
+	//if (Input_GetKeyDown(VK_UP) && data->Pointer_Y > -80 && SelectButtonQuantity == 2)
+	//{
+	//	data->Pointer_Y -= 80;
+	//}
+	//if (Input_GetKeyDown(VK_UP) && data->Pointer_Y > -160 && SelectButtonQuantity == 3)
+	//{
+	//	data->Pointer_Y -= 80;
+	//}
+	//if (Input_GetKeyDown(VK_SPACE))
+	//{
+	//	if (data->Pointer_Y == -160)
+	//	{
+	//		SelectNextScene = 1;
+	//	}
+	//	if (data->Pointer_Y == -80)
+	//	{
+	//		SelectNextScene = 2;
+	//	}
+	//	if (data->Pointer_Y == 0)
+	//	{
+	//		SelectNextScene = 3;
+	//	}
+	//}
+	//
+	//if (Input_GetKey('W'))
+	//{
+	//	data->BackGround.ScaleY -= 0.05f;
+	//}
+	//
+	//if (Input_GetKey('S'))
+	//{
+	//	data->BackGround.ScaleY += 0.05f;
+	//}
+	//
+	//if (Input_GetKey('K'))
+	//{
+	//	//data->Alpha = Clamp(0, data->Alpha - 1, 255);						//ì´ê±° ì¡´ë‚˜ì¤‘ìš”í•¨ í˜ì´ë“œ ì¸ì•„ì›ƒ.
+	//	//Image_SetAlphaValue(&data->BackGround, data->Alpha);
+	//}
+	//
+	//if (Input_GetKey('L'))
+	//{
+	//	//data->Alpha = Clamp(0, data->Alpha + 1, 255);
+	//	//Image_SetAlphaValue(&data->BackGround, data->Alpha);
+	//}
+
+}
+
+float ElapsedTimeForPrint = 0.0f;
+int32 cnt = 0;
+bool isPrintScript = false;
+
+void render_main(void)
+{
+	MainSceneData* data = (MainSceneData*)g_Scene.Data;
+
+	Renderer_DrawImage(&data->BackGround, data->Back_X, data->Back_Y);
+	Renderer_DrawImage(&data->SelectButton, data->Select_X, data->Select_Y);
+	Renderer_DrawImage(&data->PointerButton, data->Pointer_X, data->Pointer_Y);
+
+	/*
+	if (false == bullet->IsActive)
+	{
+		return;
+	}
+
+	bullet->ElapsedTimeForMove += Timer_GetDeltaTime();
+	if (bullet->ElapsedTimeForMove >= 0.05f)
+	{
+		bullet->ElapsedTimeForMove = 0.0f;
+
+		++bullet->Coord.X;
+	}
+
+	bullet->ActiveTime += Timer_GetDeltaTime();
+	if (bullet->ActiveTime >= 3.0f)
+	{
+		bullet->ActiveTime = 0.0f;
+		bullet->IsActive = false;
+		--bullet->Gun->BulletCount;
+	}
+	*/
+
+	ElapsedTimeForPrint += Timer_GetDeltaTime();
+	if (!isPrintScript)
+	{
+		if (ElapsedTimeForPrint >= 0.8f)
+		{
+			ElapsedTimeForPrint = 0.0f;
+			/*SDL_Color color = { .a = 255, .r = 255 , .g = 255 , .b = 255 };
+			Renderer_DrawTextSolid(&data->GuideLine[cnt], 50, 100 + (cnt * 40), color);*/
+			Text_CreateText(&data->GuideLine[cnt], "d2coding.ttf", 30, str2[cnt], wcslen(str2[cnt]));
+
+
+			cnt++;
+		}
+	
+		if (cnt == GUIDELINE_COUNT)
+		{
+			isPrintScript = true;
+		}
+	}
+
+	for (int32 i = 0; i < GUIDELINE_COUNT; i++)
+	{
+		SDL_Color color = { .a = 255, .r =255 , .g = 255 , .b = 255 };
+		Renderer_DrawTextSolid(&data->GuideLine[i], 50, 100 + (i * 40), color);
+	}
+
+}
+
+void release_main(void)
+{
+	MainSceneData* data = (MainSceneData*)g_Scene.Data;
+
+	for (int32 i = 0; i < GUIDELINE_COUNT; ++i)
+	{
+
+		Text_FreeText(&data->GuideLine[i]);
+
+	}
+
+	Audio_FreeMusic(&data->BGM);
+	Audio_FreeSoundEffect(&data->Effect);
+
+	SafeFree(g_Scene.Data);
+}
+#pragma endregion
+
+#pragma region TestScene
+
+#define GUIDELINE_COUNT 8
+
+typedef struct TestSceneData
+{
+	CsvFile		csvFile;
+	Text		TextLine;
+	Music		BGM;
+	float		Volume;
+	SoundEffect Effect;
+	Image		BackGround;
+	float		Speed;
+	int32		X;
+	int32		Y;
+	int32		Alpha;
+} TestSceneData;
+
+//void logOnFinished(void)
+//{
+//	LogInfo("You can show this log on stopped the music");
+//}
+//
+//void log2OnFinished(int32 channel)
+//{
+//	LogInfo("You can show this log on stopped the effect");
+//}
+
+static char* s_Buffer;
+static char* s_BufferPointer;
+
+void init_test(void)
+{
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+	g_Scene.Data = malloc(sizeof(TestSceneData));
+	memset(g_Scene.Data, 0, sizeof(TestSceneData));
+	
+	TestSceneData* data = (TestSceneData*)g_Scene.Data;
+	memset(&data->csvFile, 0, sizeof(CsvFile));
+
+	CreateCsvFile(&data->csvFile, "DB_project.csv");
+
+	wchar_t* str_text = ParseToUnicode(data->csvFile.Items[1][9]);
+	Text_CreateText(&data->TextLine, "d2coding.ttf", 16, str_text, wcslen(str_text));
+	
+
+	char* str_img = ParseToAscii(data->csvFile.Items[1][1]);
+	Image_LoadImage(&data->BackGround, str_img);
+
+	char* str_bgm = ParseToAscii(data->csvFile.Items[1][4]);
+	Audio_LoadMusic(&data->BGM, str_bgm);
+	Audio_HookMusicFinished(logOnFinished);
+
+	char* str_se = ParseToAscii(data->csvFile.Items[1][6]);
+	Audio_LoadSoundEffect(&data->Effect, str_se);
+
+	Audio_LoadSoundEffect(&data->Effect, "test.mp3");
+
+	Audio_HookSoundEffectFinished(log2OnFinished);
+	Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
+
+	data->Volume = 1.0f;
+
+	data->Speed = 400.0f;
+	data->Back_X = 0;
+	data->Back_Y = 0;
+	data->Select_X = 0;
+	data->Select_Y = 0;
+	switch (SelectButtonQuantity)
+	{
+		case 1:
+			data->Pointer_X = 0;
+			data->Pointer_Y = 0;
+			break;
+		case 2:
+			data->Pointer_X = 0;
+			data->Pointer_Y = -80;
+			break;
+		case 3:
+			data->Pointer_X = 0;
+			data->Pointer_Y = -160;
+			break;
+	}
+
+	data->Alpha = 255;
+}
+
+void update_test(void)
+{
+	TestSceneData* data = (TestSceneData*)g_Scene.Data;
 
 	if (Input_GetKeyDown('E'))
 	{
@@ -313,6 +575,8 @@ void update_main(void)
 		data->Volume += 0.01f;
 		Audio_SetVolume(data->Volume);
 	}
+
+
 	if (Input_GetKeyDown(VK_DOWN) && -160 <= data->Pointer_Y && data->Pointer_Y < 0)
 	{
 		data->Pointer_Y += 80;
@@ -353,7 +617,7 @@ void update_main(void)
 
 	if (Input_GetKey('K'))
 	{
-		//data->Alpha = Clamp(0, data->Alpha - 1, 255);						//ÀÌ°Å Á¸³ªÁß¿äÇÔ ÆäÀÌµå ÀÎ¾Æ¿ô.
+		//data->Alpha = Clamp(0, data->Alpha - 1, 255);						//ì´ê±° ì¡´ë‚˜ì¤‘ìš”í•¨ í˜ì´ë“œ ì¸ì•„ì›ƒ.
 		//Image_SetAlphaValue(&data->BackGround, data->Alpha);
 	}
 
@@ -504,6 +768,7 @@ void update_test(void)
 		Audio_SetVolume(data->Volume);
 	}
 
+
 	if (Input_GetKey('K'))
 	{
 		data->Alpha = Clamp(0, data->Alpha - 1, 255);
@@ -556,7 +821,7 @@ bool Scene_IsSetNextScene(void)
 	}
 }
 
-void Scene_SetNextScene(ESceneType scene)			// ´ÙÀ½ Scene ÁöÁ¤ ÇÔ¼ö : SceneÀÇ ÀÌµ¿, if¹®À» »ç¿ëÇÑ ÀüÈ¯ °¡´É
+void Scene_SetNextScene(ESceneType scene)			// ë‹¤ìŒ Scene ì§€ì • í•¨ìˆ˜ : Sceneì˜ ì´ë™, ifë¬¸ì„ ì‚¬ìš©í•œ ì „í™˜ ê°€ëŠ¥
 {
 	assert(s_nextScene == SCENE_NULL);
 	assert(SCENE_NULL < scene&& scene < SCENE_MAX);
@@ -564,7 +829,7 @@ void Scene_SetNextScene(ESceneType scene)			// ´ÙÀ½ Scene ÁöÁ¤ ÇÔ¼ö : SceneÀÇ ÀÌ
 	s_nextScene = scene;
 }
 
-void Scene_Change(void)								// Scene º¯°æ ÇÔ¼ö - Scene Ãß°¡½Ã switch¿¡ SceneÀÇ ÇÔ¼öµé µî·Ï ÇÊ¿ä.
+void Scene_Change(void)								// Scene ë³€ê²½ í•¨ìˆ˜ - Scene ì¶”ê°€ì‹œ switchì— Sceneì˜ í•¨ìˆ˜ë“¤ ë“±ë¡ í•„ìš”.
 {
 	assert(s_nextScene != SCENE_NULL);
 
