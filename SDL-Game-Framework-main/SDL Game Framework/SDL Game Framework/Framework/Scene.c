@@ -174,7 +174,7 @@ const wchar_t* str2[] = {
 	L"안전한 삶을 영위하고 있지만,",
 	L"과학의 발전으로 인해",
 	L"대부분의 노동자들은",
-	L"안드로이드에게 일자리를 뺏기고",
+	L"안드로이드에게 일자리를 뺏기고 ",
 	L"힘들게 살아 가고 있다.",
 	L"",
 
@@ -238,9 +238,9 @@ void init_main(void)
 
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
-	CreateCsvFile(&data->CsvFile, "DB_projectver1.csv");
+	CreateCsvFile(&data->CsvFile, "222.csv");
 
-	wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_CurrentPage][9]);
+	wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_CurrentPage][10]);
 	Text_CreateText(&data->TextLine, "d2coding.ttf", 16, str_text, wcslen(str_text));
 
 	char* str_background = ParseToAscii(data->CsvFile.Items[s_CurrentPage][1]);
@@ -252,11 +252,11 @@ void init_main(void)
 	char* str_bgm = ParseToAscii(data->CsvFile.Items[s_CurrentPage][4]);
 	Audio_LoadMusic(&data->BGM, str_bgm);
 
-	Audio_HookMusicFinished(logOnFinished);
-	char* str_se = ParseToAscii(data->CsvFile.Items[s_CurrentPage][6]);
-	Audio_LoadSoundEffect(&data->Effect, str_se);
-	Audio_HookSoundEffectFinished(log2OnFinished);
-	Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
+	// Audio_HookMusicFinished(logOnFinished);
+	// char* str_se = ParseToAscii(data->CsvFile.Items[s_CurrentPage][6]);
+	// Audio_LoadSoundEffect(&data->Effect, str_se);
+	// Audio_HookSoundEffectFinished(log2OnFinished);
+	// Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
 
 	data->Volume = 1.0f;
 
@@ -382,7 +382,7 @@ void update_main(void)
 				num_choose_2 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][13]);
 				s_SelectNextPage = atoi(num_choose_2);
 			}
-			else if (SelectButtonQuantity == 1)
+			else if (SelectButtonQuantity == 1) 
 			{
 				num_choose_2 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][14]);
 				s_SelectNextPage = atoi(num_choose_2);	
@@ -440,11 +440,10 @@ void render_main(void)
 	Renderer_DrawImage(&data->SelectButton, data->Select_X, data->Select_Y);
 	Renderer_DrawImage(&data->PointerButton, data->Pointer_X, data->Pointer_Y);
 
-	for (int32 i = 0; i < GUIDELINE_COUNT; i++)
-	{
-		SDL_Color color = { .a = 255, .r = 255 , .g = 255 , .b = 255 };
-		Renderer_DrawTextSolid(&data->TextLine, 50, 100 + (i * 40), color);
-	}
+	
+	SDL_Color color = { .a = 255, .r = 255 , .g = 255 , .b = 255 };
+	Renderer_DrawTextSolid(&data->TextLine, 50, 140, color);
+	
 }
 
 void release_main(void)
