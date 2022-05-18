@@ -35,7 +35,15 @@ typedef struct TitleSceneData
 	Text	TestText;
 	int32	FontSize;
 	int32	RenderMode;
-	Image	TestImage;
+
+	Image	TitleBackground;
+	int32	TitleBack_X;
+	int32	TitleBack_Y;
+
+	Image	PressSpaceKey;
+	int32	PressSpace_X;
+	int32	PressSpace_Y;
+
 } TitleSceneData;
 
 void init_title(void)
@@ -54,13 +62,19 @@ void init_title(void)
 
 	data->RenderMode = SOLID;
 
-	Image_LoadImage(&data->TestImage, "Background.jfif");
+	Image_LoadImage(&data->TitleBackground, "NewFrontier(1).png");
+	Image_LoadImage(&data->PressSpaceKey, "NewFrontier(2).png");
+
+	data->TitleBack_X = 0;
+	data->TitleBack_Y - 0;
+	data->PressSpace_X = 0;
+	data->PressSpace_Y = 0;
 }
 
 void update_title(void)
 {
 	TitleSceneData* data = (TitleSceneData*)g_Scene.Data;
-
+	/*															지워
 	if (Input_GetKeyDown('B'))
 	{
 		Text_SetFontStyle(&data->TestText, FS_BOLD);
@@ -102,15 +116,15 @@ void update_title(void)
 		++data->FontSize;
 		Text_SetFont(&data->TestText, "d2coding.ttf", data->FontSize);
 	}
-
-	if (Input_GetKeyDown(VK_SPACE))
-	{
-		Scene_SetNextScene(SCENE_MAIN);
-	}
-
 	if (Input_GetKeyDown(VK_TAB))
 	{
 		// Scene_SetNextScene(SCENE_TEST);
+	}
+
+	*/
+	if (Input_GetKeyDown(VK_SPACE))
+	{
+		Scene_SetNextScene(SCENE_MAIN);
 	}
 }
 
@@ -121,8 +135,9 @@ void render_title(void)
 	{
 		SDL_Color color = { .a = 255 };
 		Renderer_DrawTextSolid(&data->GuideLine[i], 10, 20 * i, color);
-	}
 
+	}
+	/*																지워~~~~~~~~~~~~~~~
 	switch (data->RenderMode)
 	{
 	case SOLID:
@@ -146,6 +161,11 @@ void render_title(void)
 	}
 	break;
 	}
+	*/
+	Renderer_DrawImage(&data->TitleBackground, data->TitleBack_X, data->TitleBack_Y);
+	Renderer_DrawImage(&data->PressSpaceKey, data->PressSpace_X, data->PressSpace_Y);
+
+
 }
 
 void release_title(void)
