@@ -365,7 +365,7 @@ void update_main(void)
 	// ������ ����
 	if (Input_GetKeyDown(VK_SPACE))
 	{
-		if (data->Pointer_Y == CHOOSE_POSITION_1)		// ������ 1 ���� Scene
+		if (data->Pointer_Y == CHOOSE_POSITION_1)		//
 		{
 			char* num_choose_1 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][15]);
 			s_SelectNextPage = atoi(num_choose_1);
@@ -378,11 +378,12 @@ void update_main(void)
 				num_choose_2 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][15]);
 				s_SelectNextPage = atoi(num_choose_2);
 			}
-			else if (SelectButtonQuantity == 1)
+			else if (SelectButtonQuantity == 3)
 			{
 				num_choose_2 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][16]);
 				s_SelectNextPage = atoi(num_choose_2);
 			}
+
 		}
 		else if (data->Pointer_Y == CHOOSE_POSITION_3)	// ������ 3 ���� Scene
 		{
