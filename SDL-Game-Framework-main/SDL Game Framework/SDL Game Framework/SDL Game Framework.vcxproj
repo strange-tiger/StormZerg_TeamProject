@@ -189,6 +189,7 @@ xcopy "$(ProjectDir)Asset\*.*" "$(TargetDir)Asset\" /E /Y</Command>
     <ClInclude Include="Macro.h" />
     <ClInclude Include="ReadCSV.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TextList.h" />
     <ClInclude Include="Type.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

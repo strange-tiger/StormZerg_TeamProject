@@ -91,5 +91,8 @@
     <ClInclude Include="csv.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="TextList.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
