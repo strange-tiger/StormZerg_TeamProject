@@ -194,6 +194,10 @@ typedef struct MainSceneData
 	int32		Pointer_X;
 	int32		Pointer_Y;
 
+	Image		TextUI;
+	int32		TextUI_X;
+	int32		TextUI_Y;
+
 	int32		Alpha;
 } MainSceneData;
 
@@ -263,6 +267,7 @@ void init_main(void)
 		Image_LoadImage(&data->SelectButton, str_choose);
 	}
 	Image_LoadImage(&data->PointerButton, "Pointer.png");
+	Image_LoadImage(&data->TextUI, "Text_UI.png");
 
 	char* str_bgm = ParseToAscii(data->CsvFile.Items[s_CurrentPage][SOUND_MUSIC_NAME]);
 	if (NULL != *str_bgm)
@@ -286,9 +291,10 @@ void init_main(void)
 	data->Back_Y = 0;
 	data->Select_X = 0;
 	data->Select_Y = 0;
+	data->TextUI_X = 0;
+	data->TextUI_Y = 0;
 
-	char* num_choose_quantity = ParseToAscii(data->CsvFile.Items[s_CurrentPage][CHOOSE_QUANTITY]);
-	SelectButtonQuantity = atoi(num_choose_quantity);
+	SelectButtonQuantity = ParseToInt(data->CsvFile.Items[s_CurrentPage][CHOOSE_QUANTITY]);
 	switch (SelectButtonQuantity)
 	{
 	case 1:
@@ -369,72 +375,72 @@ void update_main(void)
 	}
 
 	// ������ ����
-	if (Input_GetKeyDown(VK_SPACE))
+ 	if (Input_GetKeyDown(VK_SPACE))
 	{
 		if (data->Pointer_Y == CHOOSE_POSITION_TOP)		//
 		{
-			char* num_choose_1 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_1]);
-			s_SelectNextPage = atoi(num_choose_1);
+			int32 num_choose_1 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_1]);
+			s_SelectNextPage = num_choose_1;
 		}
 		else if (data->Pointer_Y == CHOOSE_POSITION_MIDDLE)	// ������ 2 ���� Scene
 		{
-			char* num_choose_2;
+			int32 num_choose_2;
 			if (SelectButtonQuantity == 2)
 			{
-				num_choose_2 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_1]);
-				s_SelectNextPage = atoi(num_choose_2);
+				num_choose_2 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_1]);
+				s_SelectNextPage = num_choose_2;
 			}
 			else if (SelectButtonQuantity == 3)
 			{
-				num_choose_2 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_2]);
-				s_SelectNextPage = atoi(num_choose_2);
+				num_choose_2 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_2]);
+				s_SelectNextPage = num_choose_2;
 			}
 
 		}
 		else if (data->Pointer_Y == CHOOSE_POSITION_BOTTOM)	// ������ 3 ���� Scene
 		{
-			char* num_choose_3;
+			int32 num_choose_3;
 			if (SelectButtonQuantity == 1)
 			{
-				num_choose_3 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_1]);
-				s_SelectNextPage = atoi(num_choose_3);
+				num_choose_3 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_1]);
+				s_SelectNextPage = num_choose_3;
 			}
 			else if (SelectButtonQuantity == 2)
 			{
-				num_choose_3 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_2]);
-				s_SelectNextPage = atoi(num_choose_3);
+				num_choose_3 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_2]);
+				s_SelectNextPage = num_choose_3;
 			}
 			else if (SelectButtonQuantity == 3)
 			{
-				num_choose_3 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_3]);
-				s_SelectNextPage = atoi(num_choose_3);
+				num_choose_3 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_3]);
+				s_SelectNextPage = num_choose_3;
 			}
 		}
 		s_CurrentPage = s_SelectNextPage;
 		Scene_SetNextScene(SCENE_MAIN);
 	}
 
-	if (Input_GetKey('W'))
-	{
-		data->BackGround.ScaleY -= 0.05f;
-	}
+	//if (Input_GetKey('W'))
+	//{
+	//	data->BackGround.ScaleY -= 0.05f;
+	//}
 
-	if (Input_GetKey('S'))
-	{
-		data->BackGround.ScaleY += 0.05f;
-	}
+	//if (Input_GetKey('S'))
+	//{
+	//	data->BackGround.ScaleY += 0.05f;
+	//}
 
-	if (Input_GetKey('K'))
-	{
-		//data->Alpha = Clamp(0, data->Alpha - 1, 255);						//이거 존나중요함 페이드 인아웃.
-		//Image_SetAlphaValue(&data->BackGround, data->Alpha);
-	}
+	//if (Input_GetKey('K'))
+	//{
+	//	//data->Alpha = Clamp(0, data->Alpha - 1, 255);						//이거 존나중요함 페이드 인아웃.
+	//	//Image_SetAlphaValue(&data->BackGround, data->Alpha);
+	//}
 
-	if (Input_GetKey('L'))
-	{
-		//data->Alpha = Clamp(0, data->Alpha + 1, 255);
-		//Image_SetAlphaValue(&data->BackGround, data->Alpha);
-	}
+	//if (Input_GetKey('L'))
+	//{
+	//	//data->Alpha = Clamp(0, data->Alpha + 1, 255);
+	//	//Image_SetAlphaValue(&data->BackGround, data->Alpha);
+	//}
 }
 
 void render_main(void)
@@ -444,15 +450,16 @@ void render_main(void)
 	Renderer_DrawImage(&data->BackGround, data->Back_X, data->Back_Y);
 	Renderer_DrawImage(&data->SelectButton, data->Select_X, data->Select_Y);
 	Renderer_DrawImage(&data->PointerButton, data->Pointer_X, data->Pointer_Y);
+	Renderer_DrawImage(&data->TextUI, data->TextUI_X, data->TextUI_Y);
 
 	SDL_Color color = { .a = 255, .r = 255 , .g = 255 , .b = 255 };
 
-	// Renderer_DrawTextSolid(&data->TextLine[0], 50, 140, color);
+	// Renderer_DrawTextBlended(&data->TextLine[0], 60, 80, color);
 
 	// obt용 임시 조치
 	for (int i = 0; i < TEXTLINE_COUNT; i++)
 	{
-		Renderer_DrawTextSolid(&data->TextLine[i], 30, 120 + 30 * i, color);
+		Renderer_DrawTextBlended(&data->TextLine[i], 60, 80 + i * 30, color);
 	}
 }
 
