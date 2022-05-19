@@ -216,7 +216,7 @@ static char* s_Buffer;
 static char* s_BufferPointer;
 
 static int32 SelectButtonQuantity = 3;									//������ ��ư ��	// Null ���� ������ �� ���� ����� ����
-static int32 s_CurrentPage = 1;
+static int32 s_CurrentPage = 31;
 static int32 s_SelectNextPage = 1;								//��� ���� ��
 void init_main(void)
 {
@@ -228,7 +228,7 @@ void init_main(void)
 
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
-	CreateCsvFile(&data->CsvFile, "222.csv");
+	CreateCsvFile(&data->CsvFile, "DB_projectver1.CSV");
 
 	/*wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_CurrentPage][FULL_TEXT]);
 	if (NULL != *str_text)
@@ -250,9 +250,22 @@ void init_main(void)
 		}
 	}
 	// obt용 임시 조치
-	if (s_CurrentPage == 261)
+	
+
+	switch(s_CurrentPage)
 	{
+	case 261:
 		s_CurrentPage = 68;
+		break;
+	case 391:
+		s_CurrentPage = 69;
+		break;
+	case 411:
+		s_CurrentPage = 70;
+		break;
+	case 451:
+		s_CurrentPage = 71;
+		break;
 	}
 
 	char* str_background = ParseToAscii(data->CsvFile.Items[s_CurrentPage][BACK_IMG_NAME]);
@@ -310,6 +323,8 @@ void init_main(void)
 		data->Pointer_Y = CHOOSE_POSITION_TOP;
 		break;
 	}
+
+	//FreeCsvFile(&data->CsvFile);
 
 	data->Alpha = 255;
 }
