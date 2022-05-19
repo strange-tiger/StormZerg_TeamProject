@@ -232,6 +232,7 @@ void init_main(void)
 		Text_CreateText(&data->TextLine[0], "d2coding.ttf", 16, str_text, wcslen(str_text));
 	}*/
 
+	// obt용 임시 조치
 	int j = s_CurrentPage - 1;
 	if (j == 260)
 	{
@@ -239,17 +240,17 @@ void init_main(void)
 	}
 	for (int i = 0; i < TEXTLINE_COUNT; i++)
 	{
-		
 		if (NULL != strList[j][i])
 		{
-			Text_CreateText(&data->TextLine[i], "d2coding.ttf", 24, strList[j][i], wcslen(strList[j][i]));
+			Text_CreateText(&data->TextLine[i], "NotoSansKR-Bold.otf", 20, strList[j][i], wcslen(strList[j][i]));
 		}
 	}
-
+	// obt용 임시 조치
 	if (s_CurrentPage == 261)
 	{
 		s_CurrentPage = 68;
 	}
+
 	char* str_background = ParseToAscii(data->CsvFile.Items[s_CurrentPage][BACK_IMG_NAME]);
 	if (NULL != *str_background)
 	{
@@ -444,11 +445,11 @@ void render_main(void)
 	Renderer_DrawImage(&data->SelectButton, data->Select_X, data->Select_Y);
 	Renderer_DrawImage(&data->PointerButton, data->Pointer_X, data->Pointer_Y);
 
-
 	SDL_Color color = { .a = 255, .r = 255 , .g = 255 , .b = 255 };
 
 	// Renderer_DrawTextSolid(&data->TextLine[0], 50, 140, color);
 
+	// obt용 임시 조치
 	for (int i = 0; i < TEXTLINE_COUNT; i++)
 	{
 		Renderer_DrawTextSolid(&data->TextLine[i], 30, 120 + 30 * i, color);
