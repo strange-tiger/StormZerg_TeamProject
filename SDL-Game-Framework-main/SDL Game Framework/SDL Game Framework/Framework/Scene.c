@@ -216,8 +216,7 @@ static char* s_Buffer;
 static char* s_BufferPointer;
 
 static int32 SelectButtonQuantity = 3;									//������ ��ư ��	// Null ���� ������ �� ���� ����� ����
-static int32 s_CurrentPage = 31;
-static int32 s_SelectNextPage = 1;								//��� ���� ��
+static int32 s_CurrentPage = 1;
 void init_main(void)
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -237,7 +236,7 @@ void init_main(void)
 	}*/
 
 	// obt용 임시 조치
-	int j = s_CurrentPage - 1;
+	/*int j = s_CurrentPage - 1;
 	if (j == 260)
 	{
 		j = 31;
@@ -248,23 +247,23 @@ void init_main(void)
 		{
 			Text_CreateText(&data->TextLine[i], "NotoSansKR-Bold.otf", 20, strList[j][i], wcslen(strList[j][i]));
 		}
-	}
+	}*/
 	// obt용 임시 조치
 	
 
 	switch(s_CurrentPage)
 	{
 	case 261:
-		s_CurrentPage = 68;
+		// s_CurrentPage = 68;
 		break;
 	case 391:
-		s_CurrentPage = 69;
+		// s_CurrentPage = 69;
 		break;
 	case 411:
-		s_CurrentPage = 70;
+		// s_CurrentPage = 70;
 		break;
 	case 451:
-		s_CurrentPage = 71;
+		// s_CurrentPage = 71;
 		break;
 	}
 
@@ -294,9 +293,10 @@ void init_main(void)
 	{
 		Audio_LoadSoundEffect(&data->Effect, str_se);
 		Audio_HookSoundEffectFinished(log2OnFinished);
-		Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
 	}
-
+	Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
+	Audio_PlaySoundEffect(&data->Effect, 0);
+	
 	data->Volume = 1.0f;
 
 	data->Speed = 400.0f;
@@ -306,6 +306,7 @@ void init_main(void)
 	data->Select_Y = 0;
 	data->TextUI_X = 0;
 	data->TextUI_Y = 0;
+	data->Alpha = 255;
 
 	SelectButtonQuantity = ParseToInt(data->CsvFile.Items[s_CurrentPage][CHOOSE_QUANTITY]);
 	switch (SelectButtonQuantity)
@@ -326,17 +327,16 @@ void init_main(void)
 
 	//FreeCsvFile(&data->CsvFile);
 
-	data->Alpha = 255;
 }
 
 void update_main(void)
 {
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
-	if (Input_GetKeyDown('E'))
+	/*if (Input_GetKeyDown('E'))
 	{
 		Audio_PlaySoundEffect(&data->Effect, 1);
-	}
+	}*/
 
 	if (Input_GetKeyDown('M'))
 	{
@@ -362,13 +362,13 @@ void update_main(void)
 		}
 	}
 
-	if (Input_GetKey('-'))
+	if (Input_GetKey('1'))
 	{
 		data->Volume -= 0.01f;
 		Audio_SetVolume(data->Volume);
 	}
 
-	if (Input_GetKey('+'))
+	if (Input_GetKey('2'))
 	{
 		data->Volume += 0.01f;
 		Audio_SetVolume(data->Volume);
@@ -389,13 +389,15 @@ void update_main(void)
 		data->Pointer_Y -= 80;
 	}
 
+	int32 SelectNextPage = 1;								//��� ���� ��
 	// ������ ����
  	if (Input_GetKeyDown(VK_SPACE))
 	{
+		int32 num_choose_1;
 		if (data->Pointer_Y == CHOOSE_POSITION_TOP)		//
 		{
-			int32 num_choose_1 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_1]);
-			s_SelectNextPage = num_choose_1;
+			num_choose_1 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_1]);
+			SelectNextPage = num_choose_1;
 		}
 		else if (data->Pointer_Y == CHOOSE_POSITION_MIDDLE)	// ������ 2 ���� Scene
 		{
@@ -403,12 +405,12 @@ void update_main(void)
 			if (SelectButtonQuantity == 2)
 			{
 				num_choose_2 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_1]);
-				s_SelectNextPage = num_choose_2;
+				SelectNextPage = num_choose_2;
 			}
 			else if (SelectButtonQuantity == 3)
 			{
 				num_choose_2 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_2]);
-				s_SelectNextPage = num_choose_2;
+				SelectNextPage = num_choose_2;
 			}
 
 		}
@@ -418,20 +420,20 @@ void update_main(void)
 			if (SelectButtonQuantity == 1)
 			{
 				num_choose_3 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_1]);
-				s_SelectNextPage = num_choose_3;
+				SelectNextPage = num_choose_3;
 			}
 			else if (SelectButtonQuantity == 2)
 			{
 				num_choose_3 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_2]);
-				s_SelectNextPage = num_choose_3;
+				SelectNextPage = num_choose_3;
 			}
 			else if (SelectButtonQuantity == 3)
 			{
 				num_choose_3 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_3]);
-				s_SelectNextPage = num_choose_3;
+				SelectNextPage = num_choose_3;
 			}
 		}
-		s_CurrentPage = s_SelectNextPage;
+		s_CurrentPage = SelectNextPage;
 		Scene_SetNextScene(SCENE_MAIN);
 	}
 

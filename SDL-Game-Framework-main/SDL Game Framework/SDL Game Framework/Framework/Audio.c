@@ -33,7 +33,7 @@ void Audio_Cleanup(void)
 
 void Audio_SetVolume(float volume)					// 음악 볼륨 조절
 {
-	s_MusicVolume = Clamp(0.0f, volume, 1.0f);		// Clamp - value를 [minValue, maxValue]로 만든다.
+	s_MusicVolume = Clamp(0.0f, volume, 2.0f);		// Clamp - value를 [minValue, maxValue]로 만든다.
 	
 	int32 realVolume = 0 + s_MusicVolume * MIX_MAX_VOLUME;
 	Mix_VolumeMusic(realVolume);
