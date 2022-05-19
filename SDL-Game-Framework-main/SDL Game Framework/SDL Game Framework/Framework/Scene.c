@@ -3,6 +3,7 @@
 
 #include "Framework.h"
 #include "csv.h"
+#include "TextList.h"
 #include <crtdbg.h>
 // #include "ReadCSV.h"
 
@@ -35,6 +36,8 @@ typedef struct TitleSceneData
 	Text	TestText;
 	int32	FontSize;
 	int32	RenderMode;
+
+	float   ActiveTime;
 
 	Image	TitleBackground;
 	int32	TitleBack_X;
@@ -74,54 +77,18 @@ void init_title(void)
 void update_title(void)
 {
 	TitleSceneData* data = (TitleSceneData*)g_Scene.Data;
-	/*															지워
-	if (Input_GetKeyDown('B'))
+
+	data->ActiveTime += Timer_GetDeltaTime();
+
+	if ((int32)data->ActiveTime % 2 == 0)
 	{
-		Text_SetFontStyle(&data->TestText, FS_BOLD);
+		Image_SetAlphaValue(&data->PressSpaceKey, 255);
+	}
+	else if ((int32)data->ActiveTime % 2 != 0)
+	{
+		Image_SetAlphaValue(&data->PressSpaceKey, 0);
 	}
 
-	if (Input_GetKeyDown('I'))
-	{
-		Text_SetFontStyle(&data->TestText, FS_ITALIC);
-	}
-
-	if (Input_GetKeyDown('U'))
-	{
-		Text_SetFontStyle(&data->TestText, FS_UNDERLINE);
-	}
-
-	if (Input_GetKeyDown('S'))
-	{
-		Text_SetFontStyle(&data->TestText, FS_STRIKETHROUGH);
-	}
-
-	if (Input_GetKeyDown('N'))
-	{
-		Text_SetFontStyle(&data->TestText, FS_NORMAL);
-	}
-
-	if (Input_GetKeyDown('C'))
-	{
-		data->RenderMode = (data->RenderMode + 1) % 3;
-	}
-
-	if (Input_GetKey('1'))
-	{
-		--data->FontSize;
-		Text_SetFont(&data->TestText, "d2coding.ttf", data->FontSize);
-	}
-
-	if (Input_GetKey('2'))
-	{
-		++data->FontSize;
-		Text_SetFont(&data->TestText, "d2coding.ttf", data->FontSize);
-	}
-	if (Input_GetKeyDown(VK_TAB))
-	{
-		// Scene_SetNextScene(SCENE_TEST);
-	}
-
-	*/
 	if (Input_GetKeyDown(VK_SPACE))
 	{
 		Scene_SetNextScene(SCENE_MAIN);
@@ -200,7 +167,7 @@ const wchar_t* str2[] = {
 
 };
 
-#define GUIDELINE_COUNT 11
+#define TEXTLINE_COUNT 20
 #define CHOOSE_POSITION_TOP -160
 #define CHOOSE_POSITION_MIDDLE -80
 #define CHOOSE_POSITION_BOTTOM 0
@@ -209,7 +176,7 @@ typedef struct MainSceneData
 {
 	CsvFile		CsvFile;
 
-	Text		TextLine;
+	Text		TextLine[TEXTLINE_COUNT];
 	Music		BGM;
 	float		Volume;
 	SoundEffect Effect;
@@ -259,12 +226,30 @@ void init_main(void)
 
 	CreateCsvFile(&data->CsvFile, "222.csv");
 
-	wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_CurrentPage][FULL_TEXT]);
+	/*wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_CurrentPage][FULL_TEXT]);
 	if (NULL != *str_text)
 	{
-		Text_CreateText(&data->TextLine, "d2coding.ttf", 16, str_text, wcslen(str_text));
+		Text_CreateText(&data->TextLine[0], "d2coding.ttf", 16, str_text, wcslen(str_text));
+	}*/
+
+	int j = s_CurrentPage - 1;
+	if (j == 260)
+	{
+		j = 31;
+	}
+	for (int i = 0; i < TEXTLINE_COUNT; i++)
+	{
+		
+		if (NULL != strList[j][i])
+		{
+			Text_CreateText(&data->TextLine[i], "d2coding.ttf", 24, strList[j][i], wcslen(strList[j][i]));
+		}
 	}
 
+	if (s_CurrentPage == 261)
+	{
+		s_CurrentPage = 68;
+	}
 	char* str_background = ParseToAscii(data->CsvFile.Items[s_CurrentPage][BACK_IMG_NAME]);
 	if (NULL != *str_background)
 	{
@@ -461,15 +446,20 @@ void render_main(void)
 
 
 	SDL_Color color = { .a = 255, .r = 255 , .g = 255 , .b = 255 };
-	Renderer_DrawTextSolid(&data->TextLine, 50, 140, color);
 
+	// Renderer_DrawTextSolid(&data->TextLine[0], 50, 140, color);
+
+	for (int i = 0; i < TEXTLINE_COUNT; i++)
+	{
+		Renderer_DrawTextSolid(&data->TextLine[i], 30, 120 + 30 * i, color);
+	}
 }
 
 void release_main(void)
 {
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
-	for (int32 i = 0; i < GUIDELINE_COUNT; ++i)
+	for (int32 i = 0; i < TEXTLINE_COUNT; ++i)
 	{
 		Text_FreeText(&data->TextLine);
 	}
