@@ -4,7 +4,6 @@
 #include "Framework.h"
 #include "csv.h"
 #include "TextList.h"
-#include <crtdbg.h>
 // #include "ReadCSV.h"
 
 Scene g_Scene;
@@ -152,31 +151,15 @@ void release_title(void)
 //Main
 #pragma region MainScene 1
 
-const wchar_t* str2[] = {
-	L"2060년, 환경오염과 기후위기로 ",
-	L"최악의 상황에 몰린 지구는",
-	L"하루 하루 다르게 메말라 간다.",
-	L"",
-	L"소수의 특권층들은",
-	L"안전한 삶을 영위하고 있지만,",
-	L"과학의 발전으로 인해",
-	L"대부분의 노동자들은",
-	L"안드로이드에게 일자리를 뺏기고 ",
-	L"힘들게 살아 가고 있다.",
-	L"",
-
-};
-
-#define TEXTLINE_COUNT 20
-#define CHOOSE_POSITION_TOP -160
-#define CHOOSE_POSITION_MIDDLE -80
-#define CHOOSE_POSITION_BOTTOM 0
-
 typedef struct MainSceneData
 {
 	CsvFile		CsvFile;
+	int32		SelectButtonQuantity;
 
-	Text		TextLine[TEXTLINE_COUNT];
+	Text		TextLine[TEXT_MAX_LINE];
+	bool		IsText;
+	int32		TextLength;
+
 	Music		BGM;
 	float		Volume;
 	SoundEffect Effect;
@@ -214,43 +197,19 @@ void log2OnFinished(int32 channel)
 
 static char* s_Buffer;
 static char* s_BufferPointer;
-
-static int32 SelectButtonQuantity = 3;									//������ ��ư ��	// Null ���� ������ �� ���� ����� ����
 static int32 s_CurrentPage = 1;
 void init_main(void)
 {
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-
-
 	g_Scene.Data = malloc(sizeof(MainSceneData));
 	memset(g_Scene.Data, 0, sizeof(MainSceneData));
 
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
-	CreateCsvFile(&data->CsvFile, "DB_projectver1.CSV");
+	CreateCsvFile(&data->CsvFile, "DB_projectver2.CSV");
 
-	/*wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_CurrentPage][FULL_TEXT]);
-	if (NULL != *str_text)
-	{
-		Text_CreateText(&data->TextLine[0], "d2coding.ttf", 16, str_text, wcslen(str_text));
-	}*/
+	data->IsText = false;
 
 	// obt용 임시 조치
-	/*int j = s_CurrentPage - 1;
-	if (j == 260)
-	{
-		j = 31;
-	}
-	for (int i = 0; i < TEXTLINE_COUNT; i++)
-	{
-		if (NULL != strList[j][i])
-		{
-			Text_CreateText(&data->TextLine[i], "NotoSansKR-Bold.otf", 20, strList[j][i], wcslen(strList[j][i]));
-		}
-	}*/
-	// obt용 임시 조치
-	
-
 	switch(s_CurrentPage)
 	{
 	case 261:
@@ -267,13 +226,14 @@ void init_main(void)
 		break;
 	}
 
-	char* str_background = ParseToAscii(data->CsvFile.Items[s_CurrentPage][BACK_IMG_NAME]);
+	int32 Row = s_CurrentPage;
+	char* str_background = ParseToAscii(data->CsvFile.Items[Row][BACK_IMG_NAME]);
 	if (NULL != *str_background)
 	{
 		Image_LoadImage(&data->BackGround, str_background);
 	}
 
-	char* str_choose = ParseToAscii(data->CsvFile.Items[s_CurrentPage][CHOOSE_IMG_NAME]);
+	char* str_choose = ParseToAscii(data->CsvFile.Items[Row][CHOOSE_IMG_NAME]);
 	if (NULL != *str_choose)
 	{
 		Image_LoadImage(&data->SelectButton, str_choose);
@@ -281,21 +241,21 @@ void init_main(void)
 	Image_LoadImage(&data->PointerButton, "Pointer.png");
 	Image_LoadImage(&data->TextUI, "Text_UI.png");
 
-	char* str_bgm = ParseToAscii(data->CsvFile.Items[s_CurrentPage][SOUND_MUSIC_NAME]);
+	char* str_bgm = ParseToAscii(data->CsvFile.Items[Row][SOUND_MUSIC_NAME]);
 	if (NULL != *str_bgm)
 	{
 		Audio_LoadMusic(&data->BGM, str_bgm);
 		Audio_HookMusicFinished(logOnFinished);
 	}
 
-	char* str_se = ParseToAscii(data->CsvFile.Items[s_CurrentPage][SOUND_EFFECT_NAME]);
+	char* str_se = ParseToAscii(data->CsvFile.Items[Row][SOUND_EFFECT_NAME]);
 	if (NULL != *str_se)
 	{
 		Audio_LoadSoundEffect(&data->Effect, str_se);
 		Audio_HookSoundEffectFinished(log2OnFinished);
 	}
-	Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
-	Audio_PlaySoundEffect(&data->Effect, 0);
+	// Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
+	// Audio_PlaySoundEffect(&data->Effect, 0);
 	
 	data->Volume = 1.0f;
 
@@ -308,8 +268,8 @@ void init_main(void)
 	data->TextUI_Y = 0;
 	data->Alpha = 255;
 
-	SelectButtonQuantity = ParseToInt(data->CsvFile.Items[s_CurrentPage][CHOOSE_QUANTITY]);
-	switch (SelectButtonQuantity)
+	data->SelectButtonQuantity = ParseToInt(data->CsvFile.Items[Row][NUMBER_OF_OPTIONS]);
+	switch (data->SelectButtonQuantity)
 	{
 	case 1:
 		data->Pointer_X = 0;
@@ -333,10 +293,8 @@ void update_main(void)
 {
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
-	/*if (Input_GetKeyDown('E'))
-	{
-		Audio_PlaySoundEffect(&data->Effect, 1);
-	}*/
+	char* str_text = ParseToUnicode(data->CsvFile.Items[s_CurrentPage][FULL_TEXT]);
+	TextTyping(&data->TextLine, str_text, &data->IsText, &data->TextLength, DEFAULT_FONT, DEFAULT_FONT_SIZE);
 
 	if (Input_GetKeyDown('M'))
 	{
@@ -380,36 +338,39 @@ void update_main(void)
 	{
 		data->Pointer_Y += 80;
 	}
-	if (Input_GetKeyDown(VK_UP) && CHOOSE_POSITION_MIDDLE < data->Pointer_Y && SelectButtonQuantity == 2)
+	if (Input_GetKeyDown(VK_UP) && CHOOSE_POSITION_MIDDLE < data->Pointer_Y && data->SelectButtonQuantity == 2)
 	{
 		data->Pointer_Y -= 80;
 	}
-	if (Input_GetKeyDown(VK_UP) && CHOOSE_POSITION_TOP < data->Pointer_Y && SelectButtonQuantity == 3)
+	if (Input_GetKeyDown(VK_UP) && CHOOSE_POSITION_TOP < data->Pointer_Y && data->SelectButtonQuantity == 3)
 	{
 		data->Pointer_Y -= 80;
 	}
 
 	int32 SelectNextPage = 1;								//��� ���� ��
+	int32 Row = s_CurrentPage;
 	// ������ ����
  	if (Input_GetKeyDown(VK_SPACE))
 	{
+		data->TextLength = 0;
+
 		int32 num_choose_1;
 		if (data->Pointer_Y == CHOOSE_POSITION_TOP)		//
 		{
-			num_choose_1 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_1]);
+			num_choose_1 = ParseToInt(data->CsvFile.Items[Row][NEXT_SCENE_1]);
 			SelectNextPage = num_choose_1;
 		}
 		else if (data->Pointer_Y == CHOOSE_POSITION_MIDDLE)	// ������ 2 ���� Scene
 		{
 			int32 num_choose_2;
-			if (SelectButtonQuantity == 2)
+			if (data->SelectButtonQuantity == 2)
 			{
-				num_choose_2 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_1]);
+				num_choose_2 = ParseToInt(data->CsvFile.Items[Row][NEXT_SCENE_1]);
 				SelectNextPage = num_choose_2;
 			}
-			else if (SelectButtonQuantity == 3)
+			else if (data->SelectButtonQuantity == 3)
 			{
-				num_choose_2 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_2]);
+				num_choose_2 = ParseToInt(data->CsvFile.Items[Row][NEXT_SCENE_2]);
 				SelectNextPage = num_choose_2;
 			}
 
@@ -417,47 +378,25 @@ void update_main(void)
 		else if (data->Pointer_Y == CHOOSE_POSITION_BOTTOM)	// ������ 3 ���� Scene
 		{
 			int32 num_choose_3;
-			if (SelectButtonQuantity == 1)
+			if (data->SelectButtonQuantity == 1)
 			{
-				num_choose_3 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_1]);
+				num_choose_3 = ParseToInt(data->CsvFile.Items[Row][NEXT_SCENE_1]);
 				SelectNextPage = num_choose_3;
 			}
-			else if (SelectButtonQuantity == 2)
+			else if (data->SelectButtonQuantity == 2)
 			{
-				num_choose_3 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_2]);
+				num_choose_3 = ParseToInt(data->CsvFile.Items[Row][NEXT_SCENE_2]);
 				SelectNextPage = num_choose_3;
 			}
-			else if (SelectButtonQuantity == 3)
+			else if (data->SelectButtonQuantity == 3)
 			{
-				num_choose_3 = ParseToInt(data->CsvFile.Items[s_CurrentPage][NEXT_SCENE_3]);
+				num_choose_3 = ParseToInt(data->CsvFile.Items[Row][NEXT_SCENE_3]);
 				SelectNextPage = num_choose_3;
 			}
 		}
 		s_CurrentPage = SelectNextPage;
 		Scene_SetNextScene(SCENE_MAIN);
 	}
-
-	//if (Input_GetKey('W'))
-	//{
-	//	data->BackGround.ScaleY -= 0.05f;
-	//}
-
-	//if (Input_GetKey('S'))
-	//{
-	//	data->BackGround.ScaleY += 0.05f;
-	//}
-
-	//if (Input_GetKey('K'))
-	//{
-	//	//data->Alpha = Clamp(0, data->Alpha - 1, 255);						//이거 존나중요함 페이드 인아웃.
-	//	//Image_SetAlphaValue(&data->BackGround, data->Alpha);
-	//}
-
-	//if (Input_GetKey('L'))
-	//{
-	//	//data->Alpha = Clamp(0, data->Alpha + 1, 255);
-	//	//Image_SetAlphaValue(&data->BackGround, data->Alpha);
-	//}
 }
 
 void render_main(void)
@@ -471,23 +410,19 @@ void render_main(void)
 
 	SDL_Color color = { .a = 255, .r = 255 , .g = 255 , .b = 255 };
 
-	// Renderer_DrawTextBlended(&data->TextLine[0], 60, 80, color);
-
-	// obt용 임시 조치
-	for (int i = 0; i < TEXTLINE_COUNT; i++)
+	for (int32 i = 0; i < TEXT_MAX_LINE; i++)
 	{
-		Renderer_DrawTextBlended(&data->TextLine[i], 60, 80 + i * 30, color);
+		Renderer_DrawTextBlended(&data->TextLine, 60, 80, color);
 	}
+
 }
 
 void release_main(void)
 {
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
-	for (int32 i = 0; i < TEXTLINE_COUNT; ++i)
-	{
-		Text_FreeText(&data->TextLine);
-	}
+	Text_FreeText(&data->TextLine);
+	
 	Audio_FreeMusic(&data->BGM);
 	Audio_FreeSoundEffect(&data->Effect);
 

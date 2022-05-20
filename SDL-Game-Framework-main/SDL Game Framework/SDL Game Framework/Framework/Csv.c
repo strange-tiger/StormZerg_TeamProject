@@ -1,14 +1,19 @@
 #include "stdafx.h"
 
-#include "csv.h"
+#include "Csv.h"
 
-static char* s_Buffer;
-static char* s_BufferPointer;
+static byte* s_Buffer;
+static byte* s_BufferPointer;
+static char s_Path[MAX_PATH];
+
+#define DELIMITER '|'
 
 void readFileToBuffer(const char* filename)
 {
+	sprintf_s(s_Path, sizeof(s_Path), "%s/%s", DATA_DIRECTORY, filename);
+
 	FILE* fp;
-	if (0 != fopen_s(&fp, filename, "r"))
+	if (0 != fopen_s(&fp, s_Path, "r"))
 	{
 		return;
 	}
@@ -30,7 +35,7 @@ int countCategory(const char* firstLine)
 	int result = 1;
 	while (*firstLine != '\n')
 	{
-		if (*firstLine == ',')
+		if (*firstLine == DELIMITER)
 		{
 			++result;
 		}
@@ -67,7 +72,7 @@ void CreateCsvFile(CsvFile* csvFile, const char* filename)
 				break;
 			}
 
-			if (*lineEnd == ',')
+			if (*lineEnd == DELIMITER)
 			{
 				++commaCount;
 			}
@@ -80,7 +85,7 @@ void CreateCsvFile(CsvFile* csvFile, const char* filename)
 		const char* recordEnd = recordStart;
 		for (int i = 0; i < csvFile->ColumnCount; ++i)
 		{
-			while (*recordEnd != ',' && recordEnd != lineEnd)
+			while (*recordEnd != DELIMITER && recordEnd != lineEnd)
 			{
 				++recordEnd;
 			}
@@ -94,7 +99,7 @@ void CreateCsvFile(CsvFile* csvFile, const char* filename)
 			recordEnd = recordStart;
 		}
 
-		++csvFile->RowCount;
+ 		++csvFile->RowCount;
 
 		s_BufferPointer = lineEnd + 1;
 	}
@@ -147,9 +152,19 @@ char* ParseToAscii(const CsvItem item)
 
 wchar_t* ParseToUnicode(const CsvItem item)
 {
-	int size = MultiByteToWideChar(CP_ACP, NULL, item.RawData, -1, NULL, NULL);
-	wchar_t* result = (wchar_t*)malloc(sizeof(wchar_t) * (size + 1));
-	MultiByteToWideChar(CP_ACP, NULL, item.RawData, -1, result, size);
+	int32 size = strlen(item.RawData);
+	int32 wideLen = MultiByteToWideChar(CP_ACP, NULL, item.RawData, -1, NULL, 0);
+	wchar_t* result = (wchar_t*)malloc(sizeof(wchar_t) * wideLen);
+	memset(result, 0, sizeof(wchar_t) * wideLen);
+
+	if (item.RawData[0] == '"' && item.RawData[size - 1] == '"')
+	{
+		MultiByteToWideChar(CP_ACP, NULL, &item.RawData[1], -1, result, wideLen - 3);
+	}
+	else
+	{
+		MultiByteToWideChar(CP_ACP, NULL, item.RawData, -1, result, wideLen);
+	}
 
 	return result;
 }

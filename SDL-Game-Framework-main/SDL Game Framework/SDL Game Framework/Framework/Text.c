@@ -64,3 +64,24 @@ EFontStyle Text_GetFontStyle(const Text* text)
 {
 	return (EFontStyle)TTF_GetFontStyle(text->Font);
 }
+
+float addDelta = 0;
+void TextTyping(Text* text, wchar_t* str, bool* test, int32* cnt, const char* font, int32 font_size)
+{
+	addDelta += Timer_GetDeltaTime();
+
+	if (!*test)
+	{
+		if (addDelta >= 1.0f)
+		{
+			Text_CreateText(text, font, font_size, str, *cnt);
+			++*cnt;
+			addDelta = 0.0f;
+		}
+		if (str[*cnt] == '\0')
+		{
+			*test = !*test;
+			*cnt = 0;
+		}
+	}
+}

@@ -2,21 +2,21 @@
 
 #include <wchar.h>
 
-#define MAXIMUM_ROW 800
+#define MAXIMUM_ROW 200
 
 typedef struct CsvItem
 {
-	char* RawData;
+	char*		RawData;
 } CsvItem;
 
 typedef struct CsvFile
 {
 	int			ColumnCount;
 	int			RowCount;
-	CsvItem* Items[MAXIMUM_ROW];
+	CsvItem*	Items[MAXIMUM_ROW];
 } CsvFile;
 
-typedef enum CsvList
+typedef enum EColumn
 {
 	SENCE_NUMBER,
 	BACK_IMG_NAME,
@@ -32,15 +32,14 @@ typedef enum CsvList
 	CHOOSE_TEXT_1,
 	CHOOSE_TEXT_2,
 	CHOOSE_TEXT_3,
-	SAVE_POINT_SCENE,
+	NUMBER_OF_OPTIONS,
 	NEXT_SCENE_1,
 	NEXT_SCENE_2,
 	NEXT_SCENE_3,
 	PASSWORD_1,
 	PASSWORD_2,
-	MASTER_KEY,
-	CHOOSE_QUANTITY
-};
+	MASTER_KEY
+}EColumn;
 
 void		CreateCsvFile(CsvFile* csvFile, const char* filename);
 void		FreeCsvFile(CsvFile* csvFile);
