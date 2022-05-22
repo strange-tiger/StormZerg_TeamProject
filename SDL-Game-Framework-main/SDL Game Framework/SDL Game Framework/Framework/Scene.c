@@ -235,13 +235,13 @@ void init_main(void)
 	{
 		if (NULL != *str_bgm)
 		{
-			// Audio_LoadMusic(&data->BGM, str_bgm);
+			Audio_LoadMusic(&data->BGM, str_bgm);
 			Audio_HookMusicFinished(logOnFinished);
 		}
 		// Audio_Play(&data->BGM, INFINITY_LOOP);
 		
 		Audio_Stop();
-		// Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 1000);
+		Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 1000);
 		s_PrevBGM = str_bgm;
 	}
 
