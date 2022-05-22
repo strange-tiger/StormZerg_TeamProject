@@ -1,5 +1,5 @@
 SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START|SOUND_MUSIC|SOUND_MUSIC_STYLE|SOUND_EFFECT|SOUND_EFFECT_PLAY_TIME|SOUND_EFFECT_STYLE|TEXT|FULL_TEXT|CHOOSE_IMG_1|CHOOSE_IMG_2|CHOOSE_IMG_3|NUMBER OF OPTIONS|NEXT_SCENE_1|NEXT_SCENE_2|NEXT_SCENE_3|PASSWORD_1|PASSWORD_2|MASTER_KEY
-1|scene#1(img).png|scene#1(choose).png|FADE_IN,FADE_OUT|1|0|0|MainTheme.mp3|NORMAL||||scene#1.txt|"2060년, 환경오염과 기후위기로
+1|scene#1(img).png|scene#1(choose).png|FADE_IN,FADE_OUT|1||0|MainTheme.mp3|NORMAL||||scene#1.txt|"2060년, 환경오염과 기후위기로
 
 최악의 상황에 몰린 지구는
 
@@ -16,7 +16,7 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 안드로이드에게 일자리를 뺏기고
 
 힘들게 살아 가고 있다."|계속...|||1|80|||FALSE|FALSE|FALSE
-2|scene#2(img).png|scene#2(choose).png|FADE_IN,FADE_OUT|1|0|0|MainTheme.mp3|NORMAL||||scene#2.txt|"톰은 난생 처음으로 본
+2|scene#2(img).png|scene#2(choose).png|FADE_IN,FADE_OUT|1||0|MainTheme.mp3|NORMAL||||scene#2.txt|"톰은 난생 처음으로 본
 
 어마어마한 크기의 우주선에 압도당한다.
 
@@ -31,7 +31,7 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 그리고 편리를 돕는 안드로이드 등은
 
 새로운 삶에 대해 묘한 기대감을 더했다."|계속...|||1|81|||FALSE|FALSE|FALSE
-3|scene#3(img).png|scene#3(choose).png|FADE_IN,FADE_OUT|1|0|0|MainTheme.mp3|NORMAL||||scene#3.txt|"어느 날, 나(톰 블레이크)는 숀의 초대로
+3|scene#3(img).png|scene#3(choose).png|FADE_IN,FADE_OUT|1||0|MainTheme.mp3|NORMAL||||scene#3.txt|"어느 날, 나(톰 블레이크)는 숀의 초대로
 
 그의 실험실에 방문하게 되었다.
 
@@ -61,7 +61,7 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 재빨리 구조 신호를 보냈지만
 
 묵묵부답이었다."|밖으로 나가 상황을 살펴본다.|||1|5|||FALSE|FALSE|FALSE
-5|scene#5(img).png|scene#5(choose).png|FADE_IN,FADE_OUT|1|0|0|MainTheme.mp3|NORMAL|flamethrower.mp3|5|NORMAL|scene#5.txt|"마음이 급해진 나는
+5|scene#5(img).png|scene#5(choose).png|FADE_IN,FADE_OUT|1||0|MainTheme.mp3|NORMAL|flamethrower.mp3|5|NORMAL|scene#5.txt|"마음이 급해진 나는
 
 서둘러 옷을 입고 방을 나섰다. 
 
@@ -100,7 +100,7 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 그 폭발로 인해 숙소가 분리 되었다.
  
 나는 우주 공간으로 떨어져버렸다."|다시 돌아가 선택할 수만 있다면..|||1|4|||FALSE|FALSE|FALSE
-8|scene#8(img).png|scene#8(choose).png|FADE_IN,FADE_OUT|1|0|0|MainTheme.mp3|NORMAL|walking.mp3|9|NORMAL|scene#8.txt|"쇳소리가 나는 쪽으로 가니
+8|scene#8(img).png|scene#8(choose).png|FADE_IN,FADE_OUT|1||0|MainTheme.mp3|NORMAL|walking.mp3|9|NORMAL|scene#8.txt|"쇳소리가 나는 쪽으로 가니
 
 중앙 통로가 나왔다.
 
@@ -115,7 +115,7 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 나는 자칫하면 난간 밖으로 떨어질까봐
 
 조심히 이동하였다."|조심스럽게 엔진룸으로 이동한다.|||1|9|||FALSE|FALSE|FALSE
-9|scene#9(img).png|scene#9(choose).png|FADE_IN,FADE_OUT|1|0|0|MainTheme.mp3|NORMAL||||scene#9.txt|"엔진룸은 연기로 가득 차 있었다.
+9|scene#9(img).png|scene#9(choose).png|FADE_IN,FADE_OUT|1||0|MainTheme.mp3|NORMAL||||scene#9.txt|"엔진룸은 연기로 가득 차 있었다.
 
 엔진은 금방이라도 터질듯이 굉음을 냈다.
 
@@ -166,7 +166,7 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 '톰, 어디 가요?'
 
 놈의 모습이 흐려지며, 어둠이 나를 삼켰다."|다시 돌아가 선택할 수만 있다면..|||1|5|||FALSE|FALSE|FALSE
-12|scene#12(img).png|scene#12(choose).png|FADE_IN,FADE_OUT|1|0|0|MainTheme.mp3|NORMAL||||scene#12.txt|"언뜻 불안감을 느낀 나는 놈을 경계하며
+12|scene#12(img).png|scene#12(choose).png|FADE_IN,FADE_OUT|1||0|MainTheme.mp3|NORMAL||||scene#12.txt|"언뜻 불안감을 느낀 나는 놈을 경계하며
 
 멀리 떨어졌다.
 
@@ -181,7 +181,7 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 톰, 저 좀 도와주세요.
 
 어떡하지?"|자세히 살펴보러 다가간다.|지나온 중앙 통로로 도망친다.||2|11|13||FALSE|FALSE|FALSE
-13|scene#13(img).png|scene#13(choose).png|FADE_IN,FADE_OUT|1|0|0|MainTheme.mp3|NORMAL|running.mp3|6|NORMAL|scene#13.txt|"지나왔던 중앙 통로까지 도망쳤다. 
+13|scene#13(img).png|scene#13(choose).png|FADE_IN,FADE_OUT|1||0|MainTheme.mp3|NORMAL|running.mp3|6|NORMAL|scene#13.txt|"지나왔던 중앙 통로까지 도망쳤다. 
 
 워킹조: '톰! 나 좀 도와줘!!!'
 
@@ -222,7 +222,7 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 나는 재빨리 놈을 난간 아래로 밀어버렸다.
 
 결국 놈은 반으로 갈라져 버렸다."|엔진룸으로 향한다.|||1|16|||FALSE|FALSE|FALSE
-16|scene#16(img).png|scene#16(choose).png|SHAKE|0|1|0|MainTheme.mp3|NORMAL|gateopen,mp3|3|NORMAL|scene#16.txt|"자칫하면, 엔진이 폭발할 것 같았다.
+16|scene#16(img).png|scene#16(choose).png|SHAKE|0|1|0|MainTheme.mp3|NORMAL|gateopen|3|NORMAL|scene#16.txt|"자칫하면, 엔진이 폭발할 것 같았다.
 
 다행히 전원을 찾아 엔진을 중지시켜 위기를 넘겼다.
 
@@ -237,7 +237,7 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 그러기 위해선 , 탈출선이 필요하다
 
 그렇다면...."|엔진룸을 떠나 탈출포트로 향한다.|||1|17|||FALSE|FALSE|FALSE
-17|scene#17(img).png|scene#17(choose).png|FADE_IN,FADE_OUT|1|0|0|MainTheme.mp3|NORMAL||||scene#17.txt|"엔진룸 밖의 복도로 나가 보니 
+17|scene#17(img).png|scene#17(choose).png|FADE_IN,FADE_OUT|1||0|MainTheme.mp3|NORMAL||||scene#17.txt|"엔진룸 밖의 복도로 나가 보니 
 
 거대한 파리지옥들이 길을 가로 막고 있었다.
 
@@ -271,7 +271,7 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 끈적끈적한 초록색 액체들가 나를 뒤덮었다. 
 
 나는 서서히 녹기 시작했다."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|13|4||FALSE|FALSE|FALSE
-19|scene#19(img).png|scene#19(choose).png|FADE_IN,FADE_OUT|1|0|0|MainTheme.mp3|NORMAL||||scene#19.txt|"거대 식물들 몰래 복도를 지나가기로 한다.
+19|scene#19(img).png|scene#19(choose).png|FADE_IN,FADE_OUT|1||0|MainTheme.mp3|NORMAL||||scene#19.txt|"거대 식물들 몰래 복도를 지나가기로 한다.
 
 놈의 액체가 여간 미끄러운 것이 아니었다.
 
@@ -305,7 +305,7 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 차려진 식사에 놈들은 몰려 들었고, 
 
 나는 천천히 먹히기 시작했다."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|17|4||FALSE|FALSE|FALSE
-21|scene#21(img).png|scene#21(choose).png|FADE_IN,FADE_OUT|1|0|0|MainTheme.mp3|NORMAL|running.mp3|6|NORMAL|scene#21.txt|"신발을 벗고 뛴다.
+21|scene#21(img).png|scene#21(choose).png|FADE_IN,FADE_OUT|1||0|MainTheme.mp3|NORMAL|running.mp3|6|NORMAL|scene#21.txt|"신발을 벗고 뛴다.
 
 놈들이 서서히 다가온다. 
 
@@ -318,7 +318,7 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 영향을 덜 받는 것 같았다.
 
 무사히 통제실 문앞에 도착했다."|통제실로 들어간다.|||1|22|||FALSE|FALSE|FALSE
-22|scene#22(img).png|scene#22(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL|gateopen.mp3|3|NORMAL|scene#22.txt|"통제실에 들어서자
+22|scene#22(img).png|scene#22(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL|gateopen|3|NORMAL|scene#22.txt|"통제실에 들어서자
 
 대형 스크린이 눈에 들어왔다.
 
@@ -344,7 +344,7 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 입으로 내 얼굴을 파먹기 시작했다
 
 젠장.."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|19|4||FALSE|FALSE|FALSE
-24|scene#24(img).png|scene#24(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL||||scene#24.txt|"탈출포트로 향하기 위해 복도로 나왔다. 
+24|scene#24(img).png|scene#24(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL||||scene#24.txt|"탈출포트로 향하기 위해 복도로 나왔다. 
 
 반대편 복도 끝에서 
 
@@ -361,7 +361,7 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 위험한 존재일수도 있다는 생각이 든다.
 
 어떻게 할까?"|통제실로 다시 돌아간다|큰소리로 상대를 부른다..||2|25|101||FALSE|FALSE|FALSE
-25|scene#25(img).png|scene#25(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL|knock.mp3|2|NORMAL|scene#25.txt|"위험한 낌새를 느껴 통제실로 
+25|scene#25(img).png|scene#25(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL|knock|2|NORMAL|scene#25.txt|"위험한 낌새를 느껴 통제실로 
 
 다시 들어와 문을 잠궜다.
 
@@ -377,7 +377,7 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 날 속이려 연기하는 안드로이드일까? 
 
 나는 분간되지 않았다."|정체 모를 이를 통제실로 들인다|문을 열어선 안될 것 같다||2|28|26||FALSE|FALSE|FALSE
-26|scene#26(img).png|scene#26(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL||||scene#26.txt|"목숨을 담보로 도박하지 않겠다.
+26|scene#26(img).png|scene#26(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL||||scene#26.txt|"목숨을 담보로 도박하지 않겠다.
 
 숨을 죽이고 문 밖 상황을 지켜보았다.
 
@@ -410,7 +410,7 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 고철덩이는 나를 짓눌러 
 
 고기덩이로 만들었다. 개새끼들..."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|25|4||FALSE|FALSE|FALSE
-28|scene#28(img).png|scene#28(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL||||scene#28.txt|"정체 모를 남자를 안으로 들이고 
+28|scene#28(img).png|scene#28(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL||||scene#28.txt|"정체 모를 남자를 안으로 들이고 
 
 서둘러 문을 잠궜다.
 
@@ -461,7 +461,7 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 한숨 돌리려는 찰나, 
 
 누군가 나를 주시하는 것 같다."|이곳은 위험하다. 함교로 간다.|||1|31|||FALSE|FALSE|FALSE
-31|scene#31(img).png|scene#31(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL|walking.mp3|9|NORMAL|scene#31.txt|"함교에 들어서니, 
+31|scene#31(img).png|scene#31(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL|walking.mp3|9|NORMAL|scene#31.txt|"함교에 들어서니, 
 
 전등이 고장나 깜빡깜박 거렸다.
 
@@ -472,7 +472,7 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 나: 저기요... 
 
 대답이 없어 조심스레 다가갔다."|계속..|||1|84|||FALSE|FALSE|FALSE
-32|scene#32(img).png|scene#32(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL||||scene#32.txt|"내키지 않지만 그의 재킷을 들쳐 보았다.
+32|scene#32(img).png|scene#32(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL||||scene#32.txt|"내키지 않지만 그의 재킷을 들쳐 보았다.
 
 뭔가 나올것 같다.
 
@@ -488,8 +488,8 @@ SENCE_NUMBER|BACK_IMG|IMG|IMG_OUTPUT_STYLE|SCENE CHANGE FADE|EFFECT|EFFECT START
 
 딱히 도움될만한 것은 없는 것 같다.
 
-그를 뒤로 한채 나는.."|이제 무기고로 향할 시간이다...|||1|36|||FALSE|FALSE|FALSE
-33|scene#33(img).png|scene#33(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL||||scene#33.txt|"컴퓨터를 조사해본다.
+그를 뒤로 한채 나는.."|이제 무기고로 향할 시간이다...|||1|36|||FALSE|FALSE|TRUE
+33|scene#33(img).png|scene#33(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL||||scene#33.txt|"컴퓨터를 조사해본다.
 
 비밀번호가 걸려있다.
 
@@ -505,7 +505,7 @@ Access denied
 
 시스템 : ""비밀번호가 일치하지 않습니다.
                남은 횟수 : 2"""|20600714|20600605||2|85|34||FALSE|FALSE|FALSE
-34|scene#34(img).png|scene#34(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL||||scene#34.txt|"2 0 6 0 0 6 0 5
+34|scene#34(img).png|scene#34(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL||||scene#34.txt|"2 0 6 0 0 6 0 5
 
 컴퓨터가 잠기기 전에 다행히 올바른
 
@@ -519,8 +519,8 @@ TOP SECRET
 이 프로젝트의 진짜 목적은 따로 있다.
 고위층들은 새로운 행성을
 개척하기 위해선 강력한 군사력의
-필요성을 느꼈다."|계속...|||1|86|||FALSE|FALSE|FALSE
-35|scene#35(img).png|scene#35(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL|running.mp3|6|NORMAL|scene#35.txt|"2 0 6 0 0 7 1 7
+필요성을 느꼈다."|계속...|||1|86|||TRUE|FALSE|FALSE
+35|scene#35(img).png|scene#35(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL|running.mp3|6|NORMAL|scene#35.txt|"2 0 6 0 0 7 1 7
 
 Access denied
 
@@ -532,8 +532,8 @@ Access denied
 
 몸을 피해야 한다.
 
-나는.."|이제 무기고로 향할 시간이다...|||1|36|||FALSE|FALSE|FALSE
-36|scene#36(img).png|scene#36(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL|gateopen.mp3|3|NORMAL|scene#36.txt|"내 몸을 지킬 무기를 찾기 위해
+나는.."|이제 무기고로 향할 시간이다...|||1|36|||FALSE|TRUE|FALSE
+36|scene#36(img).png|scene#36(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL|gateopen.mp3|3|NORMAL|scene#36.txt|"내 몸을 지킬 무기를 찾기 위해
 
 무기고에 들어섰다.
 
@@ -544,7 +544,7 @@ Access denied
 뭐가 좋을지 고민하다 결정한다.
 
 나는..."|화염 방사기를 장비한다.|가우스 라이플을 집어든다.|플레어를 줍는다.|3|37|41|43|FALSE|FALSE|FALSE
-37|scene#37(img).png|scene#37(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL||||scene#37.txt|"고민 끝에 화염방사기를 고르기로 한다.
+37|scene#37(img).png|scene#37(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL||||scene#37.txt|"고민 끝에 화염방사기를 고르기로 한다.
 
 화염방사기를 메기 위해 손을 뻗으니 
 
@@ -558,7 +558,7 @@ Access denied
 
 이대로라면 큰일이 날 것 같다.
 
-나는.... "|정체 모를 무언가와 싸운다.|전력을 다해 도망친다.||2|38|39||FALSE|FALSE|FALSE
+나는.... "|정체 모를 무언가와 싸운다.|전력을 다해 도망친다.||2|38|39||||
 38|scene#38(img).png|scene#38(choose).png|FADE_IN_RED|1|3|0|horror2.mp3|NORMAL|horror.mp3|4|NORMAL|scene#38.txt|"갑자기 나타난 괴물에게서 
 
 도망가려고 뛰었다.
@@ -567,22 +567,22 @@ Access denied
 
 내게 짐만 될 뿐이었다.
 
-너무 무거워 얼마 못가 잡혀버렸다."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|36|4||FALSE|FALSE|FALSE
-39|scene#39(img).png|scene#39(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL|alien.mp3|5|NORMAL|scene#39.txt|"무기도 있겠다.
+너무 무거워 얼마 못가 잡혀버렸다."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|36|4||||
+39|scene#39(img).png|scene#39(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL|alien.mp3|5|NORMAL|scene#39.txt|"무기도 있겠다.
 
 이판사판으로 싸우기로 결정한다.
 
 놈이 점점 다가옴을 인지한다.
 
-나는..."|불을 뿜어 괴물을 위협한다|가까이 올때까지 기다렸다가 쏜다||2|40|77||FALSE|FALSE|FALSE
+나는..."|불을 뿜어 괴물을 위협한다|가까이 올때까지 기다렸다가 쏜다||2|40|77||||
 40|scene#40(img).png|scene#40(choose).png|FADE_IN_RED|1|3|0|horror2.mp3|NORMAL|horror.mp3|4|NORMAL|scene#40.txt|"일단 불을 뿜어 놈을 위협했다.
 
 거리가 멀었는지 
 
 놈에게 어떤 피해도 입힐 수 없었다.
 
-놈의 촉수가 내 머리를 관통했다."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|37|4||FALSE|FALSE|FALSE
-41|scene#41(img).png|scene#41(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL|alien.mp3|5|NORMAL|scene#41.txt|"고민 끝에 가우스 라이플을 고르기로 한다.
+놈의 촉수가 내 머리를 관통했다."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|37|4||||
+41|scene#41(img).png|scene#41(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL|alien.mp3|5|NORMAL|scene#41.txt|"고민 끝에 가우스 라이플을 고르기로 한다.
 
 라이플을 들기 위해 손을 뻗으니 
 
@@ -596,7 +596,7 @@ Access denied
 
 이대로라면 큰일이 날 것 같다.
 
-나는.... "|정체 모를 무언가와 싸운다.|전력을 다해 도망친다.||2|78|42||FALSE|FALSE|FALSE
+나는.... "|정체 모를 무언가와 싸운다.|전력을 다해 도망친다.||2|78|42||||
 42|scene#42(img).png|scene#42(choose).png|FADE_IN_RED|1|3|0|horror2.mp3|NORMAL|horror.mp3|4|NORMAL|scene#42.txt|"자신이 없어 도망가기로 결정한다.
 
 가우스 라이플이 걸리적 거렸다. 
@@ -607,8 +607,8 @@ Access denied
 
 결국 놈에게 잡히고 말았다.
 
-놈에게 관통 당한 나는 결국 죽었다."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|36|4||FALSE|FALSE|FALSE
-43|scene#43(img).png|scene#43(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL||||scene#43.txt|"고민 끝에 플레어를 챙긴다.
+놈에게 관통 당한 나는 결국 죽었다."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|36|4||||
+43|scene#43(img).png|scene#43(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL||||scene#43.txt|"고민 끝에 플레어를 챙긴다.
 
 나를 지킬 수는 없지만,
 
@@ -618,7 +618,7 @@ Access denied
 
 플레어를 챙겨 나가려하니 
 
-누군가 다가오는 것 같았다."|정체 모를 무언가와 싸운다.|전력을 다해 도망친다.||2|44|45||FALSE|FALSE|FALSE
+누군가 다가오는 것 같았다."|정체 모를 무언가와 싸운다.|전력을 다해 도망친다.||2|44|45||||
 44|scene#44(img).png|scene#44(choose).png|FADE_IN_RED|1|3|0|horror2.mp3|NORMAL|horror.mp3|4|NORMAL|scene#44.txt|"맨손으로는 놈의 단단한 표피에 
 
 어떠한 충격을 줄 수 없었다.
@@ -628,12 +628,12 @@ Access denied
 놈은 한심하다는 듯이 나를 보았고,
 
 나를 반으로 썰어버렸다.
-"|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|36|4||FALSE|FALSE|FALSE
-45|scene#45(img).png|scene#45(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL|running.mp3|6|NORMAL|scene#45.txt|"놈을 따돌리려 했지만 
+"|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|36|4||||
+45|scene#45(img).png|scene#45(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL|running.mp3|6|NORMAL|scene#45.txt|"놈을 따돌리려 했지만 
 
 도저히 역부족이다
 
-곧 따라 잡힐 것 같다."|앞에 보이는 환풍구에 숨는다.|방향을 틀어 놈을 따돌린다.|이판사판으로 달려든다.|3|79|47|46|FALSE|FALSE|FALSE
+곧 따라 잡힐 것 같다."|앞에 보이는 환풍구에 숨는다.|방향을 틀어 놈을 따돌린다.|이판사판으로 달려든다.|3|79|47|46|||
 46|scene#46(img).png|scene#46(choose).png|FADE_IN_RED|1|3|0|horror2.mp3|NORMAL|horror.mp3|4|NORMAL|scene#46.txt|"심기 일전으로 놈에게 덤벼 본다.
 
 하지만 맨손으로는 놈의 단단한 표피에
@@ -644,7 +644,7 @@ Access denied
 
 놈은 한심하다는 듯이 나를 보았고,
 
-나를 반으로 썰어버렸다."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|43|4||FALSE|FALSE|FALSE
+나를 반으로 썰어버렸다."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|43|4||||
 47|scene#47(img).png|scene#47(choose).png|FADE_IN_RED|1|3|0|horror2.mp3|NORMAL|horror.mp3|4|NORMAL|scene#47.txt|"쉬지 않고 계속 달렸다.
 
 놈을 따돌린 것 같다.
@@ -654,8 +654,8 @@ Access denied
 순간,
 
 놈의 손이 내 심장을 관통했다.
-"|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|43|4||FALSE|FALSE|FALSE
-48|scene#48(img).png|scene#48(choose).png|FADE_IN,FADE_OUT|1|0|0|AlienHive.mp3|NORMAL|walking.mp3|9|NORMAL|scene#48.txt|"계속 길을 따라 걸어보니 
+"|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|43|4||||
+48|scene#48(img).png|scene#48(choose).png|FADE_IN,FADE_OUT|1||0|AlienHive.mp3|NORMAL|walking.mp3|9|NORMAL|scene#48.txt|"계속 길을 따라 걸어보니 
 
 거대한 굴이 나왔다.
 
@@ -664,8 +664,8 @@ Access denied
 곳곳에 있다.
 
 하지만 달리 다른 길은 없는 것 같다.
-"|여기까지 와서 돌아갈 수는 없다.|||3|49|51|53|FALSE|FALSE|FALSE
-49|scene#49(img).png|scene#49(choose).png|FADE_IN,FADE_OUT|1|0|0|AlienHive.mp3|NORMAL||||scene#49.txt|"나를 기다리기라도 한듯,
+"|여기까지 와서 돌아갈 수는 없다.|||3|49|51|53|||
+49|scene#49(img).png|scene#49(choose).png|FADE_IN,FADE_OUT|1||0|AlienHive.mp3|NORMAL||||scene#49.txt|"나를 기다리기라도 한듯,
 
 알안의 무언가가
 
@@ -675,7 +675,7 @@ Access denied
 
 부화한다면 골치 아파질 것이다.
 
-나는... 어떻게 해야할까?"|후환이 남지 않도록 전부 태운다.|진로 상의 알만 정리한다.||2|50|55||FALSE|FALSE|FALSE
+나는... 어떻게 해야할까?"|후환이 남지 않도록 전부 태운다.|진로 상의 알만 정리한다.||2|50|55||||
 50|scene#50(img).png|scene#50(choose).png|FADE_IN_RED|1|3|0|horror2.mp3|NORMAL|horror.mp3|4|NORMAL|scene#50.txt|"당장은 위험하지 않아 보였지만,
 
 제거하는 것이 후환이 없을 것이다.
@@ -692,8 +692,8 @@ Access denied
 
 깜짝 놀라 놈을 향해 불을 뿜었지만
 
-가스가 다 떨어졌다. 이런 X발..."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|48|4||FALSE|FALSE|FALSE
-51|scene#51(img).png|scene#51(choose).png|FADE_IN,FADE_OUT|1|0|0|AlienHive.mp3|NORMAL|alien.mp3|5|NORMAL|scene#51.txt|"몇발이라도 맞춰 다행이지. 큰일날뻔 했다.
+가스가 다 떨어졌다. 이런 X발..."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|48|4||||
+51|scene#51(img).png|scene#51(choose).png|FADE_IN,FADE_OUT|1||0|AlienHive.mp3|NORMAL|alien.mp3|5|NORMAL|scene#51.txt|"몇발이라도 맞춰 다행이지. 큰일날뻔 했다.
 
 아무래도 난 사격에 재능이 있는 것 같다.
 
@@ -711,7 +711,7 @@ Access denied
 
 놈의 새끼들이 주변에 있는 것 같다.
 
-아무래도 싸움은 불가피 할 것 같다."|방해하는 놈들을 전부 쏘며 지나간다.|괜히 자극하지 말고 조용히 지나간다.||2|52|55||FALSE|FALSE|FALSE
+아무래도 싸움은 불가피 할 것 같다."|방해하는 놈들을 전부 쏘며 지나간다.|괜히 자극하지 말고 조용히 지나간다.||2|52|55||||
 52|scene#52(img).png|scene#52(choose).png|FADE_IN_RED|1|3|0|horror2.mp3|NORMAL|horror.mp3|4|NORMAL|scene#52.txt|"한참을 죽였을까, 
 
 더 이상 남아 있는 놈들이 보이지 않는다.
@@ -726,8 +726,8 @@ Access denied
 
 푹...
 
-x발, 너무 안일했어"|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|48|4||FALSE|FALSE|FALSE
-53|scene#53(img).png|scene#53(choose).png|FADE_IN,FADE_OUT|1|0|0|AlienHive.mp3|NORMAL|running.mp3|6|NORMAL|scene#53.txt|"한참을 달렸을까,
+x발, 너무 안일했어"|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|48|4||||
+53|scene#53(img).png|scene#53(choose).png|FADE_IN,FADE_OUT|1||0|AlienHive.mp3|NORMAL|running.mp3|6|NORMAL|scene#53.txt|"한참을 달렸을까,
 
 주변은 칠흑같은 어둠이었다.
 
@@ -739,7 +739,7 @@ x발, 너무 안일했어"|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|
 
 x발, x발
 
-이대로는 죽을 수 없다. "|미친듯이 전력질주 한다.|정신을 차리고 플레어를 켠다.||2|54|58||FALSE|FALSE|FALSE
+이대로는 죽을 수 없다. "|미친듯이 전력질주 한다.|정신을 차리고 플레어를 켠다.||2|54|58||||
 54|scene#54(img).png|scene#54(choose).png|FADE_IN_RED|1|3|0|horror2.mp3|NORMAL|horror.mp3|4|NORMAL|scene#54.txt|"미친듯이 앞만 보고 달렸다.
 
 얼마나 달렸을까, 
@@ -756,8 +756,8 @@ x발, x발
 
 에일리언이라는 사실을 깨달았다.
 
-젤나가 맙소사..."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|48|4||FALSE|FALSE|FALSE
-55|scene#55(img).png|scene#55(choose).png|FADE_IN,FADE_OUT|1|0|0|AlienHive.mp3|NORMAL|walking.mp3|9|NORMAL|scene#55.txt|"놈들의 둥지를 빠져나가는 것에 
+젤나가 맙소사..."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|48|4||||
+55|scene#55(img).png|scene#55(choose).png|FADE_IN,FADE_OUT|1||0|AlienHive.mp3|NORMAL|walking.mp3|9|NORMAL|scene#55.txt|"놈들의 둥지를 빠져나가는 것에 
 
 온 신경을 쏟았다. 
 
@@ -774,7 +774,7 @@ x발, x발
 다시 한번 불러본다.
 
 나 : ""이봐! 3초동안 대답 안하면 쏘겠소.
-         3... 2... 1..."""|대답이 없는 그를 쏜다.|가까이 가서 자세히 살핀다.||2|57|56||FALSE|FALSE|FALSE
+         3... 2... 1..."""|대답이 없는 그를 쏜다.|가까이 가서 자세히 살핀다.||2|57|56||||
 56|scene#56(img).png|scene#56(choose).png|FADE_IN_RED|1|3|0|horror2.mp3|NORMAL|horror.mp3|4|NORMAL|scene#56.txt|"불러도 대답이 없다.
 
 나: ""하...어쩔수 없지.""
@@ -791,7 +791,7 @@ x발, x발
 
 이내 그의 얼굴에 붙어있던 
 
-괴생명체가 나에게 달려 들었다."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|55|4||FALSE|FALSE|FALSE
+괴생명체가 나에게 달려 들었다."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|55|4||||
 57|scene#57(img).png|scene#57(choose).png|SHAKE|0|1|0|AlienHive.mp3|NORMAL|alien.mp3|5|NORMAL|scene#57.txt|"그를 쏜다.
 
 아무리 불러도 대답이 없는 
@@ -806,8 +806,8 @@ x발, x발
 
 더 이상 탄이 남아 있지 않은 것 같다.
 
-총은 짐만 될 뿐이다."|무기를 버리고 계속 움직인다.|||1|59|||FALSE|FALSE|FALSE
-58|scene#58(img).png|scene#58(choose).png|FADE_IN,FADE_OUT|1|0|0|AlienHive.mp3|NORMAL|flare.mp3|4|NORMAL|scene#58.txt|"플레어를 킨다.
+총은 짐만 될 뿐이다."|무기를 버리고 계속 움직인다.|||1|59|||||
+58|scene#58(img).png|scene#58(choose).png|FADE_IN,FADE_OUT|1||0|AlienHive.mp3|NORMAL|flare.mp3|4|NORMAL|scene#58.txt|"플레어를 킨다.
 
 플레어의 빛이 주변을 환하게 밝혔다.
 
@@ -823,8 +823,8 @@ x발, x발
 
 숨을 죽인 채 천천히 앞으로 나아간다.
 
-저 멀리 빛이 보이기 시작한다."|빛을 따라 이동한다|||1|59|||FALSE|FALSE|FALSE
-59|scene#59(img).png|scene#59(choose).png|FADE_IN,FADE_OUT|1|0|0|AlienHive.mp3|NORMAL|walking.mp3|9|NORMAL|scene#59.txt|"빛을 따라 빠져나오니, 
+저 멀리 빛이 보이기 시작한다."|빛을 따라 이동한다|||1|59|||||
+59|scene#59(img).png|scene#59(choose).png|FADE_IN,FADE_OUT|1||0|AlienHive.mp3|NORMAL|walking.mp3|9|NORMAL|scene#59.txt|"빛을 따라 빠져나오니, 
 
 대포처럼 생긴 기묘한 조형물이 서 있다.
 
@@ -840,7 +840,7 @@ x발, x발
 
 대포는 작동되지 않았다.
 
-포기하고 도망가려던 찰나..."|대포에서 빛이 나기 시작했다.|||1|60|||FALSE|FALSE|FALSE
+포기하고 도망가려던 찰나..."|대포에서 빛이 나기 시작했다.|||1|60|||||
 60|scene#60(img).png|scene#60(choose).png|FADE_IN_WHITE|1|4|0|horror2.mp3|NORMAL|break.mp3|4|NORMAL|scene#60.txt|"이상한 굉음과 함께 대포에서 
 
 빛이 나기 시작했다.
@@ -857,8 +857,8 @@ x발, x발
 
 아래로 추락했다.
 
-악!"|다시 돌아갈 수만 있다면...좋을텐데...|||3|61|62|63|FALSE|FALSE|FALSE
-61|scene#61(img).png|scene#61(choose).png|FADE_IN,FADE_OUT|1|0|0|MainTheme.mp3|NORMAL||||scene#61.txt|"정신이 혼미해지며 의식을 잃었다.
+악!"|다시 돌아갈 수만 있다면...좋을텐데...|||3|61|62|63|||
+61|scene#61(img).png|scene#61(choose).png|FADE_IN,FADE_OUT|1||0|MainTheme.mp3|NORMAL||||scene#61.txt|"정신이 혼미해지며 의식을 잃었다.
 
 ........ ..... ... ........ ..... ...
 
@@ -874,8 +874,8 @@ x발, x발
 
 문 앞에 다다르자 기계음이 흘러나왔다.
 
-시스템: ""암호를 입력하십시오."""|암호20600605를 입력한다.|||1|68|||FALSE|FALSE|FALSE
-62|scene#62(img).png|scene#62(choose).png|FADE_IN,FADE_OUT|1|0|0|MainTheme.mp3|NORMAL||||scene#62.txt|"정신이 혼미해지며 의식을 잃었다.
+시스템: ""암호를 입력하십시오."""|암호20600605를 입력한다.|||1|68|||||
+62|scene#62(img).png|scene#62(choose).png|FADE_IN,FADE_OUT|1||0|MainTheme.mp3|NORMAL||||scene#62.txt|"정신이 혼미해지며 의식을 잃었다.
 
 ........ ..... ... ........ ..... ...
 
@@ -891,8 +891,8 @@ x발, x발
 
 시스템: ""암호를 입력하십시오.""
 
-순간, 가지고 있던 마스터키가 떠올랐다."|마스터키를 꽂는다.|||1|65|||FALSE|FALSE|FALSE
-63|scene#63(img).png|scene#63(choose).png|FADE_IN,FADE_OUT|1|0|0|MainTheme.mp3|NORMAL||||scene#63.txt|"정신이 혼미해지며 의식을 잃었다.
+순간, 가지고 있던 마스터키가 떠올랐다."|마스터키를 꽂는다.|||1|65|||||
+63|scene#63(img).png|scene#63(choose).png|FADE_IN,FADE_OUT|1||0|MainTheme.mp3|NORMAL||||scene#63.txt|"정신이 혼미해지며 의식을 잃었다.
 
 ........ ..... ... ........ ..... ...
 
@@ -908,7 +908,7 @@ x발, x발
 
 시스템: ""암호를 입력하십시오.""
 
-'암호가 뭐였더라?'"|암호20600714를 입력한다.|||1|64|||FALSE|FALSE|FALSE
+'암호가 뭐였더라?'"|암호20600714를 입력한다.|||1|64|||||
 64|scene#64(img).png|scene#64(choose).png|FADE_IN_RED|1|3|0|SadEnding.mp3|NORMAL|gunfire.mp3|1|NORMAL|scene#64.txt|"암호를 입력하자
 
 시스템: ""Access denied!!""
@@ -923,8 +923,8 @@ x발, x발
 
 'x발 거의 다 왔는데,
 
-어디서부터 잘못 됐을까...'"|사망(배드 엔딩)|||||||FALSE|FALSE|FALSE
-65|scene#65(img).png|scene#65(choose).png|FADE_IN,FADE_OUT|1|0|0|MainTheme.mp3|NORMAL|gateopen.mp3|3|NORMAL|scene#65.txt|"시스템: ""access approved!""
+어디서부터 잘못 됐을까...'"|사망(배드 엔딩)|||||||||
+65|scene#65(img).png|scene#65(choose).png|FADE_IN,FADE_OUT|1||0|MainTheme.mp3|NORMAL|gateopen.mp3|3|NORMAL|scene#65.txt|"시스템: ""access approved!""
 
 마침내, 탈출포트이 있는 곳에 도착했다.
 
@@ -938,7 +938,7 @@ x발, x발
 
 또다시 포트의 문이 열리는 소리가 들렸다.
 
-나: ""씨발, 이번엔 또 뭐야?!"""|계속...|||1|87|||FALSE|FALSE|FALSE
+나: ""씨발, 이번엔 또 뭐야?!"""|계속...|||1|87|||||
 66|scene#66(img).png|scene#66(choose).png|FADE_IN_WHITE|1|4|0|SadEnding.mp3|NORMAL|||NOLMAL|scene#66.txt|"나는 메기를 안아 숀과 함께
 
 탈출선으로 밀어 넣었다.
@@ -952,7 +952,7 @@ x발, x발
 
 마음이 약해지기 전에 재빨리 
 
-탈출선 문을 닫아버린다."|나는 이제 어떻게 되는거지?|||1|88|||FALSE|FALSE|FALSE
+탈출선 문을 닫아버린다."|나는 이제 어떻게 되는거지?|||1|88|||||
 67|scene#67(img).png|scene#67(choose).png|FADE_IN_WHITE|1|4|0|HappyEnding.mp3|NORMAL|booster.mp3|12|NORMAL|scene#67.txt|"나: ""미안해요, 숀. 나는 살아야겠어요.""
 
 숀과 메기를 외면한 채 
@@ -969,8 +969,8 @@ x발, x발
 
 만감이 교차한다.
 
-나는 살아남았다..."|생존(해피 엔딩)|||||||FALSE|FALSE|FALSE
-68|scene#68(img).png|scene#68(choose).png|FADE_IN,FADE_OUT|1|0|0|RealEnding.mp3|NORMAL|gateopen.mp3|3|NORMAL|scene#68.txt|"시스템: ""access approved!""
+나는 살아남았다..."|생존(해피 엔딩)|||||||||
+68|scene#68(img).png|scene#68(choose).png|FADE_IN,FADE_OUT|1||0|RealEnding.mp3|NORMAL|gateopen.mp3|3|NORMAL|scene#68.txt|"시스템: ""access approved!""
 
 마침내, 탈출포트에 도착했다.
 
@@ -986,8 +986,8 @@ x발, x발
 
 나는 숀에게 달려들었고, 
 
-우리는 서로 뒤엉켰다."|숀의 면상을 힘껏 두들겨 팬다.|||1|69|||FALSE|FALSE|FALSE
-69|scene#69(img).png|scene#69(choose).png|NORMAL|0|0|0|RealEnding.mp3|NORMAL||||scene#69.txt|"숀: ""나도 어쩔 수 없었다는거 이해해주게.
+우리는 서로 뒤엉켰다."|숀의 면상을 힘껏 두들겨 팬다.|||1|69|||||
+69|scene#69(img).png|scene#69(choose).png|NORMAL|0||0|RealEnding.mp3|NORMAL||||scene#69.txt|"숀: ""나도 어쩔 수 없었다는거 이해해주게.
         메기를 고쳐야 했거든.""
 
 나: “메기? 그럼 메기는 어딨어?
@@ -1001,8 +1001,8 @@ x발, x발
 숀: ""그건 이제 쓸모 없어.""
 
 나: ""그건 쓸모 없다니? 그게 무슨 말이지?""
-"|숀은 귀찮다는 듯이 한숨을 쉰다.|||1|70|||FALSE|FALSE|FALSE
-70|scene#70(img).png|scene#70(choose).png|NORMAL|0|0|0|RealEnding.mp3|NORMAL||||scene#70.txt|"숀: ""사실 메기는 내딸이 아니라네.
+"|숀은 귀찮다는 듯이 한숨을 쉰다.|||1|70|||||
+70|scene#70(img).png|scene#70(choose).png|NORMAL|0||0|RealEnding.mp3|NORMAL||||scene#70.txt|"숀: ""사실 메기는 내딸이 아니라네.
       실험을 하려고 데려온 실험체에 불과해.
       어릴 때, 하도 울길래 성대를 잘라버렸지.
       울고 불고 하는데 얼마나 화가 나던지
@@ -1017,7 +1017,7 @@ x발, x발
       인류가 발전하지 않겠나.
       이해하시게. 이제 비켜주게""
 
-숀은 그 말과 함께 일어나 탈출선에 타려 했다."|나는...|||1|71|||FALSE|FALSE|FALSE
+숀은 그 말과 함께 일어나 탈출선에 타려 했다."|나는...|||1|71|||||
 71|scene#71(img).png|scene#71(choose).png|FADE_IN_WHITE|1|4|0|RealEnding.mp3|NORMAL|break.mp3|4|NORMAL|scene#71.txt|"화가 머리 끝까지 치솟았다. 
 
 이 X새끼를 가만 두면 안될 것 같다.
@@ -1034,12 +1034,12 @@ x발, x발
 
 망할 프로젝트는 그렇게 누구에게도
 
-알려지지 않고 우주 속으로 사라졌다."|생존(해피 엔딩)|||||||FALSE|FALSE|FALSE
-|||||||||||||||||||||FALSE|FALSE|FALSE
-|||||||||||||||||||||FALSE|FALSE|FALSE
-|||||||||||||||||||||FALSE|FALSE|FALSE
-|||||||||||||||||||||FALSE|FALSE|FALSE
-76|scene#76(img).png|scene#76(choose).png|FADE_IN,FADE_OUT|1|0|0|MainTheme.mp3|NORMAL|gateopen.mp3|3|NORMAL|scene#76.txt|"어쩔 수 없이 책상 아래로 몸을 숨겼다.
+알려지지 않고 우주 속으로 사라졌다."|생존(해피 엔딩)|||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+76|scene#76(img).png|scene#76(choose).png|FADE_IN,FADE_OUT|1||0|MainTheme.mp3|NORMAL|gateopen|3|NORMAL|scene#76.txt|"어쩔 수 없이 책상 아래로 몸을 숨겼다.
 
 쾅쾅
 
@@ -1070,7 +1070,7 @@ x발, x발
 
 화염방사기를 발사했다.
 
-놈은 고통스러워하며 도망갔다."|놈이 다시 오기 전에 자리를 뜬다.|||1|48|||FALSE|FALSE|FALSE
+놈은 고통스러워하며 도망갔다."|놈이 다시 오기 전에 자리를 뜬다.|||1|48|||||
 78|scene#78(img).png|scene#78(choose).png|SHAKE|0|1|0|MainTheme.mp3|NORMAL|gunfire.mp3|1|NORMAL|scene#78.txt|"이판사판으로 놈과 싸우기로 한다.
 
 놈이 등장하자 나는
@@ -1079,8 +1079,8 @@ x발, x발
 
 우연히 놈에게 여러발이 명중하고
 
-놈은 괴성을 지르며 도망 갔다."|놈이 다시 오기 전에 자리를 뜬다.|||1|48|||FALSE|FALSE|FALSE
-79|scene#79(img).png|scene#79(choose).png|FADE_IN,FADE_OUT|1|0|0|MainTheme.mp3|NORMAL|gateopen.mp3|3|NORMAL|scene#79.txt|"도저히 놈을 따돌릴 수 없을 것 같았다.
+놈은 괴성을 지르며 도망 갔다."|놈이 다시 오기 전에 자리를 뜬다.|||1|48|||||
+79|scene#79(img).png|scene#79(choose).png|FADE_IN,FADE_OUT|1||0|MainTheme.mp3|NORMAL|gateopen|3|NORMAL|scene#79.txt|"도저히 놈을 따돌릴 수 없을 것 같았다.
 
 체념한듯 위로 바라보았다.
 
@@ -1088,8 +1088,8 @@ x발, x발
 
 나는 재빨리 환풍구로 들어갔다.
 
-환풍구를 통해 어딘가로 빠져나왔다."|기묘한 형상의 통로가 보인다.|||||||FALSE|FALSE|FALSE
-80|scene#80(img).png|scene#80(choose).png|NORMAL|0|0|0|MainTheme.mp3|NORMAL||||scene#80.txt|"노동 계층들에게 유일한 희망은
+환풍구를 통해 어딘가로 빠져나왔다."|기묘한 형상의 통로가 보인다.|||||||||
+80|scene#80(img).png|scene#80(choose).png|NORMAL|0||0|MainTheme.mp3|NORMAL||||scene#80.txt|"노동 계층들에게 유일한 희망은
 
 다른 행성으로 이주하여
 
@@ -1105,8 +1105,8 @@ x발, x발
 
 '톰 블레이크'는 가까스로
 
-프로젝트에 참여하게 된다."|우주선으로 들어간다.|||1|2|||FALSE|FALSE|FALSE
-81|scene#81(img).png|scene#81(choose).png|NORMAL|0|0|0|MainTheme.mp3|NORMAL||||scene#81.txt|"지구에서 느껴보지 못한 삶을 누리는 톰은
+프로젝트에 참여하게 된다."|우주선으로 들어간다.|||1|2|||||
+81|scene#81(img).png|scene#81(choose).png|NORMAL|0||0|MainTheme.mp3|NORMAL||||scene#81.txt|"지구에서 느껴보지 못한 삶을 누리는 톰은
 
 매일매일이 즐겁기만하다.
 
@@ -1120,8 +1120,8 @@ x발, x발
 
 하루 빨리 행성에 도착했으면 
 
-좋겠다고 생각했다."|숀은 지금 어디에 있지?|||1|3|||FALSE|FALSE|FALSE
-82|scene#82(img).png|scene#82(choose).png|NORMAL|0|0|0|MainTheme.mp3|NORMAL|alien.mp3|5|NORMAL|scene#82.txt|"처음보는 존재에 위화감이 들면서도 
+좋겠다고 생각했다."|숀은 지금 어디에 있지?|||1|3|||||
+82|scene#82(img).png|scene#82(choose).png|NORMAL|0||0|MainTheme.mp3|NORMAL|alien.mp3|5|NORMAL|scene#82.txt|"처음보는 존재에 위화감이 들면서도 
 
 신기했다.
 
@@ -1133,8 +1133,8 @@ x발, x발
 
 나는 의식을 잃고 쓰러졌다.
 
-숀: ""톰!톰! 정신 차리게!"""|얼마나 시간이 흘렀을까…|||1|4|||FALSE|FALSE|FALSE
-83|scene#83(img).png|scene#83(choose).png|NORMAL|0|0|0|ControlCenter.mp3|NORMAL||||scene#83.txt|"확인 결과, 모든 환풍구는 
+숀: ""톰!톰! 정신 차리게!"""|얼마나 시간이 흘렀을까…|||1|4|||||
+83|scene#83(img).png|scene#83(choose).png|NORMAL|0||0|ControlCenter.mp3|NORMAL||||scene#83.txt|"확인 결과, 모든 환풍구는 
 
 탈출 포트와 연결되어 있었다
 
@@ -1144,8 +1144,8 @@ x발, x발
 
 운 좋게도 통제실 천장 위의 환풍구는 
 
-열려있었고, 이제 결정만이 남았다.  "|통제실을 떠나 복도로 나간다.|환풍구로 간다.||2|24|23||FALSE|FALSE|FALSE
-84|scene#84(img).png|scene#84(choose).png|NORMAL|0|0|0|ControlCenter.mp3|NORMAL|horror.mp3|4|NORMAL|scene#84.txt|"나는 소스라치게 놀랐지만 
+열려있었고, 이제 결정만이 남았다.  "|통제실을 떠나 복도로 나간다.|환풍구로 간다.||2|24|23||||
+84|scene#84(img).png|scene#84(choose).png|NORMAL|0||0|ControlCenter.mp3|NORMAL|horror.mp3|4|NORMAL|scene#84.txt|"나는 소스라치게 놀랐지만 
 
 겨우 소리를 참았다.
 
@@ -1161,8 +1161,8 @@ x발, x발
 
 이라고 적혀져 있었다.
 
-뭔가 찾을 수 있을 것만 같다."|함장으로 보이는 시체를 조사한다.|켜져 있는 컴퓨터를 조사한다.||2|32|33||FALSE|FALSE|FALSE
-85|scene#85(img).png|scene#85(choose).png|NORMAL|0|0|0|ControlCenter.mp3|NORMAL||||scene#85.txt|"20740907
+뭔가 찾을 수 있을 것만 같다."|함장으로 보이는 시체를 조사한다.|켜져 있는 컴퓨터를 조사한다.||2|32|33||||
+85|scene#85(img).png|scene#85(choose).png|NORMAL|0||0|ControlCenter.mp3|NORMAL||||scene#85.txt|"20740907
 
 Access denied
 
@@ -1172,8 +1172,8 @@ Access denied
 
 마지막 기회다. 잘 생각해 보자. 
 
-틀린다면 무슨일이 벌어질지 겁이 난다."||||2|34|35||FALSE|FALSE|FALSE
-86|scene#86(img).png|scene#86(choose).png|NORMAL|0|0|0|ControlCenter.mp3|NORMAL||||scene#86.txt|"이들은 인간으로서 한계를 넘기 위해
+틀린다면 무슨일이 벌어질지 겁이 난다."||||2|34|35||||
+86|scene#86(img).png|scene#86(choose).png|NORMAL|0||0|ControlCenter.mp3|NORMAL||||scene#86.txt|"이들은 인간으로서 한계를 넘기 위해
 인간과 외계생명체의 결합 연구에
 열을 올렸고, 벌칸행성에서 발견한
 한 생명체를 주목했다.
@@ -1190,8 +1190,8 @@ VK-X는 찰흙덩어리처럼 생겼지만
 프로젝트 에 참여할 인간 즉,
 실험체를 공수했다.
 철저한 검사를 통해 선별된 실험체들을
-우주선에 격리하여 그들을 실험했다."||||1|89|||FALSE|FALSE|FALSE
-87|scene#87(img).png|scene#87(choose).png|NORMAL|0|0|0|MainTheme.mp3|NORMAL||||scene#87.txt|"숀: ""톰! 자네 살아있었구만! 
+우주선에 격리하여 그들을 실험했다."||||1|89|||||
+87|scene#87(img).png|scene#87(choose).png|NORMAL|0||0|MainTheme.mp3|NORMAL||||scene#87.txt|"숀: ""톰! 자네 살아있었구만! 
       실험실에서의 사고는 미안하네. 
       나도 그럴줄 몰랐어.
       자네가 쓰러진 뒤 딸이 얼마나 
@@ -1208,8 +1208,8 @@ VK-X는 찰흙덩어리처럼 생겼지만
 
 여기까지 어떻게 왔는데... 
 
-X발, X발 시X! 어쩌지...?"|그들을 뒤로하고 탈출선에 오른다.|그들에게 탈출선을 양보한다.||2|66|67||FALSE|FALSE|FALSE
-88|scene#88(img).png|scene#88(choose).png|NORMAL|0|0|0|MainTheme.mp3|NORMAL|booster.mp3|12|NORMAL|scene#88.txt|"탈출선은 이륙하기 시작했다.
+X발, X발 시X! 어쩌지...?"|그들을 뒤로하고 탈출선에 오른다.|그들에게 탈출선을 양보한다.||2|66|67||||
+88|scene#88(img).png|scene#88(choose).png|NORMAL|0||0|MainTheme.mp3|NORMAL|booster.mp3|12|NORMAL|scene#88.txt|"탈출선은 이륙하기 시작했다.
 
 날아가는 탈출선을 하염없이 바라본다.
 
@@ -1225,8 +1225,8 @@ X발, X발 시X! 어쩌지...?"|그들을 뒤로하고 탈출선에 오른다.|그들에게 탈출선을 양�
 
 별빛이 가득 채우고 있었다.
 
-나: ""Good Bye, 숀, 메기..."""|사망(베드 엔딩)|||||||FALSE|FALSE|FALSE
-89|scene#89(img).png|scene#89(choose).png|NORMAL|0|0|0|ControlCenter.mp3|NORMAL||||scene#89.txt|"또한, 프로젝트에 참여한 과학자들에게
+나: ""Good Bye, 숀, 메기..."""|사망(베드 엔딩)|||||||||
+89|scene#89(img).png|scene#89(choose).png|NORMAL|0||0|ControlCenter.mp3|NORMAL||||scene#89.txt|"또한, 프로젝트에 참여한 과학자들에게
 실험체 틈에 섞여 경과를 지켜보게 하였다. 
 프로젝트는 순조로웠고, 성공을
 앞두고 있다고 생각했다.
@@ -1243,19 +1243,19 @@ VK-X들은 우리의 눈을 피해
 이제 우주선 어디든 놈들이 존재한다.
 P.S. 우리 프로젝트 연구의 중심이었으며
 누구보다 연구에 대한 열정을 보여준
-숀에게 고마움을 전한다."|이제 무기고로 향할 시간이다...|||1|36|||FALSE|FALSE|FALSE
-|||||||||||||||||||||FALSE|FALSE|FALSE
-|||||||||||||||||||||FALSE|FALSE|FALSE
-|||||||||||||||||||||FALSE|FALSE|FALSE
-|||||||||||||||||||||FALSE|FALSE|FALSE
-|||||||||||||||||||||FALSE|FALSE|FALSE
-|||||||||||||||||||||FALSE|FALSE|FALSE
-|||||||||||||||||||||FALSE|FALSE|FALSE
-|||||||||||||||||||||FALSE|FALSE|FALSE
-|||||||||||||||||||||FALSE|FALSE|FALSE
-|||||||||||||||||||||FALSE|FALSE|FALSE
-|||||||||||||||||||||FALSE|FALSE|FALSE
-101|scene#101(img).png|scene#101(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL||||scene#101.txt|"아직 우주선에 남은 생존자라고 생각한 나는
+숀에게 고마움을 전한다."|이제 무기고로 향할 시간이다...|||1|36|||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+101|scene#101(img).png|scene#101(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL||||scene#101.txt|"아직 우주선에 남은 생존자라고 생각한 나는
 
 복도 끝에 있는 존재에게 소리친다.
 
@@ -1270,8 +1270,8 @@ P.S. 우리 프로젝트 연구의 중심이었으며
 하는 소리와 함께 숀과 그의 어린 딸 메기는
 
 서서히 모습을 드러냈다.
-"|계속...|||1|102|||FALSE|FALSE|FALSE
-102|scene#102(img).png|scene#102(choose).png|NORMAL|0|0|0|ControlCenter.mp3|NORMAL||||scene#102.txt|"숀: ""이럴수가! 톰! 자네 살아 있었군.
+"|계속...|||1|102|||||
+102|scene#102(img).png|scene#102(choose).png|NORMAL|0||0|ControlCenter.mp3|NORMAL||||scene#102.txt|"숀: ""이럴수가! 톰! 자네 살아 있었군.
      다행이야. 다시 만나 기쁘다네!
      자네가 쓰러졌을 때, 
      내 딸이 얼마나 걱정했는지 모를거네.
@@ -1281,8 +1281,8 @@ P.S. 우리 프로젝트 연구의 중심이었으며
      간다면 곧장 탈출포트가 나온다네
      서두르자고.""
 
-난 숀을 따라가기로 마음 먹었다."|계속...|||1|103|||FALSE|FALSE|FALSE
-103|scene#103(img).png|scene#103(choose).png|NORMAL|0|0|0|ControlCenter.mp3|NORMAL||||scene#103.txt|"함교에 들어서니 전등이 고장나 
+난 숀을 따라가기로 마음 먹었다."|계속...|||1|103|||||
+103|scene#103(img).png|scene#103(choose).png|NORMAL|0||0|ControlCenter.mp3|NORMAL||||scene#103.txt|"함교에 들어서니 전등이 고장나 
 
 깜빡깜박 거리고 있다.
 
@@ -1292,8 +1292,8 @@ P.S. 우리 프로젝트 연구의 중심이었으며
 
 나: ""저기요."" 
 
-대답이 없어 조심스레 다가갔다."|계속...|||1|104|||FALSE|FALSE|FALSE
-104|scene#104(img).png|scene#104(choose).png|NORMAL|0|0|0|ControlCenter.mp3|NORMAL|horror.mp3|4|NORMAL|scene#104.txt|"나는 소스라치게 놀랐지만 겨우 소리를 참았다.
+대답이 없어 조심스레 다가갔다."|계속...|||1|104|||||
+104|scene#104(img).png|scene#104(choose).png|NORMAL|0||0|ControlCenter.mp3|NORMAL|horror.mp3|4|NORMAL|scene#104.txt|"나는 소스라치게 놀랐지만 겨우 소리를 참았다.
 
 우주선의 함장 케인은 
 
@@ -1307,8 +1307,8 @@ P.S. 우리 프로젝트 연구의 중심이었으며
 
 이라고 적혀져 있다..
 
-뭔가 찾을 수 있을 것 만 같다."|암호가 뭘까?|||1|105|||FALSE|FALSE|FALSE
-105|scene#105(img).png|scene#105(choose).png|NORMAL|0|0|0|ControlCenter.mp3|NORMAL||||scene#105.txt|"다행히도 숀이 암호를 아는 것 같다
+뭔가 찾을 수 있을 것 만 같다."|암호가 뭘까?|||1|105|||||
+105|scene#105(img).png|scene#105(choose).png|NORMAL|0||0|ControlCenter.mp3|NORMAL||||scene#105.txt|"다행히도 숀이 암호를 아는 것 같다
 
 숀: ""이보게 톰. 내가 하지.""
 
@@ -1325,8 +1325,8 @@ TOP SECRET
 
 고위층들은 새로운 행성을
 개척하기 위해선 강력한 군사력의
-필요성을 느꼈다."|계속...|||1|106|||FALSE|FALSE|FALSE
-106|scene#106(img).png|scene#106(choose).png|NORMAL|0|0|0|ControlCenter.mp3|NORMAL||||scene#106.txt|"이들은 인간으로서 한계를 넘기 위해
+필요성을 느꼈다."|계속...|||1|106|||||
+106|scene#106(img).png|scene#106(choose).png|NORMAL|0||0|ControlCenter.mp3|NORMAL||||scene#106.txt|"이들은 인간으로서 한계를 넘기 위해
 인간과 외계생명체의 결합 연구에
 열을 올렸고, 벌칸행성에서 발견한
 한 생명체를 주목했다.
@@ -1343,8 +1343,8 @@ VK-X는 찰흙덩어리처럼 생겼지만
 
 소리가 들렸다.
 
-숀: ""계속 보겠나?"""|계속 읽어본다.|그만 읽고 이동한다.||2|107|108||FALSE|FALSE|FALSE
-107|scene#107(img).png|scene#107(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL||||scene#107.txt|"행성 개척이라는 표면적 명분 하에
+숀: ""계속 보겠나?"""|계속 읽어본다.|그만 읽고 이동한다.||2|107|108||||
+107|scene#107(img).png|scene#107(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL||||scene#107.txt|"행성 개척이라는 표면적 명분 하에
 프로젝트 에 참여할 인간 즉,
 실험체를 공수했다.
 철저한 검사를 통해 선별된 실험체들을
@@ -1353,8 +1353,8 @@ VK-X는 찰흙덩어리처럼 생겼지만
 또한, 프로젝트에 참여한 과학자들에게
 실험체 틈에 섞여 경과를 지켜보게 하였다. 
 프로젝트는 순조로웠고, 성공을
-앞두고 있다고 생각했다."|계속...|||1|109|||FALSE|FALSE|FALSE
-108|scene#108(img).png|scene#108(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL|knock.mp3|2|NORMAL|scene#108.txt|"톰: ""개자식들. 날 속였…(쾅쾅쾅)""
+앞두고 있다고 생각했다."|계속...|||1|109|||||
+108|scene#108(img).png|scene#108(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL|knock.mp3|2|NORMAL|scene#108.txt|"톰: ""개자식들. 날 속였…(쾅쾅쾅)""
 
 환풍구에서 들리는 소리가 점점 커진다.
 
@@ -1362,8 +1362,8 @@ VK-X는 찰흙덩어리처럼 생겼지만
 
 톰:""이제 그만 나가죠. 숀. 
      X같은 정부놈들이 싸지른
-     똥이 환풍구에 있는것 같아요."""|이제 무기고로 향할 시간이다...|||1|110|||FALSE|FALSE|FALSE
-109|scene#109(img).png|scene#109(choose).png|NORMAL|0|0|0|ControlCenter.mp3|NORMAL||||scene#109.txt|"하지만 오산이었다. 
+     똥이 환풍구에 있는것 같아요."""|이제 무기고로 향할 시간이다...|||1|110|||||
+109|scene#109(img).png|scene#109(choose).png|NORMAL|0||0|ControlCenter.mp3|NORMAL||||scene#109.txt|"하지만 오산이었다. 
 실험을 통해 인간과 융합된 VK-X들은
 우리의 예상을 넘어섰고,  거대하고 강해진
 VK-X들은 우리 통제를 넘어섰다.
@@ -1375,8 +1375,8 @@ VK-X들은 우리의 눈을 피해
 
 P.S. 우리 프로젝트 연구의 중심이었으며
 누구보다 연구에 대한 열정을 보여준
-숀에게 고마움을 전한다..."|..떨리는 가슴을 진정시킬 수 없다.|||1|110|||FALSE|FALSE|FALSE
-110|scene#110(img).png|scene#110(choose).png|FADE_IN,FADE_OUT|1|0|0|ControlCenter.mp3|NORMAL||||scene#110.txt|"나: ""이런 X같은 새끼들, 날 속였어."" 
+숀에게 고마움을 전한다..."|..떨리는 가슴을 진정시킬 수 없다.|||1|110|||||
+110|scene#110(img).png|scene#110(choose).png|FADE_IN,FADE_OUT|1||0|ControlCenter.mp3|NORMAL||||scene#110.txt|"나: ""이런 X같은 새끼들, 날 속였어."" 
 
 나는 죽일듯이 숀을 노려보았다.
 
@@ -1392,8 +1392,8 @@ P.S. 우리 프로젝트 연구의 중심이었으며
 
 내키진 않지만 숀과 힘을 합치는 게 
 
-최선이라고 생각했다."|이제 무기고로 향할 시간이다...|||1|111|||FALSE|FALSE|FALSE
-111|scene#111(img).png|scene#111(choose).png|SHAKE|0|0|0|AlienHive.mp3|NORMAL|running.mp3|6|NORMAL|scene#111.txt|"숀: ""(황급하게)어서 이쪽으로!""
+최선이라고 생각했다."|이제 무기고로 향할 시간이다...|||1|111|||||
+111|scene#111(img).png|scene#111(choose).png|SHAKE|0|1|0|AlienHive.mp3|NORMAL|running.mp3|6|NORMAL|scene#111.txt|"숀: ""(황급하게)어서 이쪽으로!""
 
 우리는 무기고에 들어섰다.
 
@@ -1410,8 +1410,8 @@ P.S. 우리 프로젝트 연구의 중심이었으며
 숀: ""놈들이 소리를 듣고 올거야!
       어서 가야해.""
 
-누가 드는게 좋을까?"|내가 총을 든다.|숀에게 총을 건넨다.|빈 손이 뛰기 편하다.|3|112|114|116|FALSE|FALSE|FALSE
-112|scene#112(img).png|scene#112(choose).png|FADE_IN,FADE_OUT|1|0|0|AlienHive.mp3|NORMAL|alien.mp3|5|NORMAL|scene#112.txt|"숀에게 라이플을 건넨 후,
+누가 드는게 좋을까?"|내가 총을 든다.|숀에게 총을 건넨다.|빈 손이 뛰기 편하다.|3|112|114|116|||
+112|scene#112(img).png|scene#112(choose).png|FADE_IN,FADE_OUT|1||0|AlienHive.mp3|NORMAL|alien.mp3|5|NORMAL|scene#112.txt|"숀에게 라이플을 건넨 후,
 
 서둘러 무기고를 빠져나왔다.
 
@@ -1419,7 +1419,7 @@ P.S. 우리 프로젝트 연구의 중심이었으며
 
 경고음을 듣고 위치를 눈치챈 것 같다.
 
-놈은 내쪽으로 뛰어오기 시작했다."|숀은 대체 뭘 하고 있는거야?!|||1|113|||FALSE|FALSE|FALSE
+놈은 내쪽으로 뛰어오기 시작했다."|숀은 대체 뭘 하고 있는거야?!|||1|113|||||
 113|scene#113(img).png|scene#113(choose).png|FADE_IN_RED|1|3|0|horror2.mp3|NORMAL|horror.mp3|4|NORMAL|scene#113.txt|"나: ""숀!! 쏴요!""
 
 숀은 허둥지둥 대며 방아쇠를 당겼지만
@@ -1435,8 +1435,8 @@ P.S. 우리 프로젝트 연구의 중심이었으며
 놈은 성큼성큼 다가와 나를 들어 찢어버렸다.
 
 X신 새끼. 그거 하나 못 맞추네.
-"|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|106|4||FALSE|FALSE|FALSE
-114|scene#114(img).png|scene#114(choose).png|FADE_IN,FADE_OUT|1|0|0|AlienHive.mp3|NORMAL|alien.mp3|5|NORMAL|scene#114.txt|"라이플을 집어
+"|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|106|4||||
+114|scene#114(img).png|scene#114(choose).png|FADE_IN,FADE_OUT|1||0|AlienHive.mp3|NORMAL|alien.mp3|5|NORMAL|scene#114.txt|"라이플을 집어
 
 서둘러 무기고를 빠져나왔다.
 
@@ -1446,7 +1446,7 @@ X신 새끼. 그거 하나 못 맞추네.
 
 망할 경고음을 듣고, 
 
-우리의 존재를 눈치챈 것 같다."|총을 재빨리 장전한다.|||1|115|||FALSE|FALSE|FALSE
+우리의 존재를 눈치챈 것 같다."|총을 재빨리 장전한다.|||1|115|||||
 115|scene#115(img).png|scene#115(choose).png|SHAKE|0|1|0|AlienHive.mp3|NORMAL|gunfire.mp3|1|NORMAL|scene#115.txt|"놈은 나를 노리는듯 했다.
 
 당황한 나는 라이플을 사방으로 
@@ -1461,8 +1461,8 @@ X신 새끼. 그거 하나 못 맞추네.
 
 우리는 무기고 옆 통로 끝을 
 
-향해 뛰기 시작했다."|앞에 보이는 문으로 들어간다.|||1|118|||FALSE|FALSE|FALSE
-116|scene#116(img).png|scene#116(choose).png|FADE_IN,FADE_OUT|1|0|0|AlienHive.mp3|NORMAL|siren.mp3|5|NORMAL|scene#116.txt|"경고음에 놀라
+향해 뛰기 시작했다."|앞에 보이는 문으로 들어간다.|||1|118|||||
+116|scene#116(img).png|scene#116(choose).png|FADE_IN,FADE_OUT|1||0|AlienHive.mp3|NORMAL|siren.mp3|5|NORMAL|scene#116.txt|"경고음에 놀라
 
 서둘러 무기고를 빠져나왔다.
 
@@ -1472,7 +1472,7 @@ X신 새끼. 그거 하나 못 맞추네.
 
 아무래도 경고음을 듣고 달려오는 것 같다.
 
-놈은 우리를 향해 뛰어오기 시작했다."|옆 통로를 향해 전력질주한다.|||1|117|||FALSE|FALSE|FALSE
+놈은 우리를 향해 뛰어오기 시작했다."|옆 통로를 향해 전력질주한다.|||1|117|||||
 117|scene#117(img).png|scene#117(choose).png|FADE_IN_RED|1|3|0|AlienHive.mp3|NORMAL|alien.mp3|5|NORMAL|scene#117.txt|"숀: ""이쪽으로 빨리.""
 
 우리는 무기고 옆 통로로 뛰기 시작했다.
@@ -1487,7 +1487,7 @@ X신 새끼. 그거 하나 못 맞추네.
 
 나는 메기에게 가려는 숀을 붙잡고 
 
-통로 끝 문으로 달렸다."|앞에 보이는 문으로 들어간다.|||1|122|||FALSE|FALSE|FALSE
+통로 끝 문으로 달렸다."|앞에 보이는 문으로 들어간다.|||1|122|||||
 118|scene#118(img).png|scene#118(choose).png|SHAKE|0|1|0|AlienHive.mp3|NORMAL|alien.mp3|5|NORMAL|scene#118.txt|"가까스로 들어와 문을 닫는데 성공했다.
 
 하지만 놈은 금방 문앞까지 쫓아왔다.
@@ -1496,7 +1496,7 @@ X신 새끼. 그거 하나 못 맞추네.
 
 놈의 침이 문을 녹이기 시작했다.
 
-문이 얼마 못버틸거라는 것을 느꼈다."|지형지물을 이용해 숨는다.|다른 탈출로를 모색한다.||2|119|120||FALSE|FALSE|FALSE
+문이 얼마 못버틸거라는 것을 느꼈다."|지형지물을 이용해 숨는다.|다른 탈출로를 모색한다.||2|119|120||||
 119|scene#119(img).png|scene#119(choose).png|FADE_IN_RED|1|3|0|horror2.mp3|NORMAL|horror.mp3|4|NORMAL|scene#119.txt|"서둘러 탈출포트 쪽으로 뛴다.
 
 총까지 들고 있던 나머지 체력이 달렸다.
@@ -1514,8 +1514,8 @@ X신 새끼. 그거 하나 못 맞추네.
 
 어느새 놈은 내 뒤까지 온 듯 하다.
 
-무언가가 내 등을 관통했다."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|111|4||FALSE|FALSE|FALSE
-120|scene#120(img).png|scene#120(choose).png|FADE_IN,FADE_OUT|1|0|0|AlienHive.mp3|NORMAL||||scene#120.txt|"통로에는 도저히 숨을 곳이 보이지 않는다.
+무언가가 내 등을 관통했다."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|111|4||||
+120|scene#120(img).png|scene#120(choose).png|FADE_IN,FADE_OUT|1||0|AlienHive.mp3|NORMAL||||scene#120.txt|"통로에는 도저히 숨을 곳이 보이지 않는다.
 
 난간을 붙잡고 매달려 놈이 지나갈 때까지
 
@@ -1531,8 +1531,8 @@ X신 새끼. 그거 하나 못 맞추네.
 
 쾅 소리와 함께 문이 뚫리면서
 
-놈이 우리를 찾아 헤메는 것을 느꼈다."|계속...|||1|121|||FALSE|FALSE|FALSE
-121|scene#121(img).png|scene#121(choose).png|NORMAL|0|0|0|AlienHive.mp3|NORMAL|break.mp3|4|NORMAL|scene#121.txt|"숨을 죽이고, 놈이 떠나기만을 기다렸다.
+놈이 우리를 찾아 헤메는 것을 느꼈다."|계속...|||1|121|||||
+121|scene#121(img).png|scene#121(choose).png|NORMAL|0||0|AlienHive.mp3|NORMAL|break.mp3|4|NORMAL|scene#121.txt|"숨을 죽이고, 놈이 떠나기만을 기다렸다.
 
 놈이 떠나 통로로 올라 오려던 찰나
 
@@ -1548,7 +1548,7 @@ X신 새끼. 그거 하나 못 맞추네.
 
 메기를 들쳐 메고 
 
-탈출포트로 향했다."|계속...|||1|126|||FALSE|FALSE|FALSE
+탈출포트로 향했다."|계속...|||1|126|||||
 122|scene#122(img).png|scene#122(choose).png|SHAKE|0|1|0|AlienHive.mp3|NORMAL|gateopen.mp3|3|NORMAL|scene#122.txt|"가까스로 들어와 문을 닫는데 성공했다.
 
 숀: ""안돼!""
@@ -1563,7 +1563,7 @@ X신 새끼. 그거 하나 못 맞추네.
 
 놈의 침이 문을 녹이기 시작했다.
 
-문이 얼마 못버틸거라는 것을 느꼈다."|숀을 내버려 두고 간다.|숀을 들쳐메고 이동한다.||2|123|124||FALSE|FALSE|FALSE
+문이 얼마 못버틸거라는 것을 느꼈다."|숀을 내버려 두고 간다.|숀을 들쳐메고 이동한다.||2|123|124||||
 123|scene#123(img).png|scene#123(choose).png|SHAKE|0|1|0|AlienHive.mp3|NORMAL|running.mp3|6|NORMAL|scene#123.txt|"나는 정신이 나가버린 숀을 
 
 들쳐 메고 뛰기 시작했다.
@@ -1581,8 +1581,8 @@ X신 새끼. 그거 하나 못 맞추네.
 
 나는 서둘러 암호를 입력했다.
 
-탈출포트의 문이 열렸고, 재빨리 들어왔다."|계속...|||1|127|||FALSE|FALSE|FALSE
-124|scene#124(img).png|scene#124(choose).png|NORMAL|0|0|0|AlienHive.mp3|NORMAL||||scene#124.txt|"나: ""숀, 정신차려요! 제발!""
+탈출포트의 문이 열렸고, 재빨리 들어왔다."|계속...|||1|127|||||
+124|scene#124(img).png|scene#124(choose).png|NORMAL|0||0|AlienHive.mp3|NORMAL||||scene#124.txt|"나: ""숀, 정신차려요! 제발!""
 
 혼자라도 살아야겠다고 생각한 나는
 
@@ -1594,7 +1594,7 @@ X신 새끼. 그거 하나 못 맞추네.
 
 X발...
 
-문을 열기 위해 대충 아무거나 입력해본다."|계속...|||1|125|||FALSE|FALSE|FALSE
+문을 열기 위해 대충 아무거나 입력해본다."|계속...|||1|125|||||
 125|scene#125(img).png|scene#125(choose).png|FADE_IN_RED|1|3|0|horror2.mp3|NORMAL|horror.mp3|4|NORMAL|scene#125.txt|"78457454
 시스템: ""Access denied!""
 
@@ -1608,7 +1608,7 @@ X발...
 
 간담이 서늘함을 느꼈다.
 
-순간, 놈의 팔이 내 등을 관통했다."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|111|4||FALSE|FALSE|FALSE
+순간, 놈의 팔이 내 등을 관통했다."|다시 돌아가 선택할 수만 있다면..|처음부터 다시 시작한다.||2|111|4||||
 126|scene#126(img).png|scene#126(choose).png|FADE_IN_WHITE|1|4|0|SadEnding.mp3|NORMAL|||NOLMAL|scene#126.txt|"탈출포트 문앞에 도착했다.
 
 문을 열기 위해서는 암호가 필요한 듯 하다.
@@ -1625,8 +1625,8 @@ X발...
 
 계속 문쪽만 바라보는 아이를 안아 
 
-탈출선에 탑승한다. 우리는 살아남았다."||||||||FALSE|FALSE|FALSE
-127|scene#127(img).png|scene#127(choose).png||0|0|0|AlienHive.mp3|NORMAL||||scene#127.txt|"마침내, 탈출선이 있는 곳에 도착했다.
+탈출선에 탑승한다. 우리는 살아남았다."||||||||||
+127|scene#127(img).png|scene#127(choose).png||0||0|AlienHive.mp3|NORMAL||||scene#127.txt|"마침내, 탈출선이 있는 곳에 도착했다.
 
 숀은 아직도 정신을 차리지 못했다.
 
@@ -1642,7 +1642,7 @@ X발...
 
 비록 나를 속였지만 딸 아이를 잃은 숀을 
 
-저렇게 두고 간다는 것이 마음에 걸렸다."|숀을 두고 탈출선에 오른다.|숀을 부축해 일으킨다.||2|128|129||FALSE|FALSE|FALSE
+저렇게 두고 간다는 것이 마음에 걸렸다."|숀을 두고 탈출선에 오른다.|숀을 부축해 일으킨다.||2|128|129||||
 128|scene#128(img).png|scene#128(choose).png|FADE_IN_WHITE|1|4|0|SadEnding.mp3|NORMAL|booster.mp3|12|NORMAL|scene#128.txt|"X까라지. 저새낀 날 속였어.
 
 사건의 내막이 떠올랐고, 
@@ -1659,8 +1659,8 @@ X발...
 
 생존했다는 기쁨에 겨웠다
 
-나는 살아남았다."||||||||FALSE|FALSE|FALSE
-129|scene#129(img).png|scene#129(choose).png|FADE_IN,FADE_OUT|1|0|0|RealEnding.mp3|NORMAL|gateopen.mp3|3|NORMAL|scene#129.txt|"나: ""숀! 정신차려요. 탈출해야죠!""
+나는 살아남았다."||||||||||
+129|scene#129(img).png|scene#129(choose).png|FADE_IN,FADE_OUT|1||0|RealEnding.mp3|NORMAL|gateopen.mp3|3|NORMAL|scene#129.txt|"나: ""숀! 정신차려요. 탈출해야죠!""
 
 한참 숀을 흔들자 숀은 이내 정신을 차렸다.
 
@@ -1671,7 +1671,7 @@ X발...
 숀: ""내가 자네에게 큰 잘못한 걸 알고 있네.
      그리고 딸아이를 잃은 아버지가 
      무슨 낙으로 살겠나...
-     미안했네."""|숀...?|||1|130|||FALSE|FALSE|FALSE
+     미안했네."""|숀...?|||1|130|||||
 130|scene#130(img).png|scene#130(choose).png|FADE_IN_WHITE|1|4|0|RealEnding.mp3|NORMAL|booster.mp3|12|NORMAL|scene#130.txt|"숀은 이말을 남기고 탈출선의 문을 닫아버렸다.
 
 이내 탈출선은 이륙했고, 
@@ -1682,4 +1682,67 @@ X발...
 
 GoodBye... 숀...
 
-나는 살아남았다."||||||||FALSE|FALSE|FALSE
+나는 살아남았다."||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+135|scene#135(img).png|scene#135(choose).png|FADE_IN,FADE_OUT|1| ||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||

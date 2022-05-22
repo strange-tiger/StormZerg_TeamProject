@@ -1,7 +1,8 @@
 #pragma once
 
 #include <wchar.h>
-#include <Config.h>
+
+#define MAXIMUM_ROW 200
 
 typedef struct CsvItem
 {
@@ -12,7 +13,7 @@ typedef struct CsvFile
 {
 	int			ColumnCount;
 	int			RowCount;
-	CsvItem		Items[MAXIMUM_ROW][MAXIMUM_COLUMN];
+	CsvItem*	Items[MAXIMUM_ROW];
 } CsvFile;
 
 typedef enum EColumn
