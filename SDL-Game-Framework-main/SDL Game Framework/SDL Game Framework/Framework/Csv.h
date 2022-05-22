@@ -1,8 +1,7 @@
 #pragma once
 
 #include <wchar.h>
-
-#define MAXIMUM_ROW 200
+#include <Config.h>
 
 typedef struct CsvItem
 {
@@ -22,6 +21,9 @@ typedef enum EColumn
 	BACK_IMG_NAME,
 	CHOOSE_IMG_NAME,
 	IMG_OUTPUT_STYLE,
+	SCENE_CHANGE_FADE,
+	IMAGE_EFFECT_SELECT,
+	IMAGE_EFFECT_START_TIME,
 	SOUND_MUSIC_NAME,
 	SOUND_MUSIC_STYLE,
 	SOUND_EFFECT_NAME,

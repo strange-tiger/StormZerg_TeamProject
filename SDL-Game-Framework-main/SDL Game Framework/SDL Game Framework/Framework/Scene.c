@@ -198,6 +198,8 @@ void log2OnFinished(int32 channel)
 static char* s_Buffer;
 static char* s_BufferPointer;
 static int32 s_CurrentPage = 1;
+static int32 s_PrevPage = 0;
+static char* s_PrevBGM = "";
 void init_main(void)
 {
 	g_Scene.Data = malloc(sizeof(MainSceneData));
@@ -208,23 +210,6 @@ void init_main(void)
 	CreateCsvFile(&data->CsvFile, "DB_project.CSV");
 
 	data->IsText = false;
-
-	// obt용 임시 조치
-	switch(s_CurrentPage)
-	{
-	case 261:
-		// s_CurrentPage = 68;
-		break;
-	case 391:
-		// s_CurrentPage = 69;
-		break;
-	case 411:
-		// s_CurrentPage = 70;
-		break;
-	case 451:
-		// s_CurrentPage = 71;
-		break;
-	}
 
 	int32 Row = s_CurrentPage;
 	char* str_background = ParseToAscii(data->CsvFile.Items[Row][BACK_IMG_NAME]);
@@ -242,20 +227,34 @@ void init_main(void)
 	Image_LoadImage(&data->TextUI, "Text_UI.png");
 
 	char* str_bgm = ParseToAscii(data->CsvFile.Items[Row][SOUND_MUSIC_NAME]);
-	if (NULL != *str_bgm)
+	if (*s_PrevBGM != *str_bgm)
 	{
-		Audio_LoadMusic(&data->BGM, str_bgm);
-		Audio_HookMusicFinished(logOnFinished);
+		if (NULL != *str_bgm)
+		{
+			Audio_LoadMusic(&data->BGM, str_bgm);
+			Audio_HookMusicFinished(logOnFinished);
+		}
+		// Audio_Play(&data->BGM, INFINITY_LOOP);
+		
+		Audio_Stop();
+		Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 1000);
+		s_PrevBGM = str_bgm;
 	}
 
 	char* str_se = ParseToAscii(data->CsvFile.Items[Row][SOUND_EFFECT_NAME]);
 	if (NULL != *str_se)
 	{
-		// Audio_LoadSoundEffect(&data->Effect, str_se);
+		Audio_LoadSoundEffect(&data->Effect, str_se);
 		Audio_HookSoundEffectFinished(log2OnFinished);
 	}
-	// Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
-	// Audio_PlaySoundEffect(&data->Effect, 0);
+
+	if (s_PrevPage != s_CurrentPage)
+	{
+		Audio_StopSoundEffect();
+		Audio_PlaySoundEffect(&data->Effect, 0);
+
+		s_PrevPage = s_CurrentPage;
+	}
 	
 	data->Volume = 1.0f;
 
@@ -267,20 +266,18 @@ void init_main(void)
 	data->TextUI_X = 0;
 	data->TextUI_Y = 0;
 	data->Alpha = 255;
+	data->Pointer_X = 0;
 
 	data->SelectButtonQuantity = ParseToInt(data->CsvFile.Items[Row][NUMBER_OF_OPTIONS]);
 	switch (data->SelectButtonQuantity)
 	{
 	case 1:
-		data->Pointer_X = 0;
 		data->Pointer_Y = CHOOSE_POSITION_BOTTOM;
 		break;
 	case 2:
-		data->Pointer_X = 0;
 		data->Pointer_Y = CHOOSE_POSITION_MIDDLE;
 		break;
 	case 3:
-		data->Pointer_X = 0;
 		data->Pointer_Y = CHOOSE_POSITION_TOP;
 		break;
 	}
@@ -293,7 +290,7 @@ void update_main(void)
 {
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
-	char* str_text = ParseToUnicode(data->CsvFile.Items[s_CurrentPage][FULL_TEXT]);
+	wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_CurrentPage][FULL_TEXT]);
 	TextTyping(&data->TextLine, str_text, &data->IsText, &data->TextLength, DEFAULT_FONT, DEFAULT_FONT_SIZE);
 
 	if (Input_GetKeyDown('M'))
@@ -420,10 +417,13 @@ void render_main(void)
 void release_main(void)
 {
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
+	Image_FreeImage(&data->BackGround);
+	Image_FreeImage(&data->SelectButton);
+	Image_FreeImage(&data->TextUI);
 
 	Text_FreeText(&data->TextLine);
 	
-	Audio_FreeMusic(&data->BGM);
+	// Audio_FreeMusic(&data->BGM);
 	Audio_FreeSoundEffect(&data->Effect);
 
 	SafeFree(g_Scene.Data);
