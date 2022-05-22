@@ -155,8 +155,8 @@ xcopy "$(ProjectDir)Asset\*.*" "$(TargetDir)Asset\" /E /Y</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.c" />
-    <ClCompile Include="csv.c" />
     <ClCompile Include="Framework\Audio.c" />
+    <ClCompile Include="Framework\Csv.c" />
     <ClCompile Include="Framework\Image.c" />
     <ClCompile Include="Framework\Input.c" />
     <ClCompile Include="Framework\Random.c" />
@@ -176,9 +176,9 @@ xcopy "$(ProjectDir)Asset\*.*" "$(TargetDir)Asset\" /E /Y</Command>
     <ClInclude Include="App.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Config.h" />
-    <ClInclude Include="csv.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="Framework\Audio.h" />
+    <ClInclude Include="Framework\Csv.h" />
     <ClInclude Include="Framework\Image.h" />
     <ClInclude Include="Framework\Input.h" />
     <ClInclude Include="Framework\Random.h" />

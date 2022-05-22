@@ -205,7 +205,7 @@ void init_main(void)
 
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
-	CreateCsvFile(&data->CsvFile, "DB_projectver2.CSV");
+	CreateCsvFile(&data->CsvFile, "DB_project.CSV");
 
 	data->IsText = false;
 
@@ -251,7 +251,7 @@ void init_main(void)
 	char* str_se = ParseToAscii(data->CsvFile.Items[Row][SOUND_EFFECT_NAME]);
 	if (NULL != *str_se)
 	{
-		Audio_LoadSoundEffect(&data->Effect, str_se);
+		// Audio_LoadSoundEffect(&data->Effect, str_se);
 		Audio_HookSoundEffectFinished(log2OnFinished);
 	}
 	// Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
