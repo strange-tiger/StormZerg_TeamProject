@@ -53,19 +53,22 @@ void CreateCsvFile(CsvFile* csvFile, const char* filename)
 	csvFile->ColumnCount = countCategory(s_Buffer);
 	for (int i = 0; i < MAXIMUM_ROW; ++i)
 	{
-		csvFile->Items[i] = (CsvItem*)malloc(sizeof(CsvItem) * csvFile->ColumnCount);
+		//csvFile->Items[i] = (CsvItem*)malloc(sizeof(CsvItem) * csvFile->ColumnCount);
 	}
-
+	
+	int row = 0;
 	s_BufferPointer = s_Buffer;
 	while (*s_BufferPointer != '\0')
 	{
-		int row = csvFile->RowCount;
+		if (csvFile->RowCount < MAXIMUM_ROW)
+		{
+			row = csvFile->RowCount;
+		}
 
 		// 한 줄을 읽어들인다.
 		int commaCount = 0;
 		const char* lineStart = s_BufferPointer;
 		const char* lineEnd = lineStart;
-		const char* lineEndCheck = lineEnd;
 		while (true)
 		{
 			if (csvFile->ColumnCount - 1 == commaCount && '\n' == *lineEnd)
@@ -73,28 +76,33 @@ void CreateCsvFile(CsvFile* csvFile, const char* filename)
 				break;
 			}
 
-			if (*lineEnd == DELIMITER)
+			if (*lineEnd != NULL)
 			{
-				++commaCount;
+				if (*lineEnd == DELIMITER)
+				{
+					++commaCount;
+				}
 			}
-
 			++lineEnd;
 		}
 
 		// 콤마 분류
 		const char* recordStart = lineStart;
 		const char* recordEnd = recordStart;
-		for (int i = 0; i < csvFile->ColumnCount; ++i)
+		for (int i = 0; i < MAXIMUM_COLUMN; ++i)
 		{
 			while (*recordEnd != DELIMITER && recordEnd != lineEnd)
 			{
 				++recordEnd;
 			}
 
-			int size = recordEnd - recordStart;
-			csvFile->Items[row][i].RawData = (char*)malloc(sizeof(char) * (size + 1));
-			memcpy(csvFile->Items[row][i].RawData, recordStart, size);
-			csvFile->Items[row][i].RawData[size] = '\0';
+			int32 size = recordEnd - recordStart;
+			
+			memcpy(&csvFile->Items[row][i], recordStart, size);
+			if (size < MAXIMUM_COLUMN)
+			{
+				csvFile->Items[row][size + 1].RawData = '\0';
+			}
 
 			recordStart = recordEnd + 1;
 			recordEnd = recordStart;
@@ -116,7 +124,7 @@ void FreeCsvFile(CsvFile* csvFile)
 	{
 		if (r < csvFile->RowCount)
 		{
-			for (int c = 0; c < csvFile->ColumnCount; ++c)
+			for (int c = 0; c < MAXIMUM_COLUMN; ++c)
 			{
 				free(csvFile->Items[r][c].RawData);
 				//csvFile->Items[r][c].RawData = NULL;
@@ -124,28 +132,31 @@ void FreeCsvFile(CsvFile* csvFile)
 		}
 
 		free(csvFile->Items[r]);
-		csvFile->Items[r] = NULL;
+		// csvFile->Items[r] = NULL;
 	}
 }
 
 int ParseToInt(const CsvItem item)
 {
 	char* end;
-	return strtol(item.RawData, &end, 10);
+	return strtol(&item.RawData, &end, 10);
 }
 
 char* ParseToAscii(const CsvItem item)
 {
-	int size = strlen(item.RawData);
+	int size = strlen(&item.RawData);
 	char* result = malloc(size + 1);
 	memset(result, 0, size + 1);
-	if (item.RawData[0] == '"' && item.RawData[size - 1] == '"')
+	if (size != 0)
 	{
-		memcpy(result, &item.RawData[1], size - 2);
-	}
-	else
-	{
-		memcpy(result, item.RawData, size);
+		if (item.RawData[0] == '"' && item.RawData[size - 1] == '"')
+		{
+			memcpy(result, &item.RawData[1], size - 2);
+		}
+		else
+		{
+			memcpy(result, item.RawData, size);
+		}
 	}
 
 	return result;
@@ -153,19 +164,20 @@ char* ParseToAscii(const CsvItem item)
 
 wchar_t* ParseToUnicode(const CsvItem item)
 {
-	int32 size = strlen(item.RawData);
-	int32 wideLen = MultiByteToWideChar(CP_ACP, NULL, item.RawData, -1, NULL, 0);
+	int32 size = strlen(&item.RawData);
+	int32 wideLen = MultiByteToWideChar(CP_ACP, NULL, &item.RawData, -1, NULL, 0);
 	wchar_t* result = (wchar_t*)malloc(sizeof(wchar_t) * wideLen);
 	memset(result, 0, sizeof(wchar_t) * wideLen);
-
-	if (item.RawData[0] == '"' && item.RawData[size - 1] == '"')
+	if (size != 0)
 	{
-		MultiByteToWideChar(CP_ACP, NULL, &item.RawData[1], -1, result, wideLen - 3);
+		if (item.RawData == '"' && &item.RawData + (size - 1) == '"')
+		{
+			MultiByteToWideChar(CP_ACP, NULL, &item.RawData + 1, -1, result, wideLen - 3);
+		}
+		else
+		{
+			MultiByteToWideChar(CP_ACP, NULL, &item.RawData, -1, result, wideLen);
+		}
 	}
-	else
-	{
-		MultiByteToWideChar(CP_ACP, NULL, item.RawData, -1, result, wideLen);
-	}
-
 	return result;
 }

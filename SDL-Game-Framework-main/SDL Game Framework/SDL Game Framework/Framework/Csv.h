@@ -12,7 +12,7 @@ typedef struct CsvFile
 {
 	int			ColumnCount;
 	int			RowCount;
-	CsvItem*	Items[MAXIMUM_ROW];
+	CsvItem		Items[MAXIMUM_ROW][MAXIMUM_COLUMN];
 } CsvFile;
 
 typedef enum EColumn

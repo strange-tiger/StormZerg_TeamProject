@@ -158,6 +158,8 @@ typedef struct MainSceneData
 
 	Text		TextLine[TEXT_MAX_LINE];
 	bool		IsText;
+	bool		DeltaRun;
+	float		TextDeltaTime;
 	int32		TextLength;
 
 	Music		BGM;
@@ -208,8 +210,10 @@ void init_main(void)
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
 	CreateCsvFile(&data->CsvFile, "DB_project.CSV");
-
+	
 	data->IsText = false;
+	data->DeltaRun = false;
+	data->TextDeltaTime = 0.0f;
 
 	int32 Row = s_CurrentPage;
 	char* str_background = ParseToAscii(data->CsvFile.Items[Row][BACK_IMG_NAME]);
@@ -231,13 +235,13 @@ void init_main(void)
 	{
 		if (NULL != *str_bgm)
 		{
-			Audio_LoadMusic(&data->BGM, str_bgm);
+			// Audio_LoadMusic(&data->BGM, str_bgm);
 			Audio_HookMusicFinished(logOnFinished);
 		}
 		// Audio_Play(&data->BGM, INFINITY_LOOP);
 		
 		Audio_Stop();
-		Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 1000);
+		// Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 1000);
 		s_PrevBGM = str_bgm;
 	}
 
@@ -290,8 +294,42 @@ void update_main(void)
 {
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
+	// main(교수님꺼ㅏ~)
+
+		/*----------------단순줄바꿈출력(한줄안댐)야발---------------------*/
+
+
 	wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_CurrentPage][FULL_TEXT]);
-	TextTyping(&data->TextLine, str_text, &data->IsText, &data->TextLength, DEFAULT_FONT, DEFAULT_FONT_SIZE);
+	const wchar_t* lineStart = str_text;
+	while (!data->IsText)
+	{
+		for (int32 line = 0; line < TEXT_MAX_LINE; line++)
+		{
+			const wchar_t* lineEnd = lineStart;
+			while (true)
+			{
+				if (L'\n' == *lineEnd || L'\0' == *lineEnd)
+				{
+					break;
+				}
+				++lineEnd;
+			}
+			int32 lineLength = lineEnd - lineStart;
+			Text_CreateText(&data->TextLine[line], DEFAULT_FONT, DEFAULT_FONT_SIZE, lineStart, lineLength);
+
+			if (L'\0' == *lineEnd)
+			{
+				data->IsText = !data->IsText;
+				break;
+			}
+			lineStart = lineEnd + 1;
+		}
+
+	}
+
+
+
+	/*------------------------------------------------------------*/
 
 	if (Input_GetKeyDown('M'))
 	{
@@ -405,11 +443,34 @@ void render_main(void)
 	Renderer_DrawImage(&data->PointerButton, data->Pointer_X, data->Pointer_Y);
 	Renderer_DrawImage(&data->TextUI, data->TextUI_X, data->TextUI_Y);
 
-	SDL_Color color = { .a = 255, .r = 255 , .g = 255 , .b = 255 };
-
-	for (int32 i = 0; i < TEXT_MAX_LINE; i++)
+	/*for (int32 i = 0; i < TEXT_MAX_LINE; i++)
 	{
 		Renderer_DrawTextBlended(&data->TextLine, 60, 80, color);
+	}*/
+
+	//렌더새끼~
+		if (!data->DeltaRun)
+		{
+			data->TextDeltaTime += (Timer_GetDeltaTime() + 0.1f);
+		}
+	//data->TextDeltaTime += (Timer_GetDeltaTime());
+	SDL_Color color = { .a = 255, .r = 255 , .g = 255 , .b = 255 };
+	for (int32 i = 0; i < data->TextDeltaTime; i++)
+	{
+		Renderer_DrawTextBlended(&data->TextLine[i], 60, 80 + (i * 30), color);
+		if (i > 18)
+		{
+			data->DeltaRun = !data->DeltaRun;
+			data->TextDeltaTime = 0.0f;
+
+		}
+	}
+	if (data->DeltaRun)
+	{
+		for (int32 j = 0; j < TEXT_MAX_LINE; j++)
+		{
+			Renderer_DrawTextBlended(&data->TextLine[j], 60, 80 + +(j * 30), color);
+		}
 	}
 
 }
@@ -428,6 +489,155 @@ void release_main(void)
 
 	SafeFree(g_Scene.Data);
 }
+#pragma endregion
+
+#pragma region EndingScene
+
+typedef struct EndingSceneData
+{
+	float   ActiveTime;
+	float   ImageLoadTime;
+	int32   RenderMode;
+
+	Image   EndingBackGround;
+	int32   EndingBackGround_Alpha;
+	Image   EndingText1;
+	int32   EndingText1_Alpha;
+	Image   EndingText2;
+	int32   EndingText2_Alpha;
+	Image   BlackScreen;
+	int32   BlackAlpha;
+
+} EndingSceneData;
+
+
+float   EndingTime = 0.0f;
+
+
+void init_Ending(void)
+{
+	g_Scene.Data = malloc(sizeof(EndingSceneData));
+	memset(g_Scene.Data, 0, sizeof(EndingSceneData));
+	EndingSceneData* data = (EndingSceneData*)g_Scene.Data;
+	Image_LoadImage(&data->BlackScreen, "BlackScreen.png");
+}
+
+int32 end1count = 1;
+int32 end2count = 1;
+int32 end3count = 1;
+int32 end4count = 1;
+int32 end5count = 1;
+int32 end6count = 1;
+int32 end7count = 1;
+
+void update_Ending(void)
+{
+	EndingSceneData* data = (EndingSceneData*)g_Scene.Data;
+	data->ActiveTime += Timer_GetDeltaTime();
+
+	data->ImageLoadTime += Timer_GetDeltaTime();
+	EndingTime += Timer_GetDeltaTime();
+	data->BlackAlpha = Clamp(0, data->BlackAlpha + 255, 255);
+	if (0 <= data->ImageLoadTime && data->ImageLoadTime < 6 && end1count == 1)
+	{
+		Image_LoadImage(&data->EndingBackGround, "END(1).png");
+		Image_LoadImage(&data->EndingText1, "END(2).png");
+		end1count = 0;
+	}
+
+	if (6 <= data->ImageLoadTime && data->ImageLoadTime < 12 && end2count == 1)
+	{
+		Image_LoadImage(&data->EndingBackGround, "END(3).png");
+		Image_LoadImage(&data->EndingText1, "END(4).png");
+		end2count = 0;
+	}
+
+	if (12 <= data->ImageLoadTime && data->ImageLoadTime < 18 && end3count == 1)
+	{
+		Image_LoadImage(&data->EndingBackGround, "END(5).png");
+		Image_LoadImage(&data->EndingText1, "END(6).png");
+		end3count = 0;
+	}
+
+	if (18 <= data->ImageLoadTime && data->ImageLoadTime < 24 && end4count == 1)
+	{
+		Image_LoadImage(&data->EndingBackGround, "END(7).png");
+		Image_LoadImage(&data->EndingText1, "END(8).png");
+		end4count = 0;
+	}
+	if (24 <= data->ImageLoadTime && data->ImageLoadTime < 35 && end5count == 1)
+	{
+		Image_LoadImage(&data->EndingBackGround, "END(9).png");
+		Image_LoadImage(&data->EndingText1, "END(11).png");
+		end5count = 0;
+	}
+
+	if (0.1 > data->ActiveTime)                           //각 요소 초기 알파값 0
+	{
+		data->EndingBackGround_Alpha = Clamp(0, data->EndingBackGround_Alpha - 255, 255);
+		data->EndingText1_Alpha = Clamp(0, data->EndingText1_Alpha - 255, 255);
+		data->EndingText2_Alpha = Clamp(0, data->EndingText2_Alpha - 255, 255);
+	}
+
+	if (1 <= EndingTime && EndingTime < 2)
+	{
+		data->EndingBackGround_Alpha = Clamp(0, data->EndingBackGround_Alpha + 10, 255);
+	}
+	if (2 <= EndingTime && EndingTime < 3)
+	{
+		data->EndingText1_Alpha = Clamp(0, data->EndingText1_Alpha + 10, 255);
+		if (26 <= data->ActiveTime && 3 <= EndingTime)
+		{
+			data->EndingText2_Alpha = Clamp(0, data->EndingText2_Alpha + 10, 255);
+		}
+	}
+
+	if (5 <= EndingTime && EndingTime < 6)
+	{
+		if (data->ActiveTime < 25)
+		{
+			data->EndingBackGround_Alpha = Clamp(0, data->EndingBackGround_Alpha - 10, 255);
+			data->EndingText1_Alpha = Clamp(0, data->EndingText1_Alpha - 10, 255);
+		}
+		if (5.9 <= EndingTime)
+		{
+			EndingTime = 0.0f;
+		}
+	}
+	if (35 <= data->ActiveTime)
+	{
+		data->EndingBackGround_Alpha = Clamp(0, data->EndingBackGround_Alpha - 10, 255);
+		data->EndingText1_Alpha = Clamp(0, data->EndingText1_Alpha - 10, 255);
+		data->EndingText2_Alpha = Clamp(0, data->EndingText2_Alpha - 10, 255);
+		EndingTime = 0.0f;
+	}
+	Image_SetAlphaValue(&data->BlackScreen, data->BlackAlpha);
+	Image_SetAlphaValue(&data->EndingBackGround, data->EndingBackGround_Alpha);
+	Image_SetAlphaValue(&data->EndingText1, data->EndingText1_Alpha);
+	Image_SetAlphaValue(&data->EndingText2, data->EndingText2_Alpha);
+
+	if (Input_GetKeyDown(VK_SPACE) || 36 < data->ActiveTime)                           //36초 경과, 혹은 스페이스 누르면 메인 타이틀로 돌아감
+	{
+		Scene_SetNextScene(SCENE_TITLE);
+	}
+}
+
+void render_Ending(void)
+{
+	EndingSceneData* data = (EndingSceneData*)g_Scene.Data;
+
+	Renderer_DrawImage(&data->BlackScreen, 0, 0);
+	Renderer_DrawImage(&data->EndingBackGround, 0, 0);
+	Renderer_DrawImage(&data->EndingText1, 0, 0);
+	Renderer_DrawImage(&data->EndingText2, 0, 0);
+}
+
+void release_Ending(void)
+{
+	EndingSceneData* data = (EndingSceneData*)g_Scene.Data;
+	SafeFree(g_Scene.Data);
+}
+
 #pragma endregion
 
 bool Scene_IsSetNextScene(void)
@@ -473,12 +683,12 @@ void Scene_Change(void)								// Scene 변경 함수 - Scene 추가시 switch�
 		g_Scene.Render = render_main;
 		g_Scene.Release = release_main;
 		break;
-		/*case SCENE_TEST:
-			g_Scene.Init = init_test;
-			g_Scene.Update = update_test;
-			g_Scene.Render = render_test;
-			g_Scene.Release = release_test;
-			break;*/
+	case SCENE_ENDING:
+		g_Scene.Init = init_Ending;
+		g_Scene.Update = update_Ending;
+		g_Scene.Render = render_Ending;
+		g_Scene.Release = release_Ending;
+		break;
 	}
 
 	g_Scene.Init();
