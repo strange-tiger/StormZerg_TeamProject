@@ -210,9 +210,10 @@ void log2OnFinished(int32 channel)
 static char* s_Buffer;
 static char* s_BufferPointer;
 static int32 s_CurrentPage = 1;
+static int32 s_SelectNextPage[3];
 static char* s_PrevBGM = "";
 
-int32 EffectSelectSwitch = 2;      //지진/흔들기/피격 효과를 선택하기 위한 변수(CSV로 받아와야 함)
+static int32 EffectSelectSwitch;      //지진/흔들기/피격 효과를 선택하기 위한 변수(CSV로 받아와야 함)
 int32 Change_posX;               //지진 Shake 효과 코드 내에서 X좌표를 관리하기 위한 변수
 int32 Change_posY;               //지진 Shake 효과 코드 내에서 X좌표를 관리하기 위한 변수
 float FadeoutTime = 0.0f;         //페이드 인/아웃시 델타타임 누적시킬 변수
@@ -240,6 +241,11 @@ void init_main(void)
 /*----------------------------------------*/
 
 	int32 Row = s_CurrentPage;
+	for (int32 i = 0; i < 3; i++)
+	{
+		s_SelectNextPage[i] = ParseToInt(data->CsvFile.Items[Row][NEXT_SCENE_1 + i]);
+	}
+
 	char* str_background = ParseToAscii(data->CsvFile.Items[Row][BACK_IMG_NAME]);
 	if (NULL != *str_background)
 	{
@@ -291,9 +297,12 @@ void init_main(void)
 	data->TextUI_X = 0;
 	data->TextUI_Y = 0;
 	data->Alpha = 255;
-
+	data->BlackAlpha = 255;
+	
 	data->Pointer_X = 0;
 
+	EffectSelectSwitch = ParseToInt(data->CsvFile.Items[Row][IMAGE_EFFECT_SELECT]);
+	
 	data->SelectButtonQuantity = ParseToInt(data->CsvFile.Items[Row][NUMBER_OF_OPTIONS]);
 	switch (data->SelectButtonQuantity)
 	{
@@ -389,61 +398,11 @@ void update_main(void)
 		Audio_SetVolume(data->Volume);
 	}
 	
-	int32 SelectNextPage = 1;								//��� ���� ��
-	int32 Row = s_CurrentPage;
-	// ������ ����
- 	if (Input_GetKeyDown(VK_SPACE))
-	{
-		data->TextLength = 0;
-		data->IsText = false;
-
-		int32 num_choose_1;
-		if (data->Pointer_Y == CHOOSE_POSITION_TOP)		//
-		{
-			num_choose_1 = ParseToInt(data->CsvFile.Items[Row][NEXT_SCENE_1]);
-			SelectNextPage = num_choose_1;
-		}
-		else if (data->Pointer_Y == CHOOSE_POSITION_MIDDLE)	// ������ 2 ���� Scene
-		{
-			int32 num_choose_2;
-			if (data->SelectButtonQuantity == 2)
-			{
-				num_choose_2 = ParseToInt(data->CsvFile.Items[Row][NEXT_SCENE_1]);
-				SelectNextPage = num_choose_2;
-			}
-			else if (data->SelectButtonQuantity == 3)
-			{
-				num_choose_2 = ParseToInt(data->CsvFile.Items[Row][NEXT_SCENE_2]);
-				SelectNextPage = num_choose_2;
-			}
-
-		}
-		else if (data->Pointer_Y == CHOOSE_POSITION_BOTTOM)	// ������ 3 ���� Scene
-		{
-			int32 num_choose_3;
-			if (data->SelectButtonQuantity == 1)
-			{
-				num_choose_3 = ParseToInt(data->CsvFile.Items[Row][NEXT_SCENE_1]);
-				SelectNextPage = num_choose_3;
-			}
-			else if (data->SelectButtonQuantity == 2)
-			{
-				num_choose_3 = ParseToInt(data->CsvFile.Items[Row][NEXT_SCENE_2]);
-				SelectNextPage = num_choose_3;
-			}
-			else if (data->SelectButtonQuantity == 3)
-			{
-				num_choose_3 = ParseToInt(data->CsvFile.Items[Row][NEXT_SCENE_3]);
-				SelectNextPage = num_choose_3;
-			}
-		}
-		s_CurrentPage = SelectNextPage;
-		Scene_SetNextScene(SCENE_MAIN);
-	}
+	data->ActiveTime += Timer_GetDeltaTime();
 
 	//Update
   //--------------------------------------------------------------------------------------------지진
-	if (EffectSelectSwitch == 1)                        //CSV로 이펙트 스위치, 시작시간 받아와야 함
+ 	if (EffectSelectSwitch == 1)                        //CSV로 이펙트 스위치, 시작시간 받아와야 함
 	{
 		if (EffectStartTime <= data->ActiveTime && data->ActiveTime <= EffectStartTime + 3)
 		{
@@ -452,14 +411,14 @@ void update_main(void)
 			{
 				data->Back_Y = RandumPos;
 				data->Select_Y = RandumPos;
-				data->Pointer_Y = RandumPos;
+				// data->Pointer_Y = RandumPos;
 				data->TextUI_Y = RandumPos;
 			}
 			if ((int32)(data->ActiveTime * 100) % 10 >= 5)
 			{
 				data->Back_Y = -1 * RandumPos;
 				data->Select_Y = -1 * RandumPos;
-				data->Pointer_Y = -1 * RandumPos;
+				// data->Pointer_Y = -1 * RandumPos;
 				data->TextUI_Y = -1 * RandumPos;
 			}
 		}
@@ -486,7 +445,7 @@ void update_main(void)
 				data->Select_X = RandumPos_X;
 				data->Select_Y = RandumPos_Y;
 				data->Pointer_X = RandumPos_X;
-				data->Pointer_Y = RandumPos_Y;
+				// data->Pointer_Y = RandumPos_Y;
 				data->TextUI_X = RandumPos_X;
 				data->TextUI_Y = RandumPos_Y;
 			}
@@ -497,7 +456,7 @@ void update_main(void)
 				data->Select_X = -1 * RandumPos_X;
 				data->Select_Y = -1 * RandumPos_Y;
 				data->Pointer_X = -1 * RandumPos_X;
-				data->Pointer_Y = -1 * RandumPos_Y;
+				// data->Pointer_Y = -1 * RandumPos_Y;
 				data->TextUI_X = -1 * RandumPos_X;
 				data->TextUI_Y = -1 * RandumPos_Y;
 			}
@@ -530,25 +489,44 @@ void update_main(void)
 			}
 		}
 		//---------------------------페이드 효과 내에서 지진효과 없애고싶으면 요 밑으로 지우면 됨------------------
+		
 		if (EffectStartTime - 0.01f <= data->ActiveTime && data->ActiveTime <= EffectStartTime + 0.6f)
 		{
 			int32 RandumPos_X = rand() % 6 + 5;
 			int32 RandumPos_Y = rand() % 6 + 5;
 			if ((int32)(data->ActiveTime * 100) % 6 <= 2)
 			{
-				Change_posX = RandumPos_X;
-				Change_posY = RandumPos_Y;
+				data->Back_X = RandumPos_X;
+				data->Back_Y = RandumPos_Y;
+				data->Select_X = RandumPos_X;
+				data->Select_Y = RandumPos_Y;
+				data->Pointer_X = RandumPos_X;
+				// data->Pointer_Y = RandumPos_Y;
+				data->TextUI_X = RandumPos_X;
+				data->TextUI_Y = RandumPos_Y;
 			}
 			if ((int32)(data->ActiveTime * 100) % 6 >= 3)
 			{
-				Change_posX = -1 * RandumPos_X;
-				Change_posY = -1 * RandumPos_Y;
+				data->Back_X = -1 * RandumPos_X;
+				data->Back_Y = -1 * RandumPos_Y;
+				data->Select_X = -1 * RandumPos_X;
+				data->Select_Y = -1 * RandumPos_Y;
+				data->Pointer_X = -1 * RandumPos_X;
+				// data->Pointer_Y = -1 * RandumPos_Y;
+				data->TextUI_X = -1 * RandumPos_X;
+				data->TextUI_Y = -1 * RandumPos_Y;
 			}
 		}
 		else
 		{
-			Change_posX = 0;
-			Change_posY = 0;
+			data->Back_X = 0;
+			data->Back_Y = 0;
+			data->Select_X = 0;
+			data->Select_Y = 0;
+			data->Pointer_X = 0;
+			// data->Pointer_Y = 0;
+			data->TextUI_X = 0;
+			data->TextUI_Y = 0;
 		}
 	}
 	//------------------------------
@@ -557,7 +535,7 @@ void update_main(void)
 		data->RedAlpha = Clamp(0, data->RedAlpha - 255, 255);
 	}
 	//--------------------------------------------------------------------------------------------화이트 페이드 인 - 아웃(White)
-	if (EffectSelectSwitch == 3)                           //CSV로 이펙트 스위치, 시작시간 받아와야 함      
+	if (EffectSelectSwitch == 4)                           //CSV로 이펙트 스위치, 시작시간 받아와야 함      
 	{
 		if (EffectStartTime <= data->ActiveTime)
 		{
@@ -577,34 +555,34 @@ void update_main(void)
 		data->WhiteAlpha = Clamp(0, data->WhiteAlpha - 255, 255);
 	}
 	//--------------------------------------------------------------------------------------------씬 전환 페이드 인(Black)
-	if (PageFadeOutIn_PrevScene == 1)                                                 //이전 씬이 1이면 페이드 인 적용
-	{
-		if (0.0f <= data->ActiveTime && data->ActiveTime <= 0.3f)
-		{
-			data->BlackAlpha = Clamp(0, data->BlackAlpha + 255, 255);
-		}
-		if (0.3f < data->ActiveTime && data->ActiveTime <= 1.0f)
-		{
-			data->BlackAlpha = Clamp(0, data->BlackAlpha - 20, 255);
-		}
-	}
-	else
-	{
-		data->BlackAlpha = Clamp(0, data->BlackAlpha - 255, 255);
-	}
+	//if (PageFadeOutIn_PrevScene == 1)                                                 //이전 씬이 1이면 페이드 인 적용
+	//{
+	//	if (0.0f <= data->ActiveTime && data->ActiveTime <= 0.3f)
+	//	{
+	//		data->BlackAlpha = Clamp(0, data->BlackAlpha + 255, 255);
+	//	}
+	//	if (0.3f < data->ActiveTime && data->ActiveTime <= 1.0f)
+	//	{
+	//		data->BlackAlpha = Clamp(0, data->BlackAlpha - 20, 255);
+	//	}
+	//}
+	//else
+	//{
+	//	data->BlackAlpha = Clamp(0, data->BlackAlpha - 255, 255);
+	//}
 
-	//--------------------------------------------------------------------------------------------씬 전환 페이드 아웃(Black)
-	if (PageFadeOutIn_NextScene == 1)                                                //이후 씬이 1이면 페이드 아웃 적용. 
-	{
-		if (Input_GetKeyDown(VK_SPACE))
-		{
-			SpaceCount = 1;
-		}
-		if (SpaceCount == 1)
-		{
-			data->BlackAlpha = Clamp(0, data->BlackAlpha + 20, 255);
-		}
-	}
+	////--------------------------------------------------------------------------------------------씬 전환 페이드 아웃(Black)
+	//if (PageFadeOutIn_NextScene == 1)                                                //이후 씬이 1이면 페이드 아웃 적용. 
+	//{
+	//	if (Input_GetKeyDown(VK_SPACE))
+	//	{
+	//		SpaceCount = 1;
+	//	}
+	//	if (SpaceCount == 1)
+	//	{
+	//		data->BlackAlpha = Clamp(0, data->BlackAlpha + 20, 255);
+	//	}
+	//}
 
 	Image_SetAlphaValue(&data->BlackScreen, data->BlackAlpha);
 	Image_SetAlphaValue(&data->RedScreen, data->RedAlpha);
@@ -623,6 +601,52 @@ void update_main(void)
 	{
 		data->Pointer_Y -= 80;
 	}
+							//��� ���� ��
+	int32 Row = s_CurrentPage;
+	
+	// ������ ����
+	if (Input_GetKeyDown(VK_SPACE))
+	{
+		data->ActiveTime = 0.0f;
+		data->TextLength = 0;
+		data->IsText = false;
+		FadeoutTime = 0.0f;
+
+		if (data->Pointer_Y == CHOOSE_POSITION_TOP)		//
+		{
+			s_CurrentPage = s_SelectNextPage[0];
+		}
+		else if (data->Pointer_Y == CHOOSE_POSITION_MIDDLE)	// ������ 2 ���� Scene
+		{
+			if (data->SelectButtonQuantity == 2)
+			{
+				s_CurrentPage = s_SelectNextPage[0];
+			}
+			else if (data->SelectButtonQuantity == 3)
+			{
+				s_CurrentPage = s_SelectNextPage[1];
+			}
+
+		}
+		else if (data->Pointer_Y == CHOOSE_POSITION_BOTTOM)	// ������ 3 ���� Scene
+		{
+			int32 num_choose_3;
+			if (data->SelectButtonQuantity == 1)
+			{
+				s_CurrentPage = s_SelectNextPage[0];
+			}
+			else if (data->SelectButtonQuantity == 2)
+			{
+				s_CurrentPage = s_SelectNextPage[1];
+			}
+			else if (data->SelectButtonQuantity == 3)
+			{
+				s_CurrentPage = s_SelectNextPage[2];
+			}
+		}
+		
+		Scene_SetNextScene(SCENE_MAIN);
+	}
 
 	if (Input_GetKeyDown(VK_ESCAPE))
 	{
@@ -634,14 +658,15 @@ void render_main(void)
 {
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
+	Renderer_DrawImage(&data->BlackScreen, 0, 0);
 	Renderer_DrawImage(&data->BackGround, data->Back_X, data->Back_Y);
 	Renderer_DrawImage(&data->SelectButton, data->Select_X, data->Select_Y);
+	
+	if (s_CurrentPage != 67 && s_CurrentPage != 71) 
 	Renderer_DrawImage(&data->PointerButton, data->Pointer_X, data->Pointer_Y);
+	
+	
 	Renderer_DrawImage(&data->TextUI, data->TextUI_X, data->TextUI_Y);
-
-	Renderer_DrawImage(&data->BlackScreen, 0, 0);
-	Renderer_DrawImage(&data->RedScreen, 0, 0);
-	Renderer_DrawImage(&data->WhiteScreen, 0, 0);
 
 /*--------------줜나빠르게 나옴------------------*/
 
@@ -674,7 +699,7 @@ void render_main(void)
 /*----------줜나 느리게 나옴 야발-----------------------*/
 	if (!data->DeltaRun)
 	{
-		data->TextDeltaTime += (Timer_GetDeltaTime() + 0.08f);
+		data->TextDeltaTime += (Timer_GetDeltaTime() + 0.03f);
 	}
 	//data->TextDeltaTime += (Timer_GetDeltaTime());
 	SDL_Color color = { .a = 255, .r = 255 , .g = 255 , .b = 255 };
@@ -697,8 +722,9 @@ void render_main(void)
 	}
 
 /*----------줜나 느리게 나옴 야발-----------------------*/
-
-
+	
+	Renderer_DrawImage(&data->RedScreen, 0, 0);
+	Renderer_DrawImage(&data->WhiteScreen, 0, 0);
 }
 
 void release_main(void)
@@ -734,27 +760,44 @@ typedef struct EndingSceneData
 	Image   BlackScreen;
 	int32   BlackAlpha;
 
+	Music	BGM;
 } EndingSceneData;
 
 
 float   EndingTime = 0.0f;
 
 
+int32 end1count;
+int32 end2count;
+int32 end3count;
+int32 end4count;
+int32 end5count;
+int32 end6count;
+int32 end7count;
 void init_Ending(void)
 {
 	g_Scene.Data = malloc(sizeof(EndingSceneData));
 	memset(g_Scene.Data, 0, sizeof(EndingSceneData));
 	EndingSceneData* data = (EndingSceneData*)g_Scene.Data;
 	Image_LoadImage(&data->BlackScreen, "BlackScreen.png");
+
+	data->ActiveTime = 0.0f;
+
+	data->ImageLoadTime = 0.0f;
+	
+	Audio_LoadMusic(&data->BGM, "MainTheme.mp3");
+	Audio_HookMusicFinished(logOnFinished);
+	Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
+
+	end1count = 1;
+	end2count = 1;
+	end3count = 1;
+	end4count = 1;
+	end5count = 1;
+	end6count = 1;
+	end7count = 1;
 }
 
-int32 end1count = 1;
-int32 end2count = 1;
-int32 end3count = 1;
-int32 end4count = 1;
-int32 end5count = 1;
-int32 end6count = 1;
-int32 end7count = 1;
 
 void update_Ending(void)
 {
