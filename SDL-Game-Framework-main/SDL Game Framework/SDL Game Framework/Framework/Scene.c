@@ -388,22 +388,7 @@ void update_main(void)
 		data->Volume += 0.01f;
 		Audio_SetVolume(data->Volume);
 	}
-
-	// ���� �ʿ�
-	if (Input_GetKeyDown(VK_DOWN) && CHOOSE_POSITION_TOP <= data->Pointer_Y && data->Pointer_Y < CHOOSE_POSITION_BOTTOM)
-
-	{
-		data->Pointer_Y += 80;
-	}
-	if (Input_GetKeyDown(VK_UP) && CHOOSE_POSITION_MIDDLE < data->Pointer_Y && data->SelectButtonQuantity == 2)
-	{
-		data->Pointer_Y -= 80;
-	}
-	if (Input_GetKeyDown(VK_UP) && CHOOSE_POSITION_TOP < data->Pointer_Y && data->SelectButtonQuantity == 3)
-	{
-		data->Pointer_Y -= 80;
-	}
-
+	
 	int32 SelectNextPage = 1;								//��� ���� ��
 	int32 Row = s_CurrentPage;
 	// ������ ����
@@ -482,7 +467,7 @@ void update_main(void)
 		{
 			data->Back_Y = 0;
 			data->Select_Y = 0;
-			data->Pointer_Y = 0;
+			// data->Pointer_Y = 0;
 			data->TextUI_Y = 0;
 		}
 	}
@@ -524,7 +509,7 @@ void update_main(void)
 			data->Select_X = 0;
 			data->Select_Y = 0;
 			data->Pointer_X = 0;
-			data->Pointer_Y = 0;
+			// data->Pointer_Y = 0;
 			data->TextUI_X = 0;
 			data->TextUI_Y = 0;
 		}
@@ -625,6 +610,24 @@ void update_main(void)
 	Image_SetAlphaValue(&data->RedScreen, data->RedAlpha);
 	Image_SetAlphaValue(&data->WhiteScreen, data->WhiteAlpha);
 
+	// ���� �ʿ�
+	if (Input_GetKeyDown(VK_DOWN) && CHOOSE_POSITION_TOP <= data->Pointer_Y && data->Pointer_Y < CHOOSE_POSITION_BOTTOM)
+	{
+		data->Pointer_Y += 80;
+	}
+	if (Input_GetKeyDown(VK_UP) && CHOOSE_POSITION_MIDDLE < data->Pointer_Y && data->SelectButtonQuantity == 2)
+	{
+		data->Pointer_Y -= 80;
+	}
+	if (Input_GetKeyDown(VK_UP) && CHOOSE_POSITION_TOP < data->Pointer_Y && data->SelectButtonQuantity == 3)
+	{
+		data->Pointer_Y -= 80;
+	}
+
+	if (Input_GetKeyDown(VK_ESCAPE))
+	{
+		Scene_SetNextScene(SCENE_ENDING);
+	}
 }
 
 void render_main(void)
