@@ -33,7 +33,7 @@ void Audio_Cleanup(void)
 
 void Audio_SetVolume(float volume)					// 음악 볼륨 조절
 {
-	s_MusicVolume = Clamp(0.0f, volume, 1.0f);		// Clamp - value를 [minValue, maxValue]로 만든다.
+	s_MusicVolume = Clamp(0.0f, volume, 2.0f);		// Clamp - value를 [minValue, maxValue]로 만든다.
 	
 	int32 realVolume = 0 + s_MusicVolume * MIX_MAX_VOLUME;
 	Mix_VolumeMusic(realVolume);
@@ -144,12 +144,12 @@ void Audio_FreeSoundEffect(SoundEffect* soundEffect)		// SE 객체 관련 자원을 해�
 	soundEffect->Chunk = NULL;
 }
 
-void Audio_SetEffectVolume(SoundEffect* soundEffect, float volume)	// SE 볼륨 조절
+void Audio_SetEffectVolume(SoundEffect* soundEffect, float volume)
 {
-	soundEffect->Volume = Clamp(0.0f, volume, 1.0f);		// Clamp - value를 [minValue, maxValue]로 만든다.
+	soundEffect->Volume = Clamp(0.0f, volume, 1.0f);
 
 	int32 realVolume = 0 + soundEffect->Volume * MIX_MAX_VOLUME;
-	Mix_VolumeChunk(soundEffect->Chunk, soundEffect->Volume);
+	Mix_VolumeChunk(soundEffect->Chunk, realVolume);
 }
 
 void Audio_PlaySoundEffect(const SoundEffect* soundEffect, int32 loops)	// SE 재생

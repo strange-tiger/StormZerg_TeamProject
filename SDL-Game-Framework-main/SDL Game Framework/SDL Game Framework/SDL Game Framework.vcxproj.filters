@@ -46,7 +46,7 @@
     <ClCompile Include="ReadCSV.c">
       <Filter>Framework</Filter>
     </ClCompile>
-    <ClCompile Include="csv.c">
+    <ClCompile Include="Framework\Csv.c">
       <Filter>Framework</Filter>
     </ClCompile>
   </ItemGroup>
@@ -88,7 +88,10 @@
     <ClInclude Include="ReadCSV.h">
       <Filter>Framework</Filter>
     </ClInclude>
-    <ClInclude Include="csv.h">
+    <ClInclude Include="TextList.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Csv.h">
       <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>

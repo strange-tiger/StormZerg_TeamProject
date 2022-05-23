@@ -3,7 +3,7 @@
 
 #include "Framework.h"
 #include "csv.h"
-#include <crtdbg.h>
+#include "TextList.h"
 // #include "ReadCSV.h"
 
 Scene g_Scene;
@@ -35,7 +35,17 @@ typedef struct TitleSceneData
 	Text	TestText;
 	int32	FontSize;
 	int32	RenderMode;
-	Image	TestImage;
+
+	float   ActiveTime;
+
+	Image	TitleBackground;
+	int32	TitleBack_X;
+	int32	TitleBack_Y;
+
+	Image	PressSpaceKey;
+	int32	PressSpace_X;
+	int32	PressSpace_Y;
+
 } TitleSceneData;
 
 void init_title(void)
@@ -54,63 +64,33 @@ void init_title(void)
 
 	data->RenderMode = SOLID;
 
-	Image_LoadImage(&data->TestImage, "Background.jfif");
+	Image_LoadImage(&data->TitleBackground, "NewFrontier(1).png");
+	Image_LoadImage(&data->PressSpaceKey, "NewFrontier(2).png");
+
+	data->TitleBack_X = 0;
+	data->TitleBack_Y - 0;
+	data->PressSpace_X = 0;
+	data->PressSpace_Y = 0;
 }
 
 void update_title(void)
 {
 	TitleSceneData* data = (TitleSceneData*)g_Scene.Data;
 
-	if (Input_GetKeyDown('B'))
-	{
-		Text_SetFontStyle(&data->TestText, FS_BOLD);
-	}
+	data->ActiveTime += Timer_GetDeltaTime();
 
-	if (Input_GetKeyDown('I'))
+	if ((int32)data->ActiveTime % 2 == 0)
 	{
-		Text_SetFontStyle(&data->TestText, FS_ITALIC);
+		Image_SetAlphaValue(&data->PressSpaceKey, 255);
 	}
-
-	if (Input_GetKeyDown('U'))
+	else if ((int32)data->ActiveTime % 2 != 0)
 	{
-		Text_SetFontStyle(&data->TestText, FS_UNDERLINE);
-	}
-
-	if (Input_GetKeyDown('S'))
-	{
-		Text_SetFontStyle(&data->TestText, FS_STRIKETHROUGH);
-	}
-
-	if (Input_GetKeyDown('N'))
-	{
-		Text_SetFontStyle(&data->TestText, FS_NORMAL);
-	}
-
-	if (Input_GetKeyDown('C'))
-	{
-		data->RenderMode = (data->RenderMode + 1) % 3;
-	}
-
-	if (Input_GetKey('1'))
-	{
-		--data->FontSize;
-		Text_SetFont(&data->TestText, "d2coding.ttf", data->FontSize);
-	}
-
-	if (Input_GetKey('2'))
-	{
-		++data->FontSize;
-		Text_SetFont(&data->TestText, "d2coding.ttf", data->FontSize);
+		Image_SetAlphaValue(&data->PressSpaceKey, 0);
 	}
 
 	if (Input_GetKeyDown(VK_SPACE))
 	{
 		Scene_SetNextScene(SCENE_MAIN);
-	}
-
-	if (Input_GetKeyDown(VK_TAB))
-	{
-		// Scene_SetNextScene(SCENE_TEST);
 	}
 }
 
@@ -121,8 +101,9 @@ void render_title(void)
 	{
 		SDL_Color color = { .a = 255 };
 		Renderer_DrawTextSolid(&data->GuideLine[i], 10, 20 * i, color);
-	}
 
+	}
+	/*																지워~~~~~~~~~~~~~~~
 	switch (data->RenderMode)
 	{
 	case SOLID:
@@ -146,6 +127,11 @@ void render_title(void)
 	}
 	break;
 	}
+	*/
+	Renderer_DrawImage(&data->TitleBackground, data->TitleBack_X, data->TitleBack_Y);
+	Renderer_DrawImage(&data->PressSpaceKey, data->PressSpace_X, data->PressSpace_Y);
+
+
 }
 
 void release_title(void)
@@ -165,31 +151,18 @@ void release_title(void)
 //Main
 #pragma region MainScene 1
 
-const wchar_t* str2[] = {
-	L"2060년, 환경오염과 기후위기로 ",
-	L"최악의 상황에 몰린 지구는",
-	L"하루 하루 다르게 메말라 간다.",
-	L"",
-	L"소수의 특권층들은",
-	L"안전한 삶을 영위하고 있지만,",
-	L"과학의 발전으로 인해",
-	L"대부분의 노동자들은",
-	L"안드로이드에게 일자리를 뺏기고 ",
-	L"힘들게 살아 가고 있다.",
-	L"",
-
-};
-
-#define GUIDELINE_COUNT 11
-#define CHOOSE_POSITION_1 -160
-#define CHOOSE_POSITION_2 -80
-#define CHOOSE_POSITION_3 0
-
 typedef struct MainSceneData
 {
 	CsvFile		CsvFile;
+	int32		SelectButtonQuantity;
 
-	Text		TextLine;
+	Text		TextLine[TEXT_MAX_LINE];
+	bool		IsText;
+	bool		DeltaRun;
+	float		TextDeltaTime;
+	int32		TextLength;
+
+
 	Music		BGM;
 	float		Volume;
 	SoundEffect Effect;
@@ -207,7 +180,20 @@ typedef struct MainSceneData
 	int32		Pointer_X;
 	int32		Pointer_Y;
 
+	Image		TextUI;
+	int32		TextUI_X;
+	int32		TextUI_Y;
+
+	float		ActiveTime;
+
+	Image		BlackScreen;
+	Image		RedScreen;
+	Image		WhiteScreen;
 	int32		Alpha;
+	int32		RedAlpha;
+	int32		BlackAlpha;
+	int32		WhiteAlpha;
+
 } MainSceneData;
 
 void logOnFinished(void)
@@ -223,41 +209,84 @@ void log2OnFinished(int32 channel)
 
 static char* s_Buffer;
 static char* s_BufferPointer;
-
-int32 SelectButtonQuantity = 3;									//������ ��ư ��	// Null ���� ������ �� ���� ����� ����
 static int32 s_CurrentPage = 1;
-static int32 s_SelectNextPage = 1;								//��� ���� ��
+static int32 s_SelectNextPage[3];
+static char* s_PrevBGM = "";
+
+static int32 EffectSelectSwitch;      //지진/흔들기/피격 효과를 선택하기 위한 변수(CSV로 받아와야 함)
+int32 Change_posX;               //지진 Shake 효과 코드 내에서 X좌표를 관리하기 위한 변수
+int32 Change_posY;               //지진 Shake 효과 코드 내에서 X좌표를 관리하기 위한 변수
+float FadeoutTime = 0.0f;         //페이드 인/아웃시 델타타임 누적시킬 변수
+float EffectStartTime = 2.0f;      //씬 시작 기준 몇초 후 효과를 발동할지 결정할 변수(CSV로 받아와야 함)
+int32 PageFadeOutIn_NextScene = 0;      //다음 씬이 페이드인/아웃 적용(1)일때 페이드 아웃 적용시키기 위한 변수.(CSV로 받아야 함) 
+int32 PageFadeOutIn_PrevScene;      //이전 씬이 페이드인/아웃 적용(1)일때 페이드 아웃 적용시키기 위한 변수.(CSV로 받아야 함)
+int32 SpaceCount = 0;               //씬 전환시 페이드 인아웃을 주기 위함, 씬 전환시마다 0으로 초기화 필요.
+
 void init_main(void)
 {
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-
-	// SelectButtonQuantity = atoi(&data->CsvFile.Items[s_CurrentPage][13]);
-	
 	g_Scene.Data = malloc(sizeof(MainSceneData));
 	memset(g_Scene.Data, 0, sizeof(MainSceneData));
 
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
-	CreateCsvFile(&data->CsvFile, "222.csv");
+	CreateCsvFile(&data->CsvFile, "DB_project (1).csv");
 
-	wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_CurrentPage][10]);
-	Text_CreateText(&data->TextLine, "d2coding.ttf", 16, str_text, wcslen(str_text));
 
-	char* str_background = ParseToAscii(data->CsvFile.Items[s_CurrentPage][1]);
-	Image_LoadImage(&data->BackGround, str_background);
-	char* str_choose = ParseToAscii(data->CsvFile.Items[s_CurrentPage][2]);
-	Image_LoadImage(&data->SelectButton, str_choose);
+/*-----------------야발-----------------------*/
+	
+	data->IsText = false;
+	data->DeltaRun = false;
+	data->TextDeltaTime = 0.0f;
+
+/*----------------------------------------*/
+
+	int32 Row = s_CurrentPage;
+	for (int32 i = 0; i < 3; i++)
+	{
+		s_SelectNextPage[i] = ParseToInt(data->CsvFile.Items[Row][NEXT_SCENE_1 + i]);
+	}
+
+	char* str_background = ParseToAscii(data->CsvFile.Items[Row][BACK_IMG_NAME]);
+	if (NULL != *str_background)
+	{
+		Image_LoadImage(&data->BackGround, str_background);
+	}
+
+	char* str_choose = ParseToAscii(data->CsvFile.Items[Row][CHOOSE_IMG_NAME]);
+	if (NULL != *str_choose)
+	{
+		Image_LoadImage(&data->SelectButton, str_choose);
+	}
 	Image_LoadImage(&data->PointerButton, "Pointer.png");
+	Image_LoadImage(&data->TextUI, "Text_UI.png");
 
-	char* str_bgm = ParseToAscii(data->CsvFile.Items[s_CurrentPage][4]);
-	Audio_LoadMusic(&data->BGM, str_bgm);
+	Image_LoadImage(&data->BlackScreen, "BlackScreen.png");
 
-	// Audio_HookMusicFinished(logOnFinished);
-	// char* str_se = ParseToAscii(data->CsvFile.Items[s_CurrentPage][6]);
-	// Audio_LoadSoundEffect(&data->Effect, str_se);
-	// Audio_HookSoundEffectFinished(log2OnFinished);
-	// Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
+	Image_LoadImage(&data->RedScreen, "RedScreen.png");
 
+	Image_LoadImage(&data->WhiteScreen, "WhiteScreen.png");
+
+	char* str_bgm = ParseToAscii(data->CsvFile.Items[Row][SOUND_MUSIC_NAME]);
+	if (*s_PrevBGM != *str_bgm)
+	{
+		if (NULL != *str_bgm)
+		{
+			Audio_LoadMusic(&data->BGM, str_bgm);
+			Audio_HookMusicFinished(logOnFinished);
+		}
+		
+		s_PrevBGM = str_bgm;
+	}
+
+	char* str_se = ParseToAscii(data->CsvFile.Items[Row][SOUND_EFFECT_NAME]);
+	if (NULL != *str_se)
+	{
+		Audio_LoadSoundEffect(&data->Effect, str_se);
+		Audio_HookSoundEffectFinished(log2OnFinished);
+	}
+	Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
+	Audio_PlaySoundEffect(&data->Effect, 0);
+	
 	data->Volume = 1.0f;
 
 	data->Speed = 400.0f;
@@ -265,55 +294,73 @@ void init_main(void)
 	data->Back_Y = 0;
 	data->Select_X = 0;
 	data->Select_Y = 0;
-	switch (SelectButtonQuantity)
+	data->TextUI_X = 0;
+	data->TextUI_Y = 0;
+	data->Alpha = 255;
+	data->BlackAlpha = 255;
+	
+	data->Pointer_X = 0;
+
+	EffectSelectSwitch = ParseToInt(data->CsvFile.Items[Row][IMAGE_EFFECT_SELECT]);
+	
+	data->SelectButtonQuantity = ParseToInt(data->CsvFile.Items[Row][NUMBER_OF_OPTIONS]);
+	switch (data->SelectButtonQuantity)
 	{
 	case 1:
-		data->Pointer_X = 0;
-		data->Pointer_Y = CHOOSE_POSITION_3;
+		data->Pointer_Y = CHOOSE_POSITION_BOTTOM;
 		break;
 	case 2:
-		data->Pointer_X = 0;
-		data->Pointer_Y = CHOOSE_POSITION_2;
+		data->Pointer_Y = CHOOSE_POSITION_MIDDLE;
 		break;
 	case 3:
-		data->Pointer_X = 0;
-		data->Pointer_Y = CHOOSE_POSITION_1;
+		data->Pointer_Y = CHOOSE_POSITION_TOP;
 		break;
 	}
-
-	data->Alpha = 255;
 }
+
 
 void update_main(void)
 {
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
-  
-	if (s_CurrentPage != s_SelectNextPage)
+
+/*----------------단순줄바꿈출력(한줄안댐)야발---------------------*/
+
+
+	wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_CurrentPage][FULL_TEXT]);
+	const wchar_t* lineStart = str_text;
+	while (!data->IsText)
 	{
-		wchar_t* str_text = ParseToUnicode(data->CsvFile.Items[s_SelectNextPage][9]);
-		Text_CreateText(&data->TextLine, "d2coding.ttf", 16, str_text, wcslen(str_text));
+		for (int32 line = 0; line < TEXT_MAX_LINE; line++)
+		{
+			const wchar_t* lineEnd = lineStart;
+			while (true)
+			{
+				if (L'\n' == *lineEnd || L'\0' == *lineEnd)
+				{
+					break;
+				}
+				++lineEnd;
+			}
+			int32 lineLength = lineEnd - lineStart;
+			Text_CreateText(&data->TextLine[line], DEFAULT_FONT, DEFAULT_FONT_SIZE, lineStart, lineLength);
 
-		char* str_background = ParseToAscii(data->CsvFile.Items[s_SelectNextPage][1]);
-		Image_LoadImage(&data->BackGround, str_background);
-		char* str_choose = ParseToAscii(data->CsvFile.Items[s_SelectNextPage][2]);
-		Image_LoadImage(&data->SelectButton, str_choose);
-		Image_LoadImage(&data->PointerButton, "Pointer.png");
+			if (L'\0' == *lineEnd)
+			{
+				data->IsText = !data->IsText;
+				break;
+			}
+			lineStart = lineEnd + 1;
+		}
 
-		char* str_bgm = ParseToAscii(data->CsvFile.Items[s_SelectNextPage][4]);
-		Audio_LoadMusic(&data->BGM, str_bgm);
-		Audio_HookMusicFinished(logOnFinished);
-		char* str_se = ParseToAscii(data->CsvFile.Items[s_SelectNextPage][6]);
-		Audio_LoadSoundEffect(&data->Effect, str_se);
-		Audio_HookSoundEffectFinished(log2OnFinished);
-		Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
-
-		s_CurrentPage = s_SelectNextPage;
 	}
 
-	if (Input_GetKeyDown('E'))
-	{
-		Audio_PlaySoundEffect(&data->Effect, 1);
-	}
+
+
+/*------------------------------------------------------------*/
+
+
+
+
 
 	if (Input_GetKeyDown('M'))
 	{
@@ -339,96 +386,271 @@ void update_main(void)
 		}
 	}
 
-	if (Input_GetKey('-'))
+	if (Input_GetKey('1'))
 	{
 		data->Volume -= 0.01f;
 		Audio_SetVolume(data->Volume);
 	}
 
-	if (Input_GetKey('+'))
+	if (Input_GetKey('2'))
 	{
 		data->Volume += 0.01f;
 		Audio_SetVolume(data->Volume);
 	}
+	
+	data->ActiveTime += Timer_GetDeltaTime();
+
+	//Update
+  //--------------------------------------------------------------------------------------------지진
+ 	if (EffectSelectSwitch == 1)                        //CSV로 이펙트 스위치, 시작시간 받아와야 함
+	{
+		if (EffectStartTime <= data->ActiveTime && data->ActiveTime <= EffectStartTime + 3)
+		{
+			int32 RandumPos = rand() % 5 + 1;
+			if ((int32)(data->ActiveTime * 100) % 10 <= 4)
+			{
+				data->Back_Y = RandumPos;
+				data->Select_Y = RandumPos;
+				// data->Pointer_Y = RandumPos;
+				data->TextUI_Y = RandumPos;
+			}
+			if ((int32)(data->ActiveTime * 100) % 10 >= 5)
+			{
+				data->Back_Y = -1 * RandumPos;
+				data->Select_Y = -1 * RandumPos;
+				// data->Pointer_Y = -1 * RandumPos;
+				data->TextUI_Y = -1 * RandumPos;
+			}
+		}
+		else
+		{
+			data->Back_Y = 0;
+			data->Select_Y = 0;
+			// data->Pointer_Y = 0;
+			data->TextUI_Y = 0;
+		}
+	}
+
+	//--------------------------------------------------------------------------------------------흔들기
+	if (EffectSelectSwitch == 2)                        //CSV로 이펙트 스위치, 시작시간 받아와야 함            
+	{
+		if (EffectStartTime <= data->ActiveTime && data->ActiveTime <= EffectStartTime + 3)
+		{
+			int32 RandumPos_X = rand() % 6 + 5;
+			int32 RandumPos_Y = rand() % 6 + 5;
+			if ((int32)(data->ActiveTime * 100) % 10 <= 4)
+			{
+				data->Back_X = RandumPos_X;
+				data->Back_Y = RandumPos_Y;
+				data->Select_X = RandumPos_X;
+				data->Select_Y = RandumPos_Y;
+				data->Pointer_X = RandumPos_X;
+				// data->Pointer_Y = RandumPos_Y;
+				data->TextUI_X = RandumPos_X;
+				data->TextUI_Y = RandumPos_Y;
+			}
+			if ((int32)(data->ActiveTime * 100) % 10 >= 5)
+			{
+				data->Back_X = -1 * RandumPos_X;
+				data->Back_Y = -1 * RandumPos_Y;
+				data->Select_X = -1 * RandumPos_X;
+				data->Select_Y = -1 * RandumPos_Y;
+				data->Pointer_X = -1 * RandumPos_X;
+				// data->Pointer_Y = -1 * RandumPos_Y;
+				data->TextUI_X = -1 * RandumPos_X;
+				data->TextUI_Y = -1 * RandumPos_Y;
+			}
+		}
+		else
+		{
+			data->Back_X = 0;
+			data->Back_Y = 0;
+			data->Select_X = 0;
+			data->Select_Y = 0;
+			data->Pointer_X = 0;
+			// data->Pointer_Y = 0;
+			data->TextUI_X = 0;
+			data->TextUI_Y = 0;
+		}
+	}
+	//--------------------------------------------------------------------------------------------데드씬 페이드 인 - 아웃(RED)
+	if (EffectSelectSwitch == 3)                           //CSV로 이펙트 스위치, 시작시간 받아와야 함      
+	{
+		if (EffectStartTime <= data->ActiveTime)
+		{
+			FadeoutTime += Timer_GetDeltaTime();
+			if (FadeoutTime <= 0.4f)
+			{
+				data->RedAlpha = Clamp(0, data->RedAlpha + 100, 255);
+			}
+			if (FadeoutTime > 0.4f)
+			{
+				data->RedAlpha = Clamp(0, data->RedAlpha - 5, 255);
+			}
+		}
+		//---------------------------페이드 효과 내에서 지진효과 없애고싶으면 요 밑으로 지우면 됨------------------
+		
+		if (EffectStartTime - 0.01f <= data->ActiveTime && data->ActiveTime <= EffectStartTime + 0.6f)
+		{
+			int32 RandumPos_X = rand() % 6 + 5;
+			int32 RandumPos_Y = rand() % 6 + 5;
+			if ((int32)(data->ActiveTime * 100) % 6 <= 2)
+			{
+				data->Back_X = RandumPos_X;
+				data->Back_Y = RandumPos_Y;
+				data->Select_X = RandumPos_X;
+				data->Select_Y = RandumPos_Y;
+				data->Pointer_X = RandumPos_X;
+				// data->Pointer_Y = RandumPos_Y;
+				data->TextUI_X = RandumPos_X;
+				data->TextUI_Y = RandumPos_Y;
+			}
+			if ((int32)(data->ActiveTime * 100) % 6 >= 3)
+			{
+				data->Back_X = -1 * RandumPos_X;
+				data->Back_Y = -1 * RandumPos_Y;
+				data->Select_X = -1 * RandumPos_X;
+				data->Select_Y = -1 * RandumPos_Y;
+				data->Pointer_X = -1 * RandumPos_X;
+				// data->Pointer_Y = -1 * RandumPos_Y;
+				data->TextUI_X = -1 * RandumPos_X;
+				data->TextUI_Y = -1 * RandumPos_Y;
+			}
+		}
+		else
+		{
+			data->Back_X = 0;
+			data->Back_Y = 0;
+			data->Select_X = 0;
+			data->Select_Y = 0;
+			data->Pointer_X = 0;
+			// data->Pointer_Y = 0;
+			data->TextUI_X = 0;
+			data->TextUI_Y = 0;
+		}
+	}
+	//------------------------------
+	else
+	{
+		data->RedAlpha = Clamp(0, data->RedAlpha - 255, 255);
+	}
+	//--------------------------------------------------------------------------------------------화이트 페이드 인 - 아웃(White)
+	if (EffectSelectSwitch == 4)                           //CSV로 이펙트 스위치, 시작시간 받아와야 함      
+	{
+		if (EffectStartTime <= data->ActiveTime)
+		{
+			FadeoutTime += Timer_GetDeltaTime();
+			if (FadeoutTime <= 0.4f)
+			{
+				data->WhiteAlpha = Clamp(0, data->WhiteAlpha + 100, 255);
+			}
+			if (FadeoutTime > 1.0f)
+			{
+				data->WhiteAlpha = Clamp(0, data->WhiteAlpha - 5, 255);
+			}
+		}
+	}
+	else
+	{
+		data->WhiteAlpha = Clamp(0, data->WhiteAlpha - 255, 255);
+	}
+	//--------------------------------------------------------------------------------------------씬 전환 페이드 인(Black)
+	//if (PageFadeOutIn_PrevScene == 1)                                                 //이전 씬이 1이면 페이드 인 적용
+	//{
+	//	if (0.0f <= data->ActiveTime && data->ActiveTime <= 0.3f)
+	//	{
+	//		data->BlackAlpha = Clamp(0, data->BlackAlpha + 255, 255);
+	//	}
+	//	if (0.3f < data->ActiveTime && data->ActiveTime <= 1.0f)
+	//	{
+	//		data->BlackAlpha = Clamp(0, data->BlackAlpha - 20, 255);
+	//	}
+	//}
+	//else
+	//{
+	//	data->BlackAlpha = Clamp(0, data->BlackAlpha - 255, 255);
+	//}
+
+	////--------------------------------------------------------------------------------------------씬 전환 페이드 아웃(Black)
+	//if (PageFadeOutIn_NextScene == 1)                                                //이후 씬이 1이면 페이드 아웃 적용. 
+	//{
+	//	if (Input_GetKeyDown(VK_SPACE))
+	//	{
+	//		SpaceCount = 1;
+	//	}
+	//	if (SpaceCount == 1)
+	//	{
+	//		data->BlackAlpha = Clamp(0, data->BlackAlpha + 20, 255);
+	//	}
+	//}
+
+	Image_SetAlphaValue(&data->BlackScreen, data->BlackAlpha);
+	Image_SetAlphaValue(&data->RedScreen, data->RedAlpha);
+	Image_SetAlphaValue(&data->WhiteScreen, data->WhiteAlpha);
 
 	// ���� �ʿ�
-	if (Input_GetKeyDown(VK_DOWN) && CHOOSE_POSITION_1 <= data->Pointer_Y && data->Pointer_Y < CHOOSE_POSITION_3)
-
+	if (Input_GetKeyDown(VK_DOWN) && CHOOSE_POSITION_TOP <= data->Pointer_Y && data->Pointer_Y < CHOOSE_POSITION_BOTTOM)
 	{
 		data->Pointer_Y += 80;
 	}
-	if (Input_GetKeyDown(VK_UP) && CHOOSE_POSITION_2 < data->Pointer_Y && SelectButtonQuantity == 2)
+	if (Input_GetKeyDown(VK_UP) && CHOOSE_POSITION_MIDDLE < data->Pointer_Y && data->SelectButtonQuantity == 2)
 	{
 		data->Pointer_Y -= 80;
 	}
-	if (Input_GetKeyDown(VK_UP) && CHOOSE_POSITION_1 < data->Pointer_Y && SelectButtonQuantity == 3)
+	if (Input_GetKeyDown(VK_UP) && CHOOSE_POSITION_TOP < data->Pointer_Y && data->SelectButtonQuantity == 3)
 	{
 		data->Pointer_Y -= 80;
 	}
-
+							//��� ���� ��
+	int32 Row = s_CurrentPage;
+	
 	// ������ ����
 	if (Input_GetKeyDown(VK_SPACE))
 	{
-		if (data->Pointer_Y == CHOOSE_POSITION_1)		// ������ 1 ���� Scene
+		data->ActiveTime = 0.0f;
+		data->TextLength = 0;
+		data->IsText = false;
+		FadeoutTime = 0.0f;
+
+		if (data->Pointer_Y == CHOOSE_POSITION_TOP)		//
 		{
-			char* num_choose_1 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][13]);
-			s_SelectNextPage = atoi(num_choose_1);	
+			s_CurrentPage = s_SelectNextPage[0];
 		}
-		else if (data->Pointer_Y == CHOOSE_POSITION_2)	// ������ 2 ���� Scene
+		else if (data->Pointer_Y == CHOOSE_POSITION_MIDDLE)	// ������ 2 ���� Scene
 		{
-			char* num_choose_2;
-			if (SelectButtonQuantity == 2)
+			if (data->SelectButtonQuantity == 2)
 			{
-				num_choose_2 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][13]);
-				s_SelectNextPage = atoi(num_choose_2);
+				s_CurrentPage = s_SelectNextPage[0];
 			}
-			else if (SelectButtonQuantity == 1) 
+			else if (data->SelectButtonQuantity == 3)
 			{
-				num_choose_2 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][14]);
-				s_SelectNextPage = atoi(num_choose_2);	
+				s_CurrentPage = s_SelectNextPage[1];
 			}
+
 		}
-		else if (data->Pointer_Y == CHOOSE_POSITION_3)	// ������ 3 ���� Scene
+		else if (data->Pointer_Y == CHOOSE_POSITION_BOTTOM)	// ������ 3 ���� Scene
 		{
-			char* num_choose_3;
-			if (SelectButtonQuantity == 3)
+			int32 num_choose_3;
+			if (data->SelectButtonQuantity == 1)
 			{
-				num_choose_3 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][13]);
-				s_SelectNextPage = atoi(num_choose_3);
+				s_CurrentPage = s_SelectNextPage[0];
 			}
-			else if (SelectButtonQuantity == 2)
+			else if (data->SelectButtonQuantity == 2)
 			{
-				num_choose_3 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][14]);
-				s_SelectNextPage = atoi(num_choose_3);
+				s_CurrentPage = s_SelectNextPage[1];
 			}
-			else if (SelectButtonQuantity == 1)
+			else if (data->SelectButtonQuantity == 3)
 			{
-				num_choose_3 = ParseToAscii(data->CsvFile.Items[s_CurrentPage][15]);
-				s_SelectNextPage = atoi(num_choose_3);	 
+				s_CurrentPage = s_SelectNextPage[2];
 			}
 		}
+		
+		Scene_SetNextScene(SCENE_MAIN);
 	}
 
-	if (Input_GetKey('W'))
+	if (Input_GetKeyDown(VK_ESCAPE))
 	{
-		data->BackGround.ScaleY -= 0.05f;
-	}
-
-	if (Input_GetKey('S'))
-	{
-		data->BackGround.ScaleY += 0.05f;
-	}
-
-	if (Input_GetKey('K'))
-	{
-		//data->Alpha = Clamp(0, data->Alpha - 1, 255);						//이거 존나중요함 페이드 인아웃.
-		//Image_SetAlphaValue(&data->BackGround, data->Alpha);
-	}
-
-	if (Input_GetKey('L'))
-	{
-		//data->Alpha = Clamp(0, data->Alpha + 1, 255);
-		//Image_SetAlphaValue(&data->BackGround, data->Alpha);
+		Scene_SetNextScene(SCENE_ENDING);
 	}
 }
 
@@ -436,29 +658,255 @@ void render_main(void)
 {
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
+	Renderer_DrawImage(&data->BlackScreen, 0, 0);
 	Renderer_DrawImage(&data->BackGround, data->Back_X, data->Back_Y);
 	Renderer_DrawImage(&data->SelectButton, data->Select_X, data->Select_Y);
+	
+	if (s_CurrentPage != 67 && s_CurrentPage != 71) 
 	Renderer_DrawImage(&data->PointerButton, data->Pointer_X, data->Pointer_Y);
+	
+	
+	Renderer_DrawImage(&data->TextUI, data->TextUI_X, data->TextUI_Y);
 
-	
+/*--------------줜나빠르게 나옴------------------*/
+
+	/*data->TextDeltaTime += Timer_GetDeltaTime();
+	static int32 s_cnt = 0;
+	if (data->TextDeltaTime >= 3.0f)
+	{
+		if (s_cnt < TEXT_MAX_LINE)
+		{
+			s_cnt++;
+			for (int32 i = 0; i <= s_cnt; i++)
+			{
+				SDL_Color color = { .a = 255, .r = 255 , .g = 255 , .b = 255 };
+				Renderer_DrawTextBlended(&data->TextLine[i], 60, 80 + (i * 30), color);
+			}
+		}
+	}
+	else
+	{
+		for (int32 i = 0; i <= s_cnt; i++)
+		{
+			SDL_Color color = { .a = 255, .r = 255 , .g = 255 , .b = 255 };
+			Renderer_DrawTextBlended(&data->TextLine[i], 60, 80 + (i * 30), color);
+		}
+	}*/
+
+/*--------------줜나빠르게 나옴------------------*/
+
+
+/*----------줜나 느리게 나옴 야발-----------------------*/
+	if (!data->DeltaRun)
+	{
+		data->TextDeltaTime += (Timer_GetDeltaTime() + 0.03f);
+	}
+	//data->TextDeltaTime += (Timer_GetDeltaTime());
 	SDL_Color color = { .a = 255, .r = 255 , .g = 255 , .b = 255 };
-	Renderer_DrawTextSolid(&data->TextLine, 50, 140, color);
+	for (int32 i = 0; i < data->TextDeltaTime; i++)
+	{
+		Renderer_DrawTextBlended(&data->TextLine[i], 60, 80 + (i * 25), color);
+		if (i > 22)
+		{
+			data->DeltaRun = !data->DeltaRun;
+			data->TextDeltaTime = 0.0f;
+
+		}
+	}
+	if (data->DeltaRun)
+	{
+		for (int32 j = 0; j < TEXT_MAX_LINE; j++)
+		{
+			Renderer_DrawTextBlended(&data->TextLine[j], 60, 80 + +(j * 25), color);
+		}
+	}
+
+/*----------줜나 느리게 나옴 야발-----------------------*/
 	
+	Renderer_DrawImage(&data->RedScreen, 0, 0);
+	Renderer_DrawImage(&data->WhiteScreen, 0, 0);
 }
 
 void release_main(void)
 {
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
+	Image_FreeImage(&data->BackGround);
+	Image_FreeImage(&data->SelectButton);
+	Image_FreeImage(&data->TextUI);
 
-	for (int32 i = 0; i < GUIDELINE_COUNT; ++i)
-	{
-		Text_FreeText(&data->TextLine);
-	}
-	Audio_FreeMusic(&data->BGM);
+	Text_FreeText(&data->TextLine);
+	
+	// Audio_FreeMusic(&data->BGM);
 	Audio_FreeSoundEffect(&data->Effect);
 
 	SafeFree(g_Scene.Data);
 }
+#pragma endregion
+
+#pragma region EndingScene
+
+typedef struct EndingSceneData
+{
+	float   ActiveTime;
+	float   ImageLoadTime;
+	int32   RenderMode;
+
+	Image   EndingBackGround;
+	int32   EndingBackGround_Alpha;
+	Image   EndingText1;
+	int32   EndingText1_Alpha;
+	Image   EndingText2;
+	int32   EndingText2_Alpha;
+	Image   BlackScreen;
+	int32   BlackAlpha;
+
+	Music	BGM;
+} EndingSceneData;
+
+
+float   EndingTime = 0.0f;
+
+
+int32 end1count;
+int32 end2count;
+int32 end3count;
+int32 end4count;
+int32 end5count;
+int32 end6count;
+int32 end7count;
+void init_Ending(void)
+{
+	g_Scene.Data = malloc(sizeof(EndingSceneData));
+	memset(g_Scene.Data, 0, sizeof(EndingSceneData));
+	EndingSceneData* data = (EndingSceneData*)g_Scene.Data;
+	Image_LoadImage(&data->BlackScreen, "BlackScreen.png");
+
+	data->ActiveTime = 0.0f;
+
+	data->ImageLoadTime = 0.0f;
+	
+	Audio_LoadMusic(&data->BGM, "MainTheme.mp3");
+	Audio_HookMusicFinished(logOnFinished);
+	Audio_PlayFadeIn(&data->BGM, INFINITY_LOOP, 3000);
+
+	end1count = 1;
+	end2count = 1;
+	end3count = 1;
+	end4count = 1;
+	end5count = 1;
+	end6count = 1;
+	end7count = 1;
+}
+
+
+void update_Ending(void)
+{
+	EndingSceneData* data = (EndingSceneData*)g_Scene.Data;
+	data->ActiveTime += Timer_GetDeltaTime();
+
+	data->ImageLoadTime += Timer_GetDeltaTime();
+	EndingTime += Timer_GetDeltaTime();
+	data->BlackAlpha = Clamp(0, data->BlackAlpha + 255, 255);
+	if (0 <= data->ImageLoadTime && data->ImageLoadTime < 6 && end1count == 1)
+	{
+		Image_LoadImage(&data->EndingBackGround, "END(1).png");
+		Image_LoadImage(&data->EndingText1, "END(2).png");
+		end1count = 0;
+	}
+
+	if (6 <= data->ImageLoadTime && data->ImageLoadTime < 12 && end2count == 1)
+	{
+		Image_LoadImage(&data->EndingBackGround, "END(3).png");
+		Image_LoadImage(&data->EndingText1, "END(4).png");
+		end2count = 0;
+	}
+
+	if (12 <= data->ImageLoadTime && data->ImageLoadTime < 18 && end3count == 1)
+	{
+		Image_LoadImage(&data->EndingBackGround, "END(5).png");
+		Image_LoadImage(&data->EndingText1, "END(6).png");
+		end3count = 0;
+	}
+
+	if (18 <= data->ImageLoadTime && data->ImageLoadTime < 24 && end4count == 1)
+	{
+		Image_LoadImage(&data->EndingBackGround, "END(7).png");
+		Image_LoadImage(&data->EndingText1, "END(8).png");
+		end4count = 0;
+	}
+	if (24 <= data->ImageLoadTime && data->ImageLoadTime < 35 && end5count == 1)
+	{
+		Image_LoadImage(&data->EndingBackGround, "END(9).png");
+		Image_LoadImage(&data->EndingText1, "END(11).png");
+		end5count = 0;
+	}
+
+	if (0.1 > data->ActiveTime)                           //각 요소 초기 알파값 0
+	{
+		data->EndingBackGround_Alpha = Clamp(0, data->EndingBackGround_Alpha - 255, 255);
+		data->EndingText1_Alpha = Clamp(0, data->EndingText1_Alpha - 255, 255);
+		data->EndingText2_Alpha = Clamp(0, data->EndingText2_Alpha - 255, 255);
+	}
+
+	if (1 <= EndingTime && EndingTime < 2)
+	{
+		data->EndingBackGround_Alpha = Clamp(0, data->EndingBackGround_Alpha + 10, 255);
+	}
+	if (2 <= EndingTime && EndingTime < 3)
+	{
+		data->EndingText1_Alpha = Clamp(0, data->EndingText1_Alpha + 10, 255);
+		if (26 <= data->ActiveTime && 3 <= EndingTime)
+		{
+			data->EndingText2_Alpha = Clamp(0, data->EndingText2_Alpha + 10, 255);
+		}
+	}
+
+	if (5 <= EndingTime && EndingTime < 6)
+	{
+		if (data->ActiveTime < 25)
+		{
+			data->EndingBackGround_Alpha = Clamp(0, data->EndingBackGround_Alpha - 10, 255);
+			data->EndingText1_Alpha = Clamp(0, data->EndingText1_Alpha - 10, 255);
+		}
+		if (5.9 <= EndingTime)
+		{
+			EndingTime = 0.0f;
+		}
+	}
+	if (35 <= data->ActiveTime)
+	{
+		data->EndingBackGround_Alpha = Clamp(0, data->EndingBackGround_Alpha - 10, 255);
+		data->EndingText1_Alpha = Clamp(0, data->EndingText1_Alpha - 10, 255);
+		data->EndingText2_Alpha = Clamp(0, data->EndingText2_Alpha - 10, 255);
+		EndingTime = 0.0f;
+	}
+	Image_SetAlphaValue(&data->BlackScreen, data->BlackAlpha);
+	Image_SetAlphaValue(&data->EndingBackGround, data->EndingBackGround_Alpha);
+	Image_SetAlphaValue(&data->EndingText1, data->EndingText1_Alpha);
+	Image_SetAlphaValue(&data->EndingText2, data->EndingText2_Alpha);
+
+	if (Input_GetKeyDown(VK_SPACE) || 36 < data->ActiveTime)                           //36초 경과, 혹은 스페이스 누르면 메인 타이틀로 돌아감
+	{
+		Scene_SetNextScene(SCENE_TITLE);
+	}
+}
+
+void render_Ending(void)
+{
+	EndingSceneData* data = (EndingSceneData*)g_Scene.Data;
+
+	Renderer_DrawImage(&data->BlackScreen, 0, 0);
+	Renderer_DrawImage(&data->EndingBackGround, 0, 0);
+	Renderer_DrawImage(&data->EndingText1, 0, 0);
+	Renderer_DrawImage(&data->EndingText2, 0, 0);
+}
+
+void release_Ending(void)
+{
+	EndingSceneData* data = (EndingSceneData*)g_Scene.Data;
+	SafeFree(g_Scene.Data);
+}
+
 #pragma endregion
 
 bool Scene_IsSetNextScene(void)
@@ -504,12 +952,12 @@ void Scene_Change(void)								// Scene 변경 함수 - Scene 추가시 switch�
 		g_Scene.Render = render_main;
 		g_Scene.Release = release_main;
 		break;
-		/*case SCENE_TEST:
-			g_Scene.Init = init_test;
-			g_Scene.Update = update_test;
-			g_Scene.Render = render_test;
-			g_Scene.Release = release_test;
-			break;*/
+	case SCENE_ENDING:
+		g_Scene.Init = init_Ending;
+		g_Scene.Update = update_Ending;
+		g_Scene.Render = render_Ending;
+		g_Scene.Release = release_Ending;
+		break;
 	}
 
 	g_Scene.Init();
